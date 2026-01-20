@@ -1,0 +1,82 @@
+header {
+    width: 100%;
+    background: #ee6307;
+    height: 80px;
+    padding: 0;
+    position: fixed;
+    z-index: 5;
+}
+
+nav {
+    width: 100%;
+    height: 100%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-home {
+    width: 80px;
+    padding-top: 10px;
+}
+
+.logo-home img {
+    width: 100%;
+}
+
+.form-buscar {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    height: 35px;
+    border-radius: 5px;
+    background: #ffff;
+}
+
+.barra-busca {
+    flex: 1;
+    width: 80%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: 0 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.btn-buscar {
+    width: 35px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: 0 5px 5px 0;
+}
+
+@media (max-width: 1080px) {
+    nav {
+        justify-content: space-around;
+    }
+
+    .logo-home {
+        position: absolute;
+        left: 10px;
+    }
+}
+
+@media (max-width: 430px) {
+    .form-buscar {
+        width: 150px;
+    }
+
+    .form-buscar:focus-within {
+        width: 300px;
+        position: absolute;
+        top: 100px;
+        border: solid 2px var(--cor-primaria);
+    }
+}

@@ -1,0 +1,121 @@
+import React from "react";
+import Header from "../../components/Header";
+import Card from "../../components/card";
+import { useEffect, useState } from "react";
+import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
+import LoaderSkeletonCard from "../../components/Loader-skeleton";
+import Modal from "../../components/Modal";
+import ModalIA from "../../components/Modal-anunc-IA";
+import Footer from "../../components/Footer";
+
+import "./home.css";
+
+export default function Home() {
+    const [receitas, setReceitas] = useState([]);
+    const [busca, setBusca] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [alerta, setAlerta] = useState(false);
+    const [tituloSecao, setatituloSecao] = useState("Receitas do dia");
+    const [mensagem, setMensagem] = useState("");
+
+    useEffect(() => {
+
+        async function carregarReceitas() {
+            setLoading(true);
+            try {
+                const dados = await apiBuscaReceitas();
+                setReceitas(dados);
+                setLoading(false);
+                console.log(dados);
+            } catch (erro) {
+                setLoading(false);
+                setMensagem("Desculpe. Não consegui acessar o servidor.");
+                console.error("erro ao carregar receitas", erro);
+                console.log("deu erro");
+            }
+        }
+        carregarReceitas();
+    }, []);
+
+    // buscar
+    async function handleBuscar(evento) {
+        evento.preventDefault();
+        setLoading(true);
+        try {
+            const dados = await apiBuscaReceitas(busca);
+            console.log(dados);
+            setatituloSecao(`Receita de ${busca} encontrada.`);
+
+            setLoading(false);
+            if (dados == "") {
+                //    alert("Não encontrei nenhuma receita com " + busca)
+                setAlerta(true);
+                setatituloSecao(tituloSecao);
+                setTimeout(() => {
+                    setAlerta(false);
+                }, 7000);
+
+                carregarReceitas();
+            } else {
+                setAlerta(false);
+            }
+            setLoading(false);
+
+            setReceitas(dados);
+        } catch (erro) {
+            console.error("erro ao buscar receitas", erro);
+            console.log("erro ao buscar");
+            setLoading(false);
+        }
+    }
+
+    return (
+        <>
+            <Header value={busca} onChange={setBusca} onSubmit={handleBuscar} />
+            <div className="sections">
+                <section className="hero">
+                    <div className="conteudo-direito">
+                        <h1>As melhores receitas você encontra aqui!</h1>
+                    </div>
+                    <div className="conteudo-esquerdo">
+                        <img src="./prato1-hero.png" alt="" />
+                        <ModalIA
+                            texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
+                            duracao={12000}
+                            intervalo={20000}
+                        />
+                    </div>
+                </section>
+
+                <section className="pratos-entrada">
+                    {alerta && <Modal ingrediente={busca} />}
+                    <h2 className="titulo-secao">{tituloSecao}</h2>
+                    <div className="cards_card">
+                        {/* mensagem para possíveis erro na busca */}
+                        {mensagem}
+                        {loading
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <LoaderSkeletonCard key={i} />
+                              ))
+                            : Array.isArray(receitas) &&
+                              receitas.map((receita) => (
+                                  <Card
+                                      key={receita.id}
+                                      src={receita.imagem}
+                                      alt={
+                                          "imagem da receita de " +
+                                          receita.titulo
+                                      }
+                                      titulo={receita.titulo}
+                                      //   tempoPreparo={`${receita.tempoPreparo} min`}
+                                      //   quantPorcoes={`${receita.porcoes} porções`}
+                                  />
+                              )
+                              )}
+                    </div>
+                </section>
+                <Footer />
+            </div>
+        </>
+    );
+}

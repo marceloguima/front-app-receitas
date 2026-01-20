@@ -1,0 +1,90 @@
+.sections {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 120px;
+    width: 100vw;
+    height: 50vh;
+}
+
+.conteudo-esquerdo {
+    width: 30%;
+}
+
+.conteudo-esquerdo img {
+    width: 100%;
+}
+
+.conteudo-direito {
+    margin-top: 200px;
+    width: 50vw;
+    height: 500px;
+    padding-left: 3%;
+}
+
+.conteudo-direito h1 {
+    font-size: 3rem;
+}
+
+
+.pratos-entrada {
+    width: 100vw;
+    margin-top: 10px;
+    position: relative;
+}
+
+.titulo-secao {
+    text-align: center;
+}
+
+.cards_card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-content: center;
+    padding: 2rem;
+    gap: 50px;
+    border-top: solid 2px var(--cor-primaria);
+
+}
+
+footer {
+    width: 100vw;
+    height: 150px;
+    background: var(--cor-primaria);
+    margin-top: 100px;
+}
+
+@media (max-width: 880px) {
+    .conteudo-direito h1 {
+        font-size: 2rem;
+    }
+
+    
+.conteudo-esquerdo {
+    width: 50%;
+}
+}
+
+@media (max-width: 520px) {
+    .hero{
+flex-direction: column;
+padding-top: 100px;
+    }
+
+    .conteudo-direito{
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .conteudo-esquerdo{
+        width: 60%;
+    }
+}

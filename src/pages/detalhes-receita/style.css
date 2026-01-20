@@ -1,0 +1,9 @@
+.receita_completa{
+    width: 100vw;
+    padding: 100px;
+}
+
+.tempo_preparo_porcao{
+    display: flex;
+    gap: 50px;
+}

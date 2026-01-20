@@ -1,0 +1,30 @@
+.pg-error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(./public/imagem-error.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+
+}
+.pg-error h1{
+    color: #333;
+    font-size: 24px;
+    margin-top: 200px;
+}
+
+.cod-error{
+    text-align: center;
+    margin-top: 20px;
+    position: absolute;
+    right: 10%;
+    top: 20%;
+    font-size: 5em;
+    color: #333;
+    rotate: calc(-10deg);
+    filter: drop-shadow(2px 3px 4px);
+
+}

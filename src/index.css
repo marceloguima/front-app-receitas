@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background:var(--quarta-cor);
+}
+
+
+:root {
+    --cor-primaria: #ee6307;
+    --cor-secundaria: #ffcdb6;
+    --cor-terciaria: #f7eeea;
+    --quarta-cor: #f3f3f3;
+    --quinta-cor:#ecdfd8;
+    --cor-texto1: #333333;
+    --cor-texto2: #f7f7f7;
+    --borda1: #ccc;
+    --preto:#f6fdfc;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    width: 100vw;
+}
+
+
+/* para todas li */
+li{
+    list-style: none;
+}

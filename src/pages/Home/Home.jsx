@@ -76,18 +76,19 @@ export default function Home() {
                 <section className="hero">
                     <div className="conteudo-direito">
                         <h1>As melhores receitas você encontra aqui!</h1>
+                         <ModalIA
+                            texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
+                            duracao={12000}
+                            intervalo={15000}
+                        />
                     </div>
                     <div className="conteudo-esquerdo">
                         <img src="./prato1-hero.png" alt="" />
-                        <ModalIA
-                            texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
-                            duracao={12000}
-                            intervalo={20000}
-                        />
+                       
                     </div>
                 </section>
 
-                <section className="pratos-entrada">
+                <section className="pratos-do-dia">
                     {alerta && <Modal ingrediente={busca} />}
                     <h2 className="titulo-secao">{tituloSecao}</h2>
                     <div className="cards_card">

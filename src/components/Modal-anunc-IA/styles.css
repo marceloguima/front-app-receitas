@@ -4,50 +4,48 @@
     border: solid 1px var(--cor-primaria);
     border-radius: 10px;
     width: 300px;
-    height: 180px;
+    height: 140px;
     padding: 10px;
     display: flex;
     justify-content: center;
     font-size: 1.3rem;
     position: absolute;
-    right: 10px;
+    left: -200px;
+    transition: ease-in-out 0.5s;
     gap: 10px;
     z-index: 4;
     margin-top: 5px;
 }
 
 .msg-balao-IA {
-    width: 240px;
-    height: 140px;
+    /* height: 140px;
     background: var(--quinta-cor);
-    border: solid 1px var(--cor-primaria);
+    border: solid 1px var(--cor-primaria); */
+    height: 120px;
     color: var(--cor-texto1);
     font-size: 1rem;
-    text-align: center;
     padding: 5px;
-    border-radius: 40px 40px 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    /* text-align: center;
+    border-radius: 0 40px 40px 40px;
+    gap: 5px; */
 }
-
 
 @keyframes anima {
     0% {
-       transform: scale(1);
+        transform: scale(1);
     }
-    50%{
-
-        transform: scale(.8);
+    50% {
+        transform: scale(0.8);
     }
     100% {
-        transform: scale(1.2);
-       
+        transform: scale(1.1);
     }
-} 
-
+}
 
 .img-robo {
     width: 60px !important;
@@ -56,7 +54,7 @@
 }
 
 .show-anunc-iA {
-    top: 150px;
+    left: 10px;
     transition: ease-in-out 0.5s;
 }
 
@@ -72,4 +70,22 @@
     padding: 6px 20px;
     border-radius: 10px;
     animation: anima 2s infinite ease-in-out;
+}
+
+@media (max-width: 800px) {
+    .mensagem-anuncio-IA {
+        width: 200px;
+        height: 105px;
+        right: 5px;
+    }
+
+    .msg-balao-IA {
+        height: 80px;
+        font-size: 0.8rem;
+        border-radius: 0 30px 30px 30px;
+    }
+
+    .img-robo {
+        width: 40px !important;
+    }
 }

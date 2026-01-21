@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./styles.css";
 
 const ModalIA = ({ texto, duracao, intervalo }) => {
-    const [visivel, setVisivel] = useState(false);
+    const [visivel, setVisivel] = useState(true);
 
     useEffect(() => {
          let hideTimeoutId;

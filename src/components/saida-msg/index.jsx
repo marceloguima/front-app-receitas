@@ -19,7 +19,7 @@ const handleSubmit = (e) => {
             <form  onSubmit={handleSubmit} >
                 <input
                     type="text"
-                    placeholder="Me diga quais ingredientes você tem aí."
+                    placeholder="Ex: arroz, alho, sal, bife e feijão."
                     value={mensagem}
                     onChange={(e)=>setMensagem(e.target.value)}
                     disabled={desabilitado}

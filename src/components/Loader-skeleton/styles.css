@@ -1,6 +1,6 @@
 .skeleton-card {
   opacity: 0.8;
-  width: 300px;
+  max-width: 270px;
   height: 487px;
   display: flex;
   flex-direction: column;
@@ -54,4 +54,12 @@ gap: 20px;
 @keyframes shimmer {
   0%   { background-position: -400px 0; }
   100% { background-position: 400px 0; }
+}
+
+
+@media (max-width: 520px) {
+  .skeleton-card {
+    height: 250px;
+  }
+  
 }

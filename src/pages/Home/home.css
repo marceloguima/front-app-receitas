@@ -73,7 +73,7 @@ footer {
 }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
     .hero{
 /* flex-direction: column; */
 padding-top: 100px;

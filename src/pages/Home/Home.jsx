@@ -78,8 +78,8 @@ export default function Home() {
                         <h1>As melhores receitas você encontra aqui!</h1>
                          <ModalIA
                             texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
-                            duracao={12000}
-                            intervalo={15000}
+                            duracao={10000}
+                            intervalo={21000}
                         />
                     </div>
                     <div className="conteudo-esquerdo">

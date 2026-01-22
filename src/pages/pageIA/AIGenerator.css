@@ -4,8 +4,8 @@ main.chat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: center;
+    padding: 10px;
     overflow-x: hidden;
 }
 
@@ -25,6 +25,7 @@ main.chat {
 }
 
 .caixa-texto.ia {
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     padding-left: 40px;
@@ -127,7 +128,7 @@ main.chat {
 
 @media (max-width: 768px) {
     .area-chat {
-        padding: 70px 2%;
+        padding: 70px 10%;
     }
 
     .avatar {

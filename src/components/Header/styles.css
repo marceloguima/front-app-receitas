@@ -29,7 +29,7 @@ nav {
     display: flex;
     align-items: center;
     max-width: 300px;
-    height: 35px;
+    height: 40px;
     border-radius: 5px;
     background: #ffff;
 }
@@ -70,13 +70,13 @@ nav {
 
 @media (max-width: 430px) {
     .form-buscar {
-        width: 150px;
+        width: 230px;
     }
 
-    .form-buscar:focus-within {
+    /* .form-buscar:focus-within {
         width: 300px;
         position: absolute;
         top: 100px;
         border: solid 2px var(--cor-primaria);
-    }
+    } */
 }

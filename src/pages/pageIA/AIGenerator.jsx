@@ -62,7 +62,7 @@ export default function AIRecipeGenerator() {
             const erroMensagem = {
                 id: Date.now() + 1,
                 remetente: "ia",
-                texto: "⚠️ O Chefe IA está indisponível. Verifique o servidor Express (porta 3001).",
+                texto: "No momento estou com problemas técnicos. Minha equipe está trabalhando para resolver. Tente novamente mais tarde.",
             };
             setMensagens((prevMensagens) => [...prevMensagens, erroMensagem]);
         } finally {

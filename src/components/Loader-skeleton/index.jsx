@@ -8,11 +8,8 @@ const LoaderSkeletonCard = () => {
             <div className="skeleton skeleton-img">
                 <MdImage className="skeleton-icon" />
             </div>
-            <div className="skeleton skeleton-title" />
-            {/* <div className="skeleton-lines">
-                <div className="skeleton skeleton-line" />
-                <div className="skeleton skeleton-line" />
-            </div> */}
+            <div className="skeleton skeleton-title" ></div>
+       
             <div className="skeleton skeleton-btn"></div>
         </div>
     );

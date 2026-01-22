@@ -31,28 +31,34 @@
 
 .conteudo-direito h1 {
     font-size: 3rem;
+    color: var(--cor-texto1);
 }
-
 
 .pratos-do-dia {
     width: 100vw;
     margin-top: 10px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .titulo-secao {
     text-align: center;
+        color: var(--cor-texto1);
+
 }
 
 .cards_card {
     width: 100%;
+    max-width: 1200px ;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     grid-auto-rows: 260px;
     justify-content: center;
     padding: 2rem;
     gap: 50px;
     border-top: solid 2px var(--cor-primaria);
-
 }
 
 footer {
@@ -67,29 +73,28 @@ footer {
         font-size: 2rem;
     }
 
-    
-.conteudo-esquerdo {
-    width: 50%;
-}
+    .conteudo-esquerdo {
+        width: 50%;
+    }
 }
 
 @media (max-width: 600px) {
-    .hero{
-/* flex-direction: column; */
-padding-top: 100px;
+    .hero {
+        /* flex-direction: column; */
+        padding-top: 100px;
     }
 
-    .conteudo-direito{
+    .conteudo-direito {
         width: 100%;
         margin-top: 220px;
     }
 
-    .conteudo-esquerdo{
+    .conteudo-esquerdo {
         width: 60%;
     }
 
-    
-.cards_card {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
+    .cards_card {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
 }

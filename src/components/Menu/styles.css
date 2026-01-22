@@ -11,7 +11,9 @@
 }
 
 .nav-links a {
-    color: var(--cor-texto2);
+    /* color: var(--cor-texto2); */
+    /* as seções ainda não existem, por isso a cor da letra #a3a3a3 */
+    color: #a3a3a3;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
@@ -23,10 +25,10 @@
 }
 
 a.link-ia{
-    background: var(--quinta-cor);
+    background: var(--cor-primaria);
+    color: var(--cor-texto2);
     padding: 8px 12px;
     border-radius: 10px;
-    color: var(--cor-texto1);
 }
 
 
@@ -69,9 +71,7 @@ a.link-ia{
         transition: right 0.3s ease-in-out;
     }
 
-    .nav-links li a {
-        color: var(--cor-texto);
-    }
+   
 
     
 .nav-links a:hover{

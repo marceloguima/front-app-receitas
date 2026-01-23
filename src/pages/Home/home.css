@@ -61,6 +61,12 @@
     border-top: solid 2px var(--cor-primaria);
 }
 
+.hiden-modal {
+    position: absolute;
+    right: 200px;
+    transition: ease-in-out 0.5s;
+}
+
 footer {
     width: 100vw;
     height: 150px;

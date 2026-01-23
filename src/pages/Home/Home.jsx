@@ -14,12 +14,11 @@ export default function Home() {
     const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState("");
     const [loading, setLoading] = useState(false);
-    const [alerta, setAlerta] = useState(false);
+    const [naoEncontrado, setNaoEncontrado] = useState(false);
     const [tituloSecao, setatituloSecao] = useState("Receitas do dia");
     const [mensagem, setMensagem] = useState("");
 
     useEffect(() => {
-
         async function carregarReceitas() {
             setLoading(true);
             try {
@@ -44,20 +43,20 @@ export default function Home() {
         try {
             const dados = await apiBuscaReceitas(busca);
             console.log(dados);
-            setatituloSecao(`Receita de ${busca} encontrada.`);
+            setatituloSecao(`Receita de ${busca}.`);
 
             setLoading(false);
             if (dados == "") {
                 //    alert("Não encontrei nenhuma receita com " + busca)
-                setAlerta(true);
+                setNaoEncontrado(true);
                 setatituloSecao(tituloSecao);
                 setTimeout(() => {
-                    setAlerta(false);
+                    setNaoEncontrado(false);
                 }, 7000);
 
                 carregarReceitas();
             } else {
-                setAlerta(false);
+                setNaoEncontrado(false);
             }
             setLoading(false);
 
@@ -76,7 +75,7 @@ export default function Home() {
                 <section className="hero">
                     <div className="conteudo-direito">
                         <h1>As melhores receitas você encontra aqui!</h1>
-                         <ModalIA
+                        <ModalIA
                             texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
                             duracao={10000}
                             intervalo={21000}
@@ -84,16 +83,16 @@ export default function Home() {
                     </div>
                     <div className="conteudo-esquerdo">
                         <img src="./prato1-hero.png" alt="" />
-                       
                     </div>
                 </section>
 
                 <section className="pratos-do-dia">
-                    {alerta && <Modal ingrediente={busca} />}
+                    {naoEncontrado && <Modal ingrediente={busca} className={naoEncontrado ? "" : "hiden-modal"} />}
+                        <p>{mensagem}</p>
                     <h2 className="titulo-secao">{tituloSecao}</h2>
                     <div className="cards_card">
                         {/* mensagem para possíveis erro na busca */}
-                        {mensagem}
+
                         {loading
                             ? Array.from({ length: 8 }).map((_, i) => (
                                   <LoaderSkeletonCard key={i} />
@@ -111,8 +110,7 @@ export default function Home() {
                                       //   tempoPreparo={`${receita.tempoPreparo} min`}
                                       //   quantPorcoes={`${receita.porcoes} porções`}
                                   />
-                              )
-                              )}
+                              ))}
                     </div>
                 </section>
                 <Footer />

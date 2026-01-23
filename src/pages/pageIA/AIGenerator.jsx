@@ -62,7 +62,7 @@ export default function AIRecipeGenerator() {
             const erroMensagem = {
                 id: Date.now() + 1,
                 remetente: "ia",
-                texto: "No momento estou com problemas técnicos. Minha equipe está trabalhando para resolver. Tente novamente mais tarde.",
+                texto: "No momento estamos com problemas técnicos. Nossa equipe está trabalhando para resolver. Tente novamente mais tarde.",
             };
             setMensagens((prevMensagens) => [...prevMensagens, erroMensagem]);
         } finally {

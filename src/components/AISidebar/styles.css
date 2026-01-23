@@ -1,7 +1,6 @@
 .sidbar {
     height: 100vh;
     background: var(--quinta-cor);
-    padding: 10px;
     border-right: solid 4px var(--cor-primaria);
     display: flex;
     flex-direction: column;
@@ -10,6 +9,7 @@
 
 .sidbar-open {
     width: 250px;
+    padding: 20px;
     transition: ease-out 0.3s;
 }
 
@@ -66,6 +66,26 @@
     gap: 10px;
     margin-top: 20px;
 }
+.lista-historico li {
+    width: 235px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.lista-historico li:hover {
+    outline: solid 2px var(--cor-primaria);
+    background: var(--cor-terciaria);
+    transition: ease-in-out 0.2s;
+}
+
+.lista-historico a {
+    color: var(--cor-texto1);
+    width: 100%;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+}
 
 .logo-sidbar {
     width: 70px;
@@ -79,10 +99,10 @@
 }
 
 @media (max-width: 880px) {
-.sidbar{
-    position: absolute;
-    z-index: 6;
-}
+    .sidbar {
+        position: absolute;
+        z-index: 6;
+    }
 
     .sidbar-close {
         left: -100px;
@@ -92,5 +112,13 @@
         position: relative;
         left: 120px;
         top: -100px;
+    }
+
+    .logo-sidbar{
+        width: 100%;
+    }
+
+    .logo-sidbar img {
+        width: 40%;
     }
 }

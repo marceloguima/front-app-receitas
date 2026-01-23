@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../Logo";
 
@@ -20,7 +21,11 @@ const AISidebar = () => {
     }
 
     return (
-        <aside className={sidBarOpen ? "sidbar sidbar-open" : "sidbar sidbar-close"}>
+        <aside
+            className={
+                sidBarOpen ? "sidbar sidbar-open" : "sidbar sidbar-close"
+            }
+        >
             <Logo className="logo-sidbar" />
 
             <div className="buttons">
@@ -50,11 +55,18 @@ const AISidebar = () => {
                 </ul>
                 {sidBarOpen ? (
                     <ul className="lista-historico">
-                        <li>Receita de bife acebolado</li>
-                        <li>Receita de bife acebolado</li>
-                        <li>Receita de bife acebolado</li>
-                        <li>Receita de bife acebolado</li>
-                        <li>Receita de bife acebolado</li>
+                        <li>
+                            <Link>macarrão, carne</Link>
+                        </li>
+                        <li>
+                            <Link>frango, batata</Link>
+                        </li>
+                        <li>
+                            <Link>arroz, feijão, bife</Link>
+                        </li>
+                        <li>
+                            <Link>tomate, cebola</Link>
+                        </li>
                     </ul>
                 ) : (
                     ""

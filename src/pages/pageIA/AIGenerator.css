@@ -33,7 +33,7 @@ main.chat {
 }
 
 .caixa-texto {
-    padding: 20px;
+    padding: 20px 0;
     position: relative;
     background: transparent !important;
     border: none !important;
@@ -71,7 +71,7 @@ main.chat {
 
 .avatar-user {
     bottom: 60px;
-    right: 0;
+    right: 5px;
 }
 
 /* ------------------------------------- */
@@ -123,24 +123,25 @@ main.chat {
 
 /* ---------------------------------------------------- */
 
-@media (max-width: 1200px) {
+@media (max-width: 880px) {
+    .area-chat {
+        padding: 70px 5px;
+    }
 }
 
 @media (max-width: 768px) {
-    .area-chat {
-        padding: 70px 10%;
-    }
+    
 
     .avatar {
         width: 50px;
         top: -40px;
         left: -40px;
     }
-    .avatar-user {
+    /* .avatar-user {
         width: 50px;
         top: -50px;
         right: -15px;
-    }
+    } */
 }
 
 @media (max-width: 480px) {
@@ -149,9 +150,9 @@ main.chat {
         top: -40px;
         left: -20px;
     }
-    .avatar-user {
+    /* .avatar-user {
         width: 40px;
         top: -40px;
         right: -20px;
-    }
+    } */
 }

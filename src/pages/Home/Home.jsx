@@ -14,7 +14,6 @@ export default function Home() {
     const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState("");
     const [loading, setLoading] = useState(false);
-    const [naoEncontrado, setNaoEncontrado] = useState(false);
     const [tituloSecao, setatituloSecao] = useState("Receitas do dia");
     const [mensagem, setMensagem] = useState("");
 
@@ -43,20 +42,29 @@ export default function Home() {
         try {
             const dados = await apiBuscaReceitas(busca);
             console.log(dados);
-            setatituloSecao(`Receita de ${busca}.`);
+          
+            // verificação para alterar o título da seção conforme a busca evitando título vazio.
+            if (busca == "") {
+                setatituloSecao("Receitas do dia");
+            }else{
+                setatituloSecao(`Receita de ${busca}.`);
+            }
 
             setLoading(false);
+            // verificação para caso a busca não retorne resultados.
             if (dados == "") {
                 //    alert("Não encontrei nenhuma receita com " + busca)
-                setNaoEncontrado(true);
+                setMensagem(
+                    `Desculpe, no momento não encontramos receita com "${busca}". Fique à vontade para tentar outra!`
+                );
                 setatituloSecao(tituloSecao);
                 setTimeout(() => {
-                    setNaoEncontrado(false);
+                    setMensagem("");
                 }, 7000);
 
                 carregarReceitas();
             } else {
-                setNaoEncontrado(false);
+                setMensagem("");
             }
             setLoading(false);
 
@@ -73,7 +81,7 @@ export default function Home() {
             <Header value={busca} onChange={setBusca} onSubmit={handleBuscar} />
             <div className="sections">
                 <section className="hero">
-                    <div className="conteudo-direito">
+                    <div className="conteudo-esquerdo">
                         <h1>As melhores receitas você encontra aqui!</h1>
                         <ModalIA
                             texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
@@ -81,13 +89,12 @@ export default function Home() {
                             intervalo={21000}
                         />
                     </div>
-                    <div className="conteudo-esquerdo">
+                    <div className="conteudo-direito">
                         <img src="./prato1-hero.png" alt="" />
                     </div>
                 </section>
 
                 <section className="pratos-do-dia">
-                    {naoEncontrado && <Modal ingrediente={busca} className={naoEncontrado ? "" : "hiden-modal"} />}
                         <p>{mensagem}</p>
                     <h2 className="titulo-secao">{tituloSecao}</h2>
                     <div className="cards_card">

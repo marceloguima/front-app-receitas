@@ -11,7 +11,13 @@
     align-items: center;
     padding-top: 120px;
     width: 100vw;
-    height: 50vh;
+    height: 80vh;
+    background-image: url(public/imagem-hero.png);
+    backdrop-filter: blur(10px);
+    background-size: cover;
+    background-position: center;
+    /* background-size: contain; */
+    background-repeat: no-repeat;
 }
 
 .conteudo-direito {

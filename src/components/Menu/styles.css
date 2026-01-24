@@ -21,6 +21,9 @@
     font-weight: 500;
 }
 
+.show-menu{
+    color: var(--cor-texto1);
+}
 
 a.btn-link-ia{
     background: var(--quarta-cor);

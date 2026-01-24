@@ -89,9 +89,9 @@ export default function Home() {
                             intervalo={21000}
                         />
                     </div>
-                    <div className="conteudo-direito">
+                    {/* <div className="conteudo-direito">
                         <img src="./prato1-hero.png" alt="" />
-                    </div>
+                    </div> */}
                 </section>
 
                 <section className="pratos-do-dia">

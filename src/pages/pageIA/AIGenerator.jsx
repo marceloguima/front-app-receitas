@@ -54,6 +54,8 @@ export default function AIRecipeGenerator() {
 
             setMensagens((prevMensagens) => [...prevMensagens, novaMensagemIA]);
 
+           
+
             // ___________________________________________________________________
         } catch (error) {
             console.error("Erro ao enviar mensagem:", error);

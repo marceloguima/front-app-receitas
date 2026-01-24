@@ -12,7 +12,7 @@ body {
 
 :root {
     --cor-primaria: #ee6307;
-    --cor-secundaria: #ffcdb6;
+    --cor-secundaria: #fae0d2;
     --cor-terciaria: #f7eeea;
     --quarta-cor: #f3f3f3;
     --quinta-cor:#ecdfd8;
@@ -20,6 +20,7 @@ body {
     --cor-texto2: #f7f7f7;
     --borda1: #ccc;
     --preto:#252525;
+    --altura-btn_input: 45px;
 }
 
 .container{

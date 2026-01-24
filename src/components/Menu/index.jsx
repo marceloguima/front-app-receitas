@@ -37,10 +37,12 @@ const Menu = () => {
                 </li>
 
                 <li>
+                   
+
                     <NavLink
                         to="/ia"
-                        className="link-ia"
-                    >
+                        className="btn-link-ia"
+                        >
                         Crie com a IA
                     </NavLink>
                 </li>

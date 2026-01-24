@@ -1,24 +1,56 @@
-header {
+.header {
     width: 100%;
+    height: 100px;
     background: #ee6307;
-    height: 80px;
-    padding: 0;
     position: fixed;
     z-index: 5;
 }
 
+.header-expandido {
+    height: 180px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-abrir-busca {
+    display: flex;
+    align-items: center;
+        justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2.4rem;
+    color: #fff;
+}
+
+.logo-btn_search-menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-btn_search-menu {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+
 nav {
     width: 100%;
     height: 100%;
-    padding: 0 50px;
+    padding: 16px 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo-home {
     width: 80px;
-    padding-top: 10px;
 }
 
 .logo-home img {
@@ -28,55 +60,46 @@ nav {
 .form-buscar {
     display: flex;
     align-items: center;
-    max-width: 300px;
-    height: 40px;
-    border-radius: 5px;
-    background: #ffff;
+    width: 100%;
+    max-width: 420px;
+    height: var(--altura-btn_input);
 }
 
-.barra-busca {
+.input-barra-busca {
     flex: 1;
     width: 80%;
-    height: 100%;
+    height: var(--altura-btn_input);
     border: none;
-    background: transparent;
-    padding: 0 10px;
+    background: #ffff;
+    border-radius: 30px 0 0 30px;
+    padding: 0  10px;
     font-size: 1rem;
+}
+
+.input-barra-busca:focus-visible {
+    background: var(--cor-secundaria);
     outline: none;
 }
 
 .btn-buscar {
-    width: 35px;
+    width: 50px;
     height: 100%;
+    color: var(--cor-primaria);
     border: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 30px 30px 0;
 }
 
 @media (max-width: 1080px) {
-    nav {
-        justify-content: space-around;
-    }
-
-    .logo-home {
-        position: absolute;
-        left: 10px;
+    .div-btn_search-menu{
+        justify-content: end;
+        gap: 20px;
     }
 }
 
 @media (max-width: 430px) {
-    .form-buscar {
-        width: 230px;
-    }
-
-    /* .form-buscar:focus-within {
-        width: 300px;
-        position: absolute;
-        top: 100px;
-        border: solid 2px var(--cor-primaria);
-    } */
 }

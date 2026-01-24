@@ -67,7 +67,7 @@
     background: var(--cor-primaria);
     color: var(--cor-texto2);
     padding: 6px 20px;
-    border-radius: 10px;
+    border-radius: 30px;
     animation: anima 2s infinite ease-in-out;
 }
 

@@ -82,7 +82,7 @@ export default function Home() {
             <div className="sections">
                 <section className="hero">
                     <div className="conteudo-esquerdo">
-                        <h1>As melhores receitas você encontra aqui!</h1>
+                        {/* <h1>As melhores receitas você encontra aqui!</h1> */}
                         <ModalIA
                             texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
                             duracao={10000}

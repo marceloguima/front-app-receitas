@@ -12,12 +12,12 @@
     padding-top: 120px;
     width: 100vw;
     height: 80vh;
-    background-image: url(public/imagem-hero.png);
+    background-image: url(/imagem-hero.png);
     backdrop-filter: blur(10px);
     background-size: cover;
     background-position: center;
-    /* background-size: contain; */
     background-repeat: no-repeat;
+    
 }
 
 .conteudo-direito {
@@ -88,35 +88,25 @@ footer {
     margin-top: 100px;
 }
 
-@media (max-width: 880px) {
-    .conteudo-esquerdo h1 {
-        font-size: 2rem;
-    }
 
-    .conteudo-direito {
-        width: 35%;
-    }
-}
 
-@media (max-width: 600px) {
- .conteudo-esquerdo h1 {
-        font-size: 1.6rem;
-    }
-
+@media (max-width: 620px) {
     .hero {
         padding-top: 100px;
+        background-size: contain;
     }
 
-    .conteudo-esquerdo {
-        width: 100%;
-    }
-
-    .conteudo-direito {
-        width: 60%;
-    }
+  
 
     .cards_card {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .hero{
+        height: 50vh;
     }
 }

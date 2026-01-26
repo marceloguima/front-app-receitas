@@ -14,34 +14,33 @@ const Menu = () => {
         <nav className="nav-menu">
             
             <ul className="nav-itens-menu">
-                {/* <li className="item-menu"><a className="links-menu-sections" href="#home">Home</a></li> */}
                 <li className="item-menu">
-                    <a className="links-menu-sections" href="#entradas">
                         <BiSolidBowlHot />
+                    <a className="links-menu-sections" href="#entradas">
                         Entradas
                     </a>
                 </li>
                 <li className="item-menu">
-                    <a className="links-menu-sections" href="#prato-principal">
                         <MdDinnerDining />
+                    <a className="links-menu-sections" href="#prato-principal">
                         Prato principal
                     </a>
                 </li>
                 <li className="item-menu">
-                    <a className="links-menu-sections" href="#sobremesas">
                         <GiCakeSlice />
+                    <a className="links-menu-sections" href="#sobremesas">
                         Sobremesas
                     </a>
                 </li>
                 <li className="item-menu">
-                    <a className="links-menu-sections" href="#sobremesas">
                         <RiDrinks2Fill />
+                    <a className="links-menu-sections" href="#sobremesas">
                         Bebidas
                     </a>
                 </li>
                 <li className="item-menu">
-                    <a className="links-menu-sections" href="#Mais vistas">
                         <FaHotjar />
+                    <a className="links-menu-sections" href="#Mais vistas">
                         Mais vistas
                     </a>
                 </li>

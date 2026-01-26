@@ -4,13 +4,15 @@ import Card from "../../components/card";
 import { useEffect, useState } from "react";
 import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
 import LoaderSkeletonCard from "../../components/Loader-skeleton";
-import Modal from "../../components/Modal";
+import Menu from "../../components/Menu";
 import ModalIA from "../../components/Modal-anunc-IA";
 import Footer from "../../components/Footer";
 
+import { FaSearch } from "react-icons/fa";
+
 import "./home.css";
 
-export default function Home() {
+export default function Home(props) {
     const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState("");
     const [loading, setLoading] = useState(false);
@@ -42,11 +44,11 @@ export default function Home() {
         try {
             const dados = await apiBuscaReceitas(busca);
             console.log(dados);
-          
+
             // verificação para alterar o título da seção conforme a busca evitando título vazio.
             if (busca == "") {
                 setatituloSecao("Receitas do dia");
-            }else{
+            } else {
                 setatituloSecao(`Receita de ${busca}.`);
             }
 
@@ -55,7 +57,7 @@ export default function Home() {
             if (dados == "") {
                 //    alert("Não encontrei nenhuma receita com " + busca)
                 setMensagem(
-                    `Desculpe, no momento não encontramos receita com "${busca}". Fique à vontade para tentar outra!`
+                    `Desculpe, no momento não encontramos receita com "${busca}". Fique à vontade para tentar outra!`,
                 );
                 setatituloSecao(tituloSecao);
                 setTimeout(() => {
@@ -81,21 +83,29 @@ export default function Home() {
             <Header value={busca} onChange={setBusca} onSubmit={handleBuscar} />
             <div className="sections">
                 <section className="hero">
-                    <div className="conteudo-esquerdo">
-                        {/* <h1>As melhores receitas você encontra aqui!</h1> */}
-                        <ModalIA
-                            texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
-                            duracao={10000}
-                            intervalo={21000}
-                        />
-                    </div>
-                    {/* <div className="conteudo-direito">
-                        <img src="./prato1-hero.png" alt="" />
-                    </div> */}
+                    <h1>As melhores receitas você encontra aqui!</h1>
+                    <ModalIA
+                        texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
+                        duracao={10000}
+                        intervalo={21000}
+                    />
+                    <div className="conteudo-esquerdo"></div>
                 </section>
-
+                <Menu />
+                <form className="form-buscar" onSubmit={props.onSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Digite sua receita"
+                        className="input-barra-busca"
+                        value={props.value}
+                        onChange={(e) => props.onChange(e.target.value)}
+                    />
+                    <button type="submit" className="btn-buscar">
+                        <FaSearch />
+                    </button>
+                </form>
                 <section className="pratos-do-dia">
-                        <p>{mensagem}</p>
+                    <p>{mensagem}</p>
                     <h2 className="titulo-secao">{tituloSecao}</h2>
                     <div className="cards_card">
                         {/* mensagem para possíveis erro na busca */}

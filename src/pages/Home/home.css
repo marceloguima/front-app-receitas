@@ -10,12 +10,12 @@
 }
 
 .hero {
-    position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-top: 500px;
+    padding: 200px;
     width: 100vw;
+    height: 70vh;
     background-image: url(/imagem-hero.png);
     backdrop-filter: blur(10px);
     background-size: cover;
@@ -36,14 +36,12 @@
 }
 
 .hero h1 {
-    color: var(--cor-texto2);
+    color: var(--cinza-200);
     filter: drop-shadow(2px 5px 10px #1f1f1f);
     text-align: center;
     font-size: 2.5rem;
-    position: absolute;
     top: 150px;
     left: 40px;
-
     z-index: 2;
 }
 
@@ -101,7 +99,7 @@
     align-items: center;
 }
 
-.pratos-do-dia p {
+.mensagem-pratos-do-dia {
     max-width: 400px;
     text-align: center;
     margin-bottom: 10px;
@@ -111,7 +109,7 @@
 
 .titulo-secao {
     text-align: center;
-    color: var(--cor-texto1);
+    color: var(--cor-texto-secundario);
 }
 
 .cards_card {
@@ -139,8 +137,19 @@ footer {
     margin-top: 100px;
 }
 
+
+@media (max-width: 880px) {
+
+    .hero{
+        max-height:400px ;
+    }
+    .hero h1{
+        font-size: 2rem;
+    }
+    
+}
+
 @media (max-width: 620px) {
- 
 
     .cards_card {
         grid-template-columns: 1fr 1fr;
@@ -151,5 +160,9 @@ footer {
 @media (max-width: 480px) {
     .hero {
         height: 50vh;
+    }
+
+    .cards_card{
+        grid-auto-rows: 200px;
     }
 }

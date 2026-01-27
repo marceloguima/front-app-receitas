@@ -77,7 +77,7 @@ export default function AIRecipeGenerator() {
         <>
             <AISidebar />
 
-            {console.log(<AISidebar />)}
+            {/* {console.log(<AISidebar />)} */}
             <main className="chat">
                 <div className="area-chat">
                     <ListaMensagens mensagens={mensagens} />

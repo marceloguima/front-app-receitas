@@ -1,6 +1,5 @@
 .mensagem-anuncio-IA {
-    color: var(--cor-texto2);
-    background: var(--quarta-cor);
+    background: var(--cinza-200);
     border: solid 1px var(--cor-primaria);
     border-radius: 10px;
     width: 300px;
@@ -17,7 +16,7 @@
 
 .msg-balao-IA {
     height: 110px;
-    color: var(--cor-texto1);
+    color: var(--cinza-700);
     font-size: 1rem;
     padding: 5px;
     display: flex;

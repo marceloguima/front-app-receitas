@@ -105,7 +105,7 @@ export default function Home(props) {
                     </button>
                 </form>
                 <section className="pratos-do-dia">
-                    <p>{mensagem}</p>
+                    <p className="mensagem-pratos-do-dia">{mensagem}</p>
                     <h2 className="titulo-secao">{tituloSecao}</h2>
                     <div className="cards_card">
                         {/* mensagem para possíveis erro na busca */}

@@ -13,7 +13,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 200px;
     width: 100vw;
     height: 70vh;
     background-image: url(/imagem-hero.png);
@@ -36,6 +35,8 @@
 }
 
 .hero h1 {
+    width: 70%;
+    min-width: 300px;
     color: var(--cinza-200);
     filter: drop-shadow(2px 5px 10px #1f1f1f);
     text-align: center;
@@ -118,7 +119,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-rows: 260px;
-    justify-content: center;
+    justify-items: center;
     padding: 2rem;
     gap: 50px;
     border-top: solid 2px var(--cor-primaria);
@@ -149,6 +150,15 @@ footer {
     
 }
 
+@media (max-width: 780px){
+    .cards_card{
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+    }
+    
+   
+}
+
 @media (max-width: 620px) {
 
     .cards_card {
@@ -162,7 +172,12 @@ footer {
         height: 50vh;
     }
 
+    .hero h1{
+        font-size: 1.7rem;
+    }
+
     .cards_card{
         grid-auto-rows: 200px;
+        padding: 18px;
     }
 }

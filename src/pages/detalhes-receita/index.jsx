@@ -11,9 +11,9 @@ const DetalhesReceita = () => {
             <section className="receita_completa">
                 <div className="imgtitulo">
                     <img src="./publica/img-card1.png" alt="" />
-                    <h1>Nome do prato</h1>
+                    <h1>Detalhes breve</h1>
                 </div>
-                <div className="tempo_preparo_porcao">
+                {/* <div className="tempo_preparo_porcao">
                     <p>
                         <FiUsers /> <span>2 pessoas</span>
                     </p>
@@ -93,7 +93,7 @@ const DetalhesReceita = () => {
                             algumas fatias. Bom apetite!
                         </li>
                     </ol>
-                </div>
+                </div> */}
             </section>
         </>
     );

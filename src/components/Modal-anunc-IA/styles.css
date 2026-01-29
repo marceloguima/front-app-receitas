@@ -51,6 +51,7 @@
 }
 
 .hiden-anunc-IA {
+    bottom: 10px;
     left: -500px;
     transition: ease-in-out 0.5s;
 }

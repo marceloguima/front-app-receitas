@@ -89,7 +89,8 @@
     right: 10px;
     top: 10px;
     color: var(--laranja-500);
-    z-index: 1;
+    cursor: pointer;
+    z-index: 10;
 }
 
 .div-btn-link a {

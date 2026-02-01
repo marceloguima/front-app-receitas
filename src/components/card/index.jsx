@@ -11,7 +11,10 @@ import "./style.css";
 const Card = (props) => {
     const [favorito, setFavorito] = useState(false);
 
-    function favoritar() {
+    function favoritar(e) {
+        // eventos para evitar que o card pegue o clique do botão
+        e.preventDefault();
+        e.stopPropagation();
         setFavorito(!favorito);
         console.log("clicou");
     }

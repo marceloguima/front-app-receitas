@@ -1,0 +1,66 @@
+.container-admin{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/public/‎img-background-admin.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+
+.container-admin::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.467);
+    z-index: 1;
+}
+
+
+.titulo-admin, .subtitulo-admin{
+    color: var(--cor-texto-inverso);
+    z-index: 2;
+}
+
+.botoes-admin{
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
+    margin-top: 40px;
+}
+
+.cad-receita, .cad-anuncio{
+    color: var(--cor-texto-inverso);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cad-receita{
+    background: var(--cor-primaria);
+}
+
+.cad-anuncio{
+    background: var(--laranja-400);
+}
+
+.icon{
+    font-size: 1.2rem;
+}
+
+
+.line-inputs{
+    width: 100%;
+    display: flex;
+    gap: 80px;
+}

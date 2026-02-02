@@ -1,0 +1,35 @@
+.grupo-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.grupo-input input, textarea, select{
+    background: var(--cinza-50);
+    border: solid 1px var(--cinza-400);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: var(--sombra-card);
+}
+
+
+.grupo-input input:focus,
+.grupo-input textarea:focus,
+.grupo-input select:focus {
+    outline-color: var(--cinza-400);
+background: var(--cinza-500);
+}
+
+
+.grupo-input input, select{
+    height: 45px;
+}
+
+.grupo-input label{
+    margin-left: 10px;
+}
+
+.textarea{
+    height: 80px;
+}

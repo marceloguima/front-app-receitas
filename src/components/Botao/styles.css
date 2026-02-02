@@ -1,0 +1,15 @@
+.btn{
+  background: var(--cor-primaria);
+  color: var(--branco);
+  box-shadow: var(--sombra-card);
+  padding: 10px 20px ;
+  min-width: 120px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

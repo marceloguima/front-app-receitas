@@ -16,26 +16,19 @@ const FormAdmin = ({ titulo, children, descricao }) => {
             <h2 className="titulo-form">{titulo}</h2>
             <p>{descricao}</p>
             <div className="campos-entrada">{children}</div>
-            <div className="botoes-admin">
-                <Botao
-                    children={
-                        <span className="icon">
-                            <MdOutlineCheck />
-                            Salvar
-                        </span>
-                    }
-                    variant="salva-receita"
-                    onClick={salvarDados}
-                />
-                <Botao
-                    children={
-                        <span className="icon">
-                            <RiCloseLine />
-                            Cancelar
-                        </span>
-                    }
-                    variant="salva-anuncio"
-                />
+            <div className="botoes-finish">
+                <Botao variant="btn-primario" onClick={salvarDados}>
+                    <span>
+                        <MdOutlineCheck />
+                    </span>
+                    Salvar
+                </Botao>
+                <Botao variant="btn-secundario">
+                    <span>
+                        <RiCloseLine />
+                    </span>
+                    Cancelar
+                </Botao>
             </div>
         </form>
     );

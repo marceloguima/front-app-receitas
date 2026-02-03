@@ -103,8 +103,8 @@ const TelaAdmin = () => {
                 Cadastre suas receitas e anúncios
             </h2>
             {showModal}
-            <div className="botoes-admin">
-                <Botao variant="cad-receita" onClick={mostrarModalReceita}>
+            <div className="botoes-select">
+                <Botao onClick={mostrarModalReceita}>
                     <span className="icon">
                         <PiChefHatFill />
                     </span>

@@ -31,7 +31,7 @@
     z-index: 2;
 }
 
-.botoes-admin{
+.botoes-select{
     width: 600px;
     display: flex;
     justify-content: space-around;
@@ -39,24 +39,10 @@
     margin-top: 40px;
 }
 
-.cad-receita, .cad-anuncio{
-    color: var(--cor-texto-inverso);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.cad-receita{
-    background: var(--cor-primaria);
-}
-
 .cad-anuncio{
-    background: var(--laranja-400);
+    background: var(--laranja-400) !important;
 }
 
-.icon{
-    font-size: 1.2rem;
-}
 
 
 .line-inputs{

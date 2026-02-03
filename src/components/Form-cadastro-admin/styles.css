@@ -17,20 +17,10 @@ align-items: center;
 text-align: center;
 }
 
-.salva-anuncio{
-    background: var(--cinza-50);
-    border: solid 1px var(--cinza-400);
-    color: var(--cor-texto-secundario);
-    transition: ease-in .2s;
+.botoes-finish{
+     width: 600px;
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
+    margin-top: 40px;
 }
-
-.salva-anuncio:hover{
-    background: var(--cinza-200);
-    border: solid 1px var(--cor-primaria);
-}
-
-
-.salva-receita:hover{
-    background: var(--cor-primaria-hover);
-}
-

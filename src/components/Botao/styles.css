@@ -4,8 +4,6 @@
   color: var(--branco);
   box-shadow: var(--sombra-card);
   padding: 10px 20px ;
-  min-width: 120px;
-  min-width: 152px;
   border-radius: 10px;
   border: none;
   font-weight: 600;
@@ -19,6 +17,11 @@
 }
 
 .btn span svg{
+  font-size: 1.3rem;
+}
+
+
+.btn svg{
   font-size: 1.3rem;
 }
 
@@ -38,4 +41,19 @@
 
 .btn-primario:hover{
     background: var(--cor-primaria-hover);
+}
+
+.btn-danger{
+  background: var(--vermelho);
+}
+
+
+.btn-p{
+  padding: 0;
+  width: 45px !;
+  height: 45px;
+}
+
+.btn-p svg{
+  font-size: 1.3rem;
 }

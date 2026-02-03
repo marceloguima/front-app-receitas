@@ -65,26 +65,50 @@ const TelaAdmin = () => {
                     <div className="container_ingredientes">
                         <h4>Ingredientes</h4>
                         <div className="campo-ingredientes">
+                            <div className="nome-campos">
+                                <p>Nome do ingrediente</p>
+                                <p>Unidade de medida</p>
+                                <p>Quantidade</p>
+                            </div>
                             <div className="ingrediente">
                                 <CampoEntradaAdmin
-                                    textLabel="Nome do ingrediente"
                                     placeholder="Ex: Farinha de trigo"
                                 />
 
                                 <CampoEntradaAdmin
-                                    textLabel="Unidade de medida"
                                     placeholder="Ex: Chicara, colher, ml..."
                                 />
 
                                 <CampoEntradaAdmin
                                     tipo="number"
-                                    textLabel="Quantidade"
                                     placeholder="Ex: 2"
                                 />
                                 <Botao variant="btn-p" type="button">
                                     <RiDeleteBin6Line />
                                 </Botao>
                             </div>
+
+                            {/* ========================================================= */}
+
+ <div className="ingrediente">
+                                <CampoEntradaAdmin
+                                    placeholder="Ex: Farinha de trigo"
+                                />
+
+                                <CampoEntradaAdmin
+                                    placeholder="Ex: Chicara, colher, ml..."
+                                />
+
+                                <CampoEntradaAdmin
+                                    tipo="number"
+                                    placeholder="Ex: 2"
+                                />
+                                <Botao variant="btn-p" type="button">
+                                    <RiDeleteBin6Line />
+                                </Botao>
+                            </div>
+
+                            {/* ================================================================== */}
                             <Botao type="button" variant="add-ingrediente">
                                 <span>
                                     <IoMdAdd />

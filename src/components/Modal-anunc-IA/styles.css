@@ -45,13 +45,13 @@
 }
 
 .show-anunc-iA {
-    bottom: 10px;
-    left: 10px;
+    bottom: 160px;
+    left: 20px;
     transition: ease-in-out 0.5s;
 }
 
 .hiden-anunc-IA {
-    bottom: 10px;
+    bottom: 160px;
     left: -500px;
     transition: ease-in-out 0.5s;
 }
@@ -59,7 +59,7 @@
 .link-anunc-IA {
     text-decoration: none;
     background: var(--cor-primaria);
-    color: var(--cor-texto2);
+    color: var(--cor-texto-inverso);
     padding: 6px 20px;
     border-radius: 30px;
     animation: anima 2s infinite ease-in-out;

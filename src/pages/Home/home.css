@@ -7,21 +7,23 @@
     overflow-x: hidden;
     scrollbar-width: none;
     padding: 0 10px;
+    position: relative;
 }
 
 .hero {
     display: flex;
-    justify-content: space-around;
+    padding: 10px;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 40px;
     width: 100vw;
     height: 70vh;
     background-image: url(/imagem-hero.png);
     backdrop-filter: blur(10px);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    
+    background-repeat: no-repeat;    
 }
 
 .hero::before {
@@ -58,6 +60,7 @@
     height: var(--altura-btn_input);
     border: solid 1px var(--cor-primaria);
     box-shadow: 1px 4px 6px #0000004d;
+    z-index: 2;
 }
 
 .input-barra-busca {
@@ -73,14 +76,16 @@
 
 .input-barra-busca:focus-visible {
     outline: var(--cor-primaria);
-    font-size: 1.2rem;
+    border: solid 2px var(--cor-primaria);
+    font-size: 1.1rem;
+    
 }
 
 .btn-buscar {
-    width: 50px;
+    width: 60px;
     height: 100%;
-    background: var(--cor-primaria);
-    color: var(--cor-texto2);
+    background: var(--laranja-50);
+    color: var(--preto-700);
     border: none;
     cursor: pointer;
     display: flex;
@@ -88,6 +93,11 @@
     align-items: center;
     font-size: 1.2rem;
     border-radius: 0 30px 30px 0;
+}
+
+.btn-buscar:hover{
+        background: var(--cor-secundaria-hover);
+
 }
 
 /* Fim busca */

@@ -84,26 +84,22 @@ export default function Home(props) {
             <div className="sections">
                 <section className="hero">
                     <h1>As melhores receitas você encontra aqui!</h1>
-                    <ModalIA
-                        texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
-                        duracao={10000}
-                        intervalo={21000}
-                    />
+                    <form className="form-buscar" onSubmit={props.onSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Buscar"
+                            className="input-barra-busca"
+                            value={props.value}
+                            onChange={(e) => props.onChange(e.target.value)}
+                        />
+                        <button type="submit" className="btn-buscar">
+                            <FaSearch />
+                        </button>
+                    </form>
                     <div className="conteudo-esquerdo"></div>
                 </section>
                 <Menu />
-                <form className="form-buscar" onSubmit={props.onSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Digite sua receita"
-                        className="input-barra-busca"
-                        value={props.value}
-                        onChange={(e) => props.onChange(e.target.value)}
-                    />
-                    <button type="submit" className="btn-buscar">
-                        <FaSearch />
-                    </button>
-                </form>
+
                 <section className="pratos-do-dia">
                     <p className="mensagem-pratos-do-dia">{mensagem}</p>
                     <h2 className="titulo-secao">{tituloSecao}</h2>
@@ -130,6 +126,11 @@ export default function Home(props) {
                               ))}
                     </div>
                 </section>
+                <ModalIA
+                    texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
+                    duracao={10000}
+                    intervalo={21000}
+                />
                 <Footer />
             </div>
         </>

@@ -14,7 +14,7 @@ const FormAdmin = ({ titulo, children, descricao }) => {
     return (
         <form className="formulario">
             <h2 className="titulo-form">{titulo}</h2>
-            <p>{descricao}</p>
+            <p className="desc-form">{descricao}</p>
             <div className="campos-entrada">{children}</div>
             <div className="botoes-finish">
                 <Botao variant="btn-primario" onClick={salvarDados}>

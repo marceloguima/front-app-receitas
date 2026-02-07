@@ -8,7 +8,7 @@
     align-items: center;
     gap: 20px;
     border-radius: 10px;
-      background-color: #d1d1d1;
+      background-color: #e9e9e9;
 
 }
 
@@ -26,12 +26,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: transparent;
 }
 
 
-.skeleton-icon {
-    color: #b3b3b36c;
-    font-size: 6rem;
+.skeleton-img-logo {
+    opacity: .4;
+    width: 100px;
+    border-radius: 50%;
 }
 
 .skeleton-title {

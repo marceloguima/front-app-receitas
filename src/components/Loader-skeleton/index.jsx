@@ -6,7 +6,8 @@ const LoaderSkeletonCard = () => {
     return (
         <div className="skeleton-card">
             <div className="skeleton skeleton-img">
-                <MdImage className="skeleton-icon" />
+                <img src="./logo-skeleton-loader.png" alt="" className="skeleton skeleton-img-logo" />
+                {/* <MdImage className="skeleton-icon" /> */}
             </div>
             <div className="skeleton skeleton-title"></div>
 

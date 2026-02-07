@@ -5,11 +5,11 @@ import "./styles.css";
 // "variant  classe extra(cancelar, perigo, sucesso etc)"  de acordo com a necessidade, essas classes extras já estarão sendo criadas
 //  aqui no css do botão, bastando apenas aplicar cada uma quando necessário onde for usar
 const Botao = ({ children, variant = "primary", className, ...rest }) => {
-    const classesFinais = `btn
+    const classesBotao = `btn
   ${variant}`;
 
     return (
-        <button className={classesFinais} {...rest}>
+        <button className={classesBotao} {...rest}>
             {children}
         </button>
     );

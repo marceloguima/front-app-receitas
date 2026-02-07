@@ -15,7 +15,7 @@ import "./home.css";
 export default function Home(props) {
     const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [tituloSecao, setatituloSecao] = useState("Receitas do dia");
     const [mensagem, setMensagem] = useState("");
 

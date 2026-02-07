@@ -1,4 +1,4 @@
-.container-admin{
+.container-admin {
     width: 100vw;
     height: 100vh;
     background-image: url(/public/‎img-background-admin.png);
@@ -13,7 +13,6 @@
     overflow: hidden;
 }
 
-
 .container-admin::before {
     content: "";
     position: absolute;
@@ -25,15 +24,13 @@
     z-index: 1;
 }
 
-
-.titulo-admin, .subtitulo-admin{
+.titulo-admin,
+.subtitulo-admin {
     color: var(--cor-texto-inverso);
     z-index: 2;
 }
 
-
-
-.botoes-select{
+.botoes-select {
     width: 600px;
     display: flex;
     justify-content: space-around;
@@ -41,57 +38,101 @@
     margin-top: 40px;
 }
 
-.cad-anuncio{
+.cad-anuncio {
     background: var(--laranja-400) !important;
 }
 
-
-
-.line-inputs{
+.line-inputs {
     width: 100%;
     display: flex;
     gap: 80px;
 }
 
-.container_ingredientes{
-    width: 100%;
-}
 
-.container_ingredientes h4{
+.container_ingredientes h4 {
     margin-left: 10px;
 }
 
-.campo-ingredientes{
+.caixa-campo-ingredientes {
     background: var(--cinza-50);
     border-radius: 10px;
     border: solid 1px var(--cinza-400);
     margin-top: 5px;
     width: 100%;
+    max-height: 170px;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    /* z-index: 10; */
 }
 
-.nome-campos{
+
+.container_ingredientes {
+    width: 100%;
+        position: relative;
+
+} 
+
+.campo-ingredientes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.nome-campos {
     display: flex;
     width: 580px;
     justify-content: space-between;
     margin-right: 190px;
 }
 
-
-.ingrediente{
+.ingrediente {
     width: 100%;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    gap: 16px;
     margin-bottom: 12px;
 }
 
 .ingrediente input{
-    width: 226px;
+}
+
+.ingrediente .grupo-input{
+    width: 220px;
 }
 
 
+.add-ingrediente {
+    width: 200px;
+    grid-column: 1 / -1;
+}
+
+.ingrediente input {
+    /* width: 226px; */
+}
+
+.modal-confirmacao-apagar-ingrediente{
+    width: 300px !important;
+    padding: 20px !important;
+    text-align: center;
+    border: solid 1px var(--cor-primaria);
+    box-shadow: 0 0 40px ;
+    position: fixed;
+    top: 40px;
+    left: 10px;
+}
+
+.botoes-confirmacao{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Botão de fechar o modal que nessa aparição não é necessário */
+.btn-fecha-modal-admin{
+    display: none !important;
+}

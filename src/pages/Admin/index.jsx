@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./styles.css";
 
@@ -12,6 +11,8 @@ import CampoEntradaAdmin from "../../components/Campo-entrada-admin";
 import { PiChefHatFill } from "react-icons/pi";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { TiPencil } from "react-icons/ti";
+
 import { IoMdAdd } from "react-icons/io";
 
 /**
@@ -22,14 +23,17 @@ const TelaAdmin = () => {
     // ============================================================================
     // ESTADOS DO COMPONENTE
     // ============================================================================
-    
+
     /** Controla visibilidade do modal de cadastro de receitas */
     const [modalReceitaAberto, setModalReceitaAberto] = useState(false);
-    
+
     /** Controla visibilidade do modal de cadastro de anúncios */
     const [modalAnuncioAberto, setModalAnuncioAberto] = useState(false);
 
-    /** 
+    /** Controla visibilidade do modal de confirmação de deleção */
+    const [modalDelete, setModalDelete] = useState(false);
+
+    /**
      * Lista de ingredientes da receita
      * Cada ingrediente contém: id único, nome, unidade de medida e quantidade
      */
@@ -46,6 +50,20 @@ const TelaAdmin = () => {
      */
     const abrirModalReceita = () => {
         setModalReceitaAberto(true);
+    };
+
+    /**
+     * Abre o modal de confirmação para apagar
+     */
+    const abrirModalConfirmaDelete = () => {
+        setModalDelete(true);
+    };
+
+    /**
+     * Fecha o modal de confirmação para apagar
+     */
+    const fecharModalConfirmaDelete = () => {
+        setModalDelete(false);
     };
 
     /**
@@ -111,10 +129,12 @@ const TelaAdmin = () => {
         // Isso garante que sempre haverá pelo menos um campo de ingrediente
         if (listaIngredientes.length > 1) {
             const ingredientesFiltrados = listaIngredientes.filter(
-                (ingrediente) => ingrediente.id !== ingredienteId
+                (ingrediente) => ingrediente.id !== ingredienteId,
             );
             setListaIngredientes(ingredientesFiltrados);
         }
+        fecharModalConfirmaDelete();
+        alert("apagando...");
     };
 
     // ============================================================================
@@ -184,86 +204,134 @@ const TelaAdmin = () => {
                         {/* Seção de ingredientes dinâmica */}
                         <div className="container_ingredientes">
                             <h4>Ingredientes</h4>
-                            <div className="campo-ingredientes">
-                                {/* Cabeçalhos dos campos de ingredientes */}
-                                <div className="nome-campos">
-                                    <p>Nome do ingrediente</p>
-                                    <p>Unidade de medida</p>
-                                    <p>Quantidade</p>
-                                </div>
 
-                                {/* Renderização dinâmica dos campos de ingredientes */}
-                                {listaIngredientes.map((ingrediente) => (
-                                    <div
-                                        className="ingrediente"
-                                        key={ingrediente.id}
-                                    >
-                                        {/* Campo: Nome do ingrediente */}
-                                        <CampoEntradaAdmin
-                                            placeholder="Ex: Farinha de trigo"
-                                            value={ingrediente.nome}
-                                            onChange={(evento) =>
-                                                atualizarIngrediente(
-                                                    ingrediente.id,
-                                                    "nome",
-                                                    evento.target.value
-                                                )
-                                            }
-                                        />
-
-                                        {/* Campo: Unidade de medida */}
-                                        <CampoEntradaAdmin
-                                            placeholder="Ex: Xícara, colher, ml..."
-                                            value={ingrediente.unidade}
-                                            onChange={(evento) =>
-                                                atualizarIngrediente(
-                                                    ingrediente.id,
-                                                    "unidade",
-                                                    evento.target.value
-                                                )
-                                            }
-                                        />
-
-                                        {/* Campo: Quantidade */}
-                                        <CampoEntradaAdmin
-                                            tipo="number"
-                                            placeholder="Ex: 2"
-                                            value={ingrediente.quantidade}
-                                            onChange={(evento) =>
-                                                atualizarIngrediente(
-                                                    ingrediente.id,
-                                                    "quantidade",
-                                                    evento.target.value
-                                                )
-                                            }
-                                        />
-
-                                        {/* Botão para remover ingrediente */}
-                                        <Botao
-                                            variant="btn-p"
-                                            type="button"
-                                            onClick={() =>
-                                                removerIngrediente(
-                                                    ingrediente.id
-                                                )
-                                            }
-                                        >
-                                            <RiDeleteBin6Line />
-                                        </Botao>
+                            <div className="caixa-campo-ingredientes">
+                                <div className="campo-ingredientes">
+                                    {/* Cabeçalhos dos campos de ingredientes */}
+                                    <div className="nome-campos">
+                                        <p>Nome do ingrediente</p>
+                                        <p>Unidade de medida</p>
+                                        <p>Quantidade</p>
                                     </div>
-                                ))}
 
-                                {/* Botão para adicionar novo ingrediente */}
-                                <Botao
-                                    type="button"
-                                    variant="add-ingrediente"
-                                    onClick={adicionarNovoIngrediente}
-                                >
-                                    <span>
-                                        <IoMdAdd />
-                                    </span>
-                                    Ad. ingrediente
-                                </Botao>
+                                    {/* Renderização dinâmica dos campos de ingredientes */}
+                                    {listaIngredientes.map((ingrediente) => (
+                                        <div
+                                            className="ingrediente"
+                                            key={ingrediente.id}
+                                        >
+                                            {modalDelete && (
+                                                <Modal variant="modal-confirmacao-apagar-ingrediente">
+                                                    <p>
+                                                        {`Tem certeza que quer excluir o
+                                            ingrediente`}
+                                                    </p>
+                                                    <div className="botoes-confirmacao">
+                                                        <Botao
+                                                            variant="btn-secundario"
+                                                            type="button"
+                                                            onClick={
+                                                                fecharModalConfirmaDelete
+                                                            }
+                                                        >
+                                                            Não
+                                                        </Botao>
+                                                        <Botao
+                                                            variant="btn-danger"
+                                                            type="button"
+                                                            onClick={() =>
+                                                                removerIngrediente(
+                                                                    ingrediente.id,
+                                                                )
+                                                            }
+                                                        >
+                                                            Sim
+                                                        </Botao>
+                                                    </div>
+                                                </Modal>
+                                            )}
+
+                                            {/* Campo: Nome do ingrediente */}
+                                            <CampoEntradaAdmin
+                                                placeholder="Ex: Farinha de trigo"
+                                                value={ingrediente.nome}
+                                                onChange={(evento) =>
+                                                    atualizarIngrediente(
+                                                        ingrediente.id,
+                                                        "nome",
+                                                        evento.target.value,
+                                                    )
+                                                }
+                                            />
+
+                                            {/* Campo: Unidade de medida */}
+                                            <CampoEntradaAdmin
+                                                placeholder="Ex: Xícara, colher, ml..."
+                                                value={ingrediente.unidade}
+                                                onChange={(evento) =>
+                                                    atualizarIngrediente(
+                                                        ingrediente.id,
+                                                        "unidade",
+                                                        evento.target.value,
+                                                    )
+                                                }
+                                            />
+
+                                            {/* Campo: Quantidade */}
+                                            <CampoEntradaAdmin
+                                                tipo="number"
+                                                placeholder="Ex: 2"
+                                                value={ingrediente.quantidade}
+                                                onChange={(evento) =>
+                                                    atualizarIngrediente(
+                                                        ingrediente.id,
+                                                        "quantidade",
+                                                        evento.target.value,
+                                                    )
+                                                }
+                                            />
+
+                                            <Botao
+                                                variant="btn-p btn-p-editar"
+                                                type="button"
+                                                onClick={() =>
+                                                    atualizarIngrediente(
+                                                        ingrediente.id,
+                                                    )
+                                                }
+                                            >
+                                                <span>
+                                                    <TiPencil />
+                                                </span>
+                                            </Botao>
+
+                                            {/* Botão para remover ingrediente */}
+                                            <Botao
+                                                variant="btn-p btn-p-deletar btn-danger"
+                                                type="button"
+                                                onClick={
+                                                    abrirModalConfirmaDelete
+                                                }
+                                            >
+                                                <span>
+                                                    <RiDeleteBin6Line />
+                                                </span>
+                                            </Botao>
+                                        </div>
+                                    ))}
+
+                                    {/* Botão para adicionar novo ingrediente */}
+                                    <Botao
+                                        type="button"
+                                        variant="add-ingrediente"
+                                        onClick={adicionarNovoIngrediente}
+                                    >
+                                        <span>
+                                            <IoMdAdd />
+                                        </span>
+                                        Ad. ingrediente
+                                    </Botao>
+                                </div>
                             </div>
                         </div>
 

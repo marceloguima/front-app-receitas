@@ -22,17 +22,7 @@ const ListaMensagens = ({ mensagens }) => {
                 
             ))}
 
-            {/* {mensagens.map((msg, i) => (
-                <div key={i} className={`mensagem ${msg.tipo}`}>
-                    {msg.tipo === "usuario" && <p>{msg.texto}</p>}
-                    {msg.tipo === "ia" && (
-                        <div
-                            className="receita-ia"
-                            dangerouslySetInnerHTML={{ __html: msg.html }}
-                        />
-                    )}
-                </div>
-            ))} */}
+          
         </>
     );
 };

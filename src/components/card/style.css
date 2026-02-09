@@ -12,6 +12,7 @@
     overflow: hidden;
     cursor: pointer;
     position: relative;
+    transition: transform 0.3s ease-in-out;
 }
 
 .card::before {
@@ -34,11 +35,11 @@
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
-    transition: transform 0.3s ease-in-out;
 }
 
-.img-card:hover {
+.card:hover {
     transform: scale(1.05);
+    box-shadow: 1px 2px 20px #000;
 }
 
 .info-card {
@@ -68,6 +69,7 @@
     background: var(--cinza-100);
     padding: 2px 8px;
     border-radius: 10px;
+    min-width: 72px;
 }
 
 .p-temp,
@@ -75,6 +77,10 @@
     font-size: 0.8rem;
     color: var(--preto-700);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .btn-favorito {

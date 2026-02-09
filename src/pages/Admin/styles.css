@@ -126,13 +126,75 @@
     left: 10px;
 }
 
+/* Botão de fechar o modal que nessa aparição não é necessário */
+.modal-confirmacao-apagar-ingrediente .btn-fecha-modal-admin{
+    display: none !important;
+}
+
 .botoes-confirmacao{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-/* Botão de fechar o modal que nessa aparição não é necessário */
-.btn-fecha-modal-admin{
-    display: none !important;
+
+
+.modal-tela-min{
+width: 90% !important;
+min-width: 315px;
+min-height: 100px;
+top: 100px;
+padding: 10px 0 !important;
+border: solid 2px var(--cor-primaria);
+} 
+
+.alerta-tela-minima{
+    width: 80%;
+    height: 100px;
+}
+
+.alerta-tela-minima h3{
+    margin-bottom: 20px;
+}
+
+
+ .alerta-tela-minima h3, p{
+    text-align: center;
+    }
+
+
+.loader-form-receita{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}    
+
+.loader-form-receita{
+    font-weight: 500;
+}
+
+.spinner-form-receita{
+    font-size: 2rem !important;
+}
+
+
+.msg-sucesso{
+    font-weight: 500;
+    color: #206d02;
+}
+
+@media(min-width: 900px){
+    .modal-tela-min{
+        display: none !important;
+
+    }
+
+}
+
+
+@media(max-width: 900px){
+    .modal-form-cadastro{
+        display: none !important;
+    }
+
 }

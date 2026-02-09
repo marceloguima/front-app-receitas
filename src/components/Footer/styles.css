@@ -1,8 +1,29 @@
 .footer {
   padding: 16px 24px;
-  background-color: #c3c3c3;
-  color: #555;
+  background-image: url(imagem-hero.png);
+  background-position: center;
+  background-size: cover;
   font-size: 0.9rem;
   text-align: center;
   border-top: 1px solid var(--cor-primaria);
+  position: relative;
+}
+
+
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(360deg,rgba(0, 0, 0, 0.83) 51%, rgba(8, 8, 8, 0.5) 100%);
+  z-index: 1;
+}
+
+.footer p{
+  z-index: 5 !important;
+  color: #ffffff;
+  position: relative;
 }

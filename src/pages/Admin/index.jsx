@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./styles.css";
+import axios from "axios";
 
 // Componentes
 import Botao from "../../components/Botao";
 import Modal from "../../components/Modal";
 import FormAdmin from "../../components/Form-cadastro-admin";
 import CampoEntradaAdmin from "../../components/Campo-entrada-admin";
+import Loader from "../../components/Loader";
 
 // Ícones
 import { PiChefHatFill } from "react-icons/pi";
@@ -33,6 +35,13 @@ const TelaAdmin = () => {
     /** Controla visibilidade do modal de confirmação de deleção */
     const [modalDelete, setModalDelete] = useState(false);
 
+    const [modalTelaMin, setModalTelaMin] = useState(false);
+
+    // Estados do formulário
+    const [titulo, setTitulo] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [tempoPreparo, setTempoPreparo] = useState("");
+    const [porcoes, setPorcoes] = useState("");
     /**
      * Lista de ingredientes da receita
      * Cada ingrediente contém: id único, nome, unidade de medida e quantidade
@@ -40,6 +49,15 @@ const TelaAdmin = () => {
     const [listaIngredientes, setListaIngredientes] = useState([
         { id: Date.now(), nome: "", unidade: "", quantidade: "" },
     ]);
+    const [modoPreparo, setModoPreparo] = useState("");
+    const [complexidade, setComplexidade] = useState("fácil");
+    const [categoria, setCategoria] = useState("");
+    const [imagem, setImagem] = useState("");
+
+    const [loading, setLoading] = useState(false);
+    const [mensagem, setMensagem] = useState("")
+
+
 
     // ============================================================================
     // FUNÇÕES DE CONTROLE DOS MODAIS
@@ -50,6 +68,7 @@ const TelaAdmin = () => {
      */
     const abrirModalReceita = () => {
         setModalReceitaAberto(true);
+        setModalTelaMin(true);
     };
 
     /**
@@ -79,6 +98,51 @@ const TelaAdmin = () => {
     const fecharModais = () => {
         setModalReceitaAberto(false);
         setModalAnuncioAberto(false);
+        setModalTelaMin(false);
+    };
+
+    const salvarReceita = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        
+        const novaReceita = {
+            titulo,
+            descricao,
+            tempoPreparo: Number(tempoPreparo),
+            porcoes: Number(porcoes),
+            complexidade,
+            categoria,
+            imagem,
+            modoPreparo,
+            ingredientes: listaIngredientes,
+        };
+        console.log("tentando enviar " + novaReceita);
+        console.log(novaReceita.titulo);
+        console.log(novaReceita.modoPreparo);
+        
+        try {
+            const resposta = await axios.post(
+                "http://localhost:3001/receitas",
+                novaReceita,
+            );
+            console.log("Resposta do servidor:", resposta);
+            
+                
+            
+            setLoading(false);
+            setMensagem("Receita cadastrada com sucesso!")
+            setTimeout(() => {
+                setMensagem("")
+            }, 4000);
+
+        } catch (erro) {
+            console.error("Erro ao salvar:", erro);
+            console.error(
+                "Erro detalhado:",
+                erro.response ? erro.response.data : erro.message,
+            );
+            alert("Erro ao salvar receita. Veja o console.");
+        }
     };
 
     // ============================================================================
@@ -149,51 +213,88 @@ const TelaAdmin = () => {
                 Cadastre suas receitas e anúncios
             </h2>
 
+            {/* conteúdo para ser exibido caso o formulário seja aberto em telas pequenas, 
+                    decidi não deixar essa tela responsiva para aparelhos menores que 900px, no momento achei desnecessário. */}
+
+            {modalTelaMin && (
+                <Modal variant="modal-tela-min" onClick={fecharModais}>
+                    {" "}
+                    <div className="alerta-tela-minima">
+                        <h3>ATENÇÃO</h3>
+                        <p>
+                            Para fazer o cadastro de uma receita você precisa
+                            acessar de uma tela maior que 900px, o seu aparelho
+                            não comporta o conteúdo da página.{" "}
+                        </p>
+                    </div>
+                </Modal>
+            )}
+
             {/* ====================================================================
                 MODAL DE CADASTRO DE RECEITAS
             ==================================================================== */}
             {modalReceitaAberto && (
-                <Modal onClick={fecharModais}>
+                <Modal onClick={fecharModais} variant="modal-form-cadastro">
                     <FormAdmin
+                        onSubmit={salvarReceita}
                         titulo="Nova Receita"
                         descricao="Prencha os dados da receita"
                     >
                         {/* Linha de inputs: Título e Categoria */}
                         <div className="line-inputs">
                             <CampoEntradaAdmin
-                                textLabel="Titulo"
+                                textLabel="Titulo *"
                                 placeholder="Ex: Torta de limão"
+                                value={titulo}
+                                onChange={(e) => setTitulo(e.target.value)}
                             />
 
                             <CampoEntradaAdmin
                                 textLabel="Categoria *"
                                 placeholder="Ex: Sobremesa, Prato principal, Bebida"
+                                value={categoria}
+                                onChange={(e) => setCategoria(e.target.value)}
                             />
                         </div>
 
                         {/* Campo de descrição da receita */}
                         <CampoEntradaAdmin
                             tipo="textarea"
-                            textLabel="Descrição da receita"
+                            textLabel="Descrição da receita *"
                             placeholder="Descreva sua receita..."
+                            value={descricao}
+                            onChange={(e) => setDescricao(e.target.value)}
                             rows={5}
                         />
 
                         {/* Linha de inputs: Tempo, Rendimento e Nível */}
                         <div className="line-inputs">
                             <CampoEntradaAdmin
-                                textLabel="Tempo de preparo (min)"
+                                textLabel="Tempo de preparo (min) *"
                                 placeholder="Ex: 20"
+                                value={tempoPreparo}
+                                onChange={(e) =>
+                                    setTempoPreparo(e.target.value)
+                                }
                                 tipo="number"
                             />
 
                             <CampoEntradaAdmin
-                                textLabel="Rendimento em porções"
+                                textLabel="Rendimento em porções *"
                                 placeholder="Ex: 4"
+                                value={porcoes}
+                                onChange={(e) => setPorcoes(e.target.value)}
                                 tipo="number"
                             />
 
-                            <CampoEntradaAdmin tipo="select" textLabel="Nível">
+                            <CampoEntradaAdmin
+                                tipo="select"
+                                textLabel="Nível"
+                                value={complexidade}
+                                onChange={(e) =>
+                                    setComplexidade(e.target.value)
+                                }
+                            >
                                 <option value="facil">Fácil</option>
                                 <option value="medio">Médio</option>
                                 <option value="dificil">Difícil</option>
@@ -223,8 +324,14 @@ const TelaAdmin = () => {
                                             {modalDelete && (
                                                 <Modal variant="modal-confirmacao-apagar-ingrediente">
                                                     <p>
-                                                        {`Tem certeza que quer excluir o
-                                            ingrediente`}
+                                                        {
+                                                            "Tem certeza que quer excluir "
+                                                        }
+                                                        {
+                                                            <strong>
+                                                                {ingrediente.nome}
+                                                            </strong>
+                                                        }
                                                     </p>
                                                     <div className="botoes-confirmacao">
                                                         <Botao
@@ -334,12 +441,18 @@ const TelaAdmin = () => {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Campo de modo de preparo */}
+{loading && ( <Loader texto="Enviando Receita..." className="loader-form-receita" variant="spinner-form-receita"/>)  }
+<p className="msg-sucesso">
+{mensagem}
+</p>
+                    
+  {/* Campo de modo de preparo */}
                         <CampoEntradaAdmin
                             tipo="textarea"
                             textLabel="Modo de preparo"
                             placeholder="Descreva o modo de preparo..."
+                            value={modoPreparo}
+                            onChange={(e) => setModoPreparo(e.target.value)}
                             rows={5}
                         />
 
@@ -347,6 +460,8 @@ const TelaAdmin = () => {
                         <CampoEntradaAdmin
                             textLabel="Imagem"
                             placeholder="Insira a URL da imagem"
+                            value={imagem}
+                            onChange={(e) => setImagem(e.target.value)}
                         />
                     </FormAdmin>
                 </Modal>

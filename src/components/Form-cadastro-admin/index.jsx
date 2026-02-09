@@ -6,18 +6,15 @@ import Botao from "../Botao";
 import { MdOutlineCheck } from "react-icons/md";
 import { RiCloseLine } from "react-icons/ri";
 
-const FormAdmin = ({ titulo, children, descricao }) => {
-    const salvarDados = (e) => {
-        e.preventDefault();
-    };
-
+const FormAdmin = ({ titulo, children, descricao, onSubmit }) => {
+   
     return (
-        <form className="formulario">
+        <form className="formulario" onSubmit={onSubmit}>
             <h2 className="titulo-form">{titulo}</h2>
             <p className="desc-form">{descricao}</p>
             <div className="campos-entrada">{children}</div>
             <div className="botoes-finish">
-                <Botao variant="btn-primario" onClick={salvarDados}>
+                <Botao variant="btn-primario" type="submit">
                     <span>
                         <MdOutlineCheck />
                     </span>

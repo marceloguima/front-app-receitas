@@ -4,7 +4,6 @@ import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 const Modal = ({ children, onClick, variant = "primary", className, ...rest  }) => {
-    const [mensagemFechar, setMensagemFechar] = useState("");
 
    const classesModal = `modal ${variant}`
 

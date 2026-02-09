@@ -4,7 +4,6 @@ import AISidebar from "../../components/AISidebar";
 import ListaMensagens from "../../components/ListaMensagens";
 import { apiIA } from "../../conectaAxios/apiIA";
 
-import { BiLoaderAlt } from "react-icons/bi";
 // import { PiChefHat } from "react-icons/pi";
 
 import "./AIGenerator.css";
@@ -84,12 +83,7 @@ export default function AIRecipeGenerator() {
                 </div>
 
                 {loading && (
-                    <div className="loading-overlay">
-                        {/* <PiChefHat className="hat-chef" /> */}
-                        <BiLoaderAlt className="spinner" />
-                        <p>Gerando sua receita aguarde...</p>
-                        <div className="spinner"></div>
-                    </div>
+                  <Loader/>
                 )}
                 <SaidaMensagem
                     onEnviarMensagem={onEnviarMensagem}

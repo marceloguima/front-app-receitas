@@ -16,7 +16,7 @@ export default function Home(props) {
     const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState("");
     const [loading, setLoading] = useState(true);
-    const [tituloSecao, setatituloSecao] = useState("Receitas do dia");
+    // const [tituloSecao, setatituloSecao] = useState("");
     const [mensagem, setMensagem] = useState("");
 
     useEffect(() => {
@@ -33,6 +33,10 @@ export default function Home(props) {
                 console.error("erro ao carregar receitas", erro);
                 console.log("deu erro");
             }
+
+
+
+
         }
         carregarReceitas();
     }, []);
@@ -43,7 +47,7 @@ export default function Home(props) {
         setLoading(true);
         try {
             const dados = await apiBuscaReceitas(busca);
-            console.log(dados);
+            console.log("dados buscados " + dados);
 
             // verificação para alterar o título da seção conforme a busca evitando título vazio.
             if (busca == "") {
@@ -80,19 +84,19 @@ export default function Home(props) {
 
     return (
         <>
-            <Header value={busca} onChange={setBusca} onSubmit={handleBuscar} />
+            <Header  />
             <div className="sections">
                 <section className="hero">
                     <h1>As melhores receitas você encontra aqui!</h1>
-                    <form className="form-buscar" onSubmit={props.onSubmit}>
+                    <form className="form-buscar" value={busca} onChange={setBusca}  onSubmit={handleBuscar}>
                         <input
                             type="text"
                             placeholder="Buscar"
                             className="input-barra-busca"
                             value={props.value}
-                            onChange={(e) => props.onChange(e.target.value)}
+                            onChange={(e) => onChange(e.target.value)}
                         />
-                        <button type="submit" className="btn-buscar">
+                        <button type="submit" className="btn-buscar" >
                             <FaSearch />
                         </button>
                     </form>
@@ -100,32 +104,146 @@ export default function Home(props) {
                 </section>
                 <Menu />
 
+{/* Entradas */}
                 <section className="pratos-do-dia">
                     <p className="mensagem-pratos-do-dia">{mensagem}</p>
-                    <h2 className="titulo-secao">{tituloSecao}</h2>
+                    <h2 className="titulo-secao">Entradas</h2>
                     <div className="cards_card">
-                        {/* mensagem para possíveis erro na busca */}
 
                         {loading
                             ? Array.from({ length: 8 }).map((_, i) => (
                                   <LoaderSkeletonCard key={i} />
                               ))
                             : Array.isArray(receitas) &&
-                              receitas.map((receita) => (
+                              receitas.filter(function(receita) {
+                                return (
+                                    receita.categoria === "Entrada" 
+                                    
+                                );
+                              }).map((receita) => (
+                                   
+                                
                                   <Card
                                       key={receita.id}
                                       src={receita.imagem}
                                       alt={
-                                          "imagem da receita de " +
+                                          "imagem da receita de " + 
                                           receita.titulo
                                       }
                                       titulo={receita.titulo}
-                                      //   tempoPreparo={`${receita.tempoPreparo} min`}
-                                      //   quantPorcoes={`${receita.porcoes} porções`}
+                                        tempoPreparo={`${receita.tempoPreparo} min`}
+                                        complexidade={`${receita.complexidade}`}
+                                        porcoes={`${receita.porcoes}`}
                                   />
-                              ))}
+                              ))} 
                     </div>
                 </section>
+
+{/* Pratos principais */}
+                <section className="pratos-do-dia">
+                    <h2 className="titulo-secao">Prato Principal</h2>
+                    <div className="cards_card">
+
+                        {loading
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <LoaderSkeletonCard key={i} />
+                              ))
+                            : Array.isArray(receitas) &&
+                              receitas.filter(function(receita) {
+                                return (
+                                    receita.categoria === "Prato Principal" 
+                                    
+                                );
+                              }).map((receita) => (
+                                   
+                                
+                                  <Card
+                                      key={receita.id}
+                                      src={receita.imagem}
+                                      alt={
+                                          "imagem da receita de " + 
+                                          receita.titulo
+                                      }
+                                      titulo={receita.titulo}
+                                        tempoPreparo={`${receita.tempoPreparo} min`}
+                                        complexidade={`${receita.complexidade}`}
+                                        porcoes={`${receita.porcoes}`}
+                                  />
+                              ))} 
+                    </div>
+                </section>
+
+                
+{/* bebidas */}
+                <section className="pratos-do-dia">
+                    <h2 className="titulo-secao">Bebidas</h2>
+                    <div className="cards_card">
+
+                        {loading
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <LoaderSkeletonCard key={i} />
+                              ))
+                            : Array.isArray(receitas) &&
+                              receitas.filter(function(receita) {
+                                return (
+                                    receita.categoria === "Bebidas" 
+                                    
+                                );
+                              }).map((receita) => (
+                                   
+                                
+                                  <Card
+                                      key={receita.id}
+                                      src={receita.imagem}
+                                      alt={
+                                          "imagem da receita de " + 
+                                          receita.titulo
+                                      }
+                                      titulo={receita.titulo}
+                                        tempoPreparo={`${receita.tempoPreparo} min`}
+                                        complexidade={`${receita.complexidade}`}
+                                        porcoes={`${receita.porcoes}`}
+                                  />
+                              ))} 
+                    </div>
+                </section>
+
+
+                
+{/* Sobremesas */}
+                <section className="pratos-do-dia">
+                    <h2 className="titulo-secao">Sobremesas</h2>
+                    <div className="cards_card">
+
+                        {loading
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <LoaderSkeletonCard key={i} />
+                              ))
+                            : Array.isArray(receitas) &&
+                              receitas.filter(function(receita) {
+                                return (
+                                    receita.categoria === "Sobremesa" 
+                                    
+                                );
+                              }).map((receita) => (
+                                   
+                                
+                                  <Card
+                                      key={receita.id}
+                                      src={receita.imagem}
+                                      alt={
+                                          "imagem da receita de " + 
+                                          receita.titulo
+                                      }
+                                      titulo={receita.titulo}
+                                        tempoPreparo={`${receita.tempoPreparo} min`}
+                                        complexidade={`${receita.complexidade}`}
+                                        porcoes={`${receita.porcoes}`}
+                                  />
+                              ))} 
+                    </div>
+                </section>
+
                 <ModalIA
                     texto="Oie! Eu sou o chefinho, sou uma IA treinada para criar receitas para você!"
                     duracao={10000}

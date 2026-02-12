@@ -142,6 +142,7 @@ const TelaAdmin = () => {
                 erro.response ? erro.response.data : erro.message,
             );
             alert("Erro ao salvar receita. Veja o console.");
+            setLoading(false);
         }
     };
 
@@ -295,10 +296,10 @@ const TelaAdmin = () => {
                                     setComplexidade(e.target.value)
                                 }
                             >
-                                <option value="facil">Fácil</option>
-                                <option value="medio">Médio</option>
-                                <option value="dificil">Difícil</option>
-                                <option value="chef">Nível Chef</option>
+                                <option value="fácil">Fácil</option>
+                                <option value="médio">Médio</option>
+                                <option value="difícil">Difícil</option>
+                                <option value="nivel-chef">Nível Chef</option>
                             </CampoEntradaAdmin>
                         </div>
 

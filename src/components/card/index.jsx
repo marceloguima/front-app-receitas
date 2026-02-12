@@ -23,6 +23,9 @@ const Card = (props) => {
         <NavLink to="/detalhes" className="navlink">
             <div className="card">
                 <div className="overlay-card"></div>
+                <div className="dif">
+                    <p className="p-dif">{props.complexidade}</p>
+                </div>
 
                 <button className="btn-favorito" onClick={favoritar}>
                     {favorito ? <MdFavorite /> : <MdFavoriteBorder />}
@@ -31,14 +34,14 @@ const Card = (props) => {
                 <img src={props.src} className="img-card" alt={props.alt} />
                 <div className="info-card">
                     <h3>{props.titulo}</h3>
-                    <div className="temp-dif">
+                    <div className="temp-porcoes">
                         <div className="temp">
                             <p className="p-temp">
-                                <FaRegClock /> 30min
+                                <FaRegClock /> {props.tempoPreparo}
                             </p>
                         </div>
-                        <div className="dif">
-                            <p className="p-dif">Fácil</p>
+                        <div className="porcoes">
+                            <p className="p-porcoes">{`${props.porcoes} Porções`}</p>
                         </div>
                     </div>
                 </div>

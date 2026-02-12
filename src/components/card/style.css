@@ -58,14 +58,15 @@
     color: var(--cor-texto-suave);
 }
 
-.temp-dif {
+.temp-porcoes {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.dif,
-.temp {
+.porcoes,
+.temp,
+.dif {
     background: var(--cinza-100);
     padding: 2px 8px;
     border-radius: 10px;
@@ -73,7 +74,8 @@
 }
 
 .p-temp,
-.p-dif {
+.p-dif,
+.p-porcoes {
     font-size: 0.8rem;
     color: var(--preto-700);
     font-weight: 500;
@@ -81,6 +83,15 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+}
+
+
+
+.dif {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 2;
 }
 
 .btn-favorito {
@@ -98,6 +109,9 @@
     cursor: pointer;
     z-index: 10;
 }
+
+
+
 
 .div-btn-link a {
     text-decoration: none;

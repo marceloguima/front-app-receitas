@@ -20,7 +20,7 @@ const Card = (props) => {
     }
 
     return (
-        <NavLink to="/detalhes" className="navlink">
+        <NavLink to={`/detalhes/${props._id}`} className="navlink">
             <div className="card">
                 <div className="overlay-card"></div>
                 <div className="dif">

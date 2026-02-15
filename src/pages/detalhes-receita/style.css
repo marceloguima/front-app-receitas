@@ -1,9 +1,113 @@
-.receita_completa{
-    width: 100vw;
-    padding: 100px;
+/* ==========================================
+   CONTAINER PRINCIPAL (Prepara para os Anúncios)
+========================================== */
+.container-detalhes {
+    /* Limita a largura a 800px. Em monitores grandes, vai sobrar um 
+       espação em branco nas laterais, perfeito para futuros banners! */
+    max-width: 800px; 
+    
+    /* Isso é o que centraliza a caixa inteira na tela */
+    margin: 40px auto; 
+    
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
 
-.tempo_preparo_porcao{
+.container-detalhes h1 {
+    font-size: 2.5rem;
+    color: #ff956b; /* Uma cor quente combinando com comida */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.descricao {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* ==========================================
+   EFEITO DA IMAGEM E INFO SOBREPOSTA
+========================================== */
+.imagem-container {
+    position: relative; /* Transforma a caixa num "ponto de referência" */
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden; /* Corta as pontas quadradas da imagem */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra elegante */
+    margin-bottom: 40px;
+}
+
+.imagem-destaque {
+    width: 100%;
+    height: 450px; /* Mantém a altura padrão para não ficar gigante */
+    object-fit: cover; /* Faz a foto preencher o espaço sem distorcer */
+    display: block;
+}
+
+.info-rapida {
+    position: absolute; /* Tira do fluxo e joga por cima da imagem */
+    bottom: 0;          /* Cola na parte de baixo */
+    left: 0;
+    width: 100%;
+    
+    /* Cria uma faixa preta translúcida com desfoque tipo vidro (Glassmorphism) */
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(5px);
+    
+    color: white;
+    padding: 15px 0;
+    
     display: flex;
-    gap: 50px;
+    justify-content: center; /* Centraliza os ícones */
+    gap: 40px; /* Dá espaço entre o tempo e a porção */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* ==========================================
+   SESSÕES DE TEXTO (Ingredientes e Preparo)
+========================================== */
+.sessao-ingredientes, 
+.sessao-preparo {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.sessao-ingredientes h3, 
+.sessao-preparo h3 {
+    color: #ff956b;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffdece;
+    padding-bottom: 10px;
+}
+
+/* Arrumando a lista de ingredientes */
+.sessao-ingredientes ul {
+    list-style-type: none; /* Tira as bolinhas padrão */
+    padding: 0;
+}
+
+.sessao-ingredientes li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 1.1rem;
+}
+
+/* Tira a linha do último ingrediente para ficar bonito */
+.sessao-ingredientes li:last-child {
+    border-bottom: none; 
+}
+
+/* Arrumando o texto de preparo */
+.sessao-preparo p {
+    font-size: 1.1rem;
+    line-height: 1.8; /* Aumenta o espaço entre as linhas para facilitar a leitura */
+    color: #444;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const CampoEntradaAdmin = ({ textLabel, id, tipo, placeholder, children, ...rest}) => {
+const CampoEntradaAdmin = ({ textLabel, id, tipo, accept, placeholder, children, ...rest}) => {
     return (
         <div className="grupo-input">
             <label htmlFor={id}>{textLabel}</label>

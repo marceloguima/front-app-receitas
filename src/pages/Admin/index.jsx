@@ -52,10 +52,12 @@ const TelaAdmin = () => {
     const [modoPreparo, setModoPreparo] = useState("");
     const [complexidade, setComplexidade] = useState("fácil");
     const [categoria, setCategoria] = useState("");
-    const [imagem, setImagem] = useState("");
 
     const [loading, setLoading] = useState(false);
-    const [mensagem, setMensagem] = useState("")
+    const [mensagem, setMensagem] = useState(null)
+
+    const [imagemSelecionada, setImagemSelecionada] = useState(null);
+const [carregandoImagem, setCarregandoImagem] = useState(false);
 
 
 
@@ -101,9 +103,69 @@ const TelaAdmin = () => {
         setModalTelaMin(false);
     };
 
+
+
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Função auxiliar que sobe a foto pro Cloudinary
+const uploadImagemParaCloudinary = async () => {
+    if (!imagemSelecionada) return "";
+
+    const dadosImagem = new FormData();
+    dadosImagem.append("file", imagemSelecionada);
+    
+    dadosImagem.append("upload_preset", "ideia_de_sabor"); 
+dadosImagem.append("cloud_name", "dpkyxrgal");    
+    try {
+        console.log("2. Enviando para o Cloudinary (via Fetch)...");
+        
+        // Usamos o fetch nativo para evitar qualquer interferência do Axios
+        const resposta = await fetch(
+            "https://api.cloudinary.com/v1_1/dpkyxrgal/image/upload",
+            
+            {
+                method: "POST",
+                body: dadosImagem,
+            }
+        );
+
+        // O Cloudinary sempre devolve um JSON, mesmo quando dá erro
+        const dados = await resposta.json();
+
+        // Se a resposta não for um sucesso (ex: deu o maldito 401)
+        if (!resposta.ok) {
+            console.error("🚨 MOTIVO EXATO DO BLOQUEIO:", dados.error.message);
+            alert("Erro no Cloudinary: " + dados.error.message);
+            return "";
+        }
+
+        console.log("3. Sucesso! Link da imagem:", dados.secure_url);
+        return dados.secure_url;
+        
+    } catch (erro) {
+        console.error("Erro na requisição:", erro);
+        return "";
+    }
+};
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
     const salvarReceita = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        let urlDaImagem = "";
+console.log("1. Arquivo selecionado no input:", imagemSelecionada);
+
+    if (imagemSelecionada) {
+        console.log("2. Iniciando envio para o Cloudinary...");
+        urlDaImagem = await uploadImagemParaCloudinary();
+    
+    console.log("3. URL devolvida pelo Cloudinary:", urlDaImagem);
+    } else {
+        console.log("AVISO: Nenhuma imagem foi selecionada.");
+    }
         
         const novaReceita = {
             titulo,
@@ -112,7 +174,7 @@ const TelaAdmin = () => {
             porcoes: Number(porcoes),
             complexidade,
             categoria,
-            imagem,
+            imagem: urlDaImagem, // Usa a URL retornada do Cloudinary
             modoPreparo,
             ingredientes: listaIngredientes,
         };
@@ -459,11 +521,17 @@ const TelaAdmin = () => {
 
                         {/* Campo de imagem */}
                         <CampoEntradaAdmin
-                            textLabel="Imagem"
+                        type="file"
+                          accept="image/*"
+                            textLabel="Foto da Receita"
                             placeholder="Insira a URL da imagem"
-                            value={imagem}
-                            onChange={(e) => setImagem(e.target.value)}
-                        />
+                            // value={imagem}
+                            onChange={(e) => setImagemSelecionada(e.target.files[0])}
+                            />
+                            {carregandoImagem && <Loader texto="Enviando imagem..." variant="spinner-pequeno" className="loader-upload-imagem"/>}
+
+
+
                     </FormAdmin>
                 </Modal>
             )}

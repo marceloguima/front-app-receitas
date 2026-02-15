@@ -5,6 +5,13 @@ import Loader from "../../components/Loader";
 
 import "./style.css";
 import Header from "../../components/Header";
+// icones
+import { FaRegClock } from "react-icons/fa";
+import { IoRestaurantOutline } from "react-icons/io5";
+import { PiChefHatBold } from "react-icons/pi";
+
+// componentes
+import ReceitaInfo from "../../components/ReceitaInfo";
 
 const DetalhesReceita = () => {
     const { id } = useParams();
@@ -14,6 +21,7 @@ const DetalhesReceita = () => {
 
     useEffect(() => {
         const buscarReceita = async () => {
+            setLoading(true);
             try {
                 const resposta = await axios.get(
                     `http://localhost:3001/receitas/${id}`,
@@ -32,8 +40,8 @@ const DetalhesReceita = () => {
     if (loading) {
         return (
             <Loader
-                texto="Aguarde um instante"
-                variant="spinner-form-receita"
+                texto="Buscando ingredientes..."
+                variant="spinner-detalhes"
             />
         );
     }
@@ -56,10 +64,17 @@ const DetalhesReceita = () => {
                         className="imagem-destaque"
                     />
 
-                    {/* A info-rapida agora fica AQUI DENTRO, logo abaixo da img */}
-                    <div className="info-rapida">
-                        <span>⏱️ {receita.tempoPreparo} min</span>
-                        <span>🍽️ {receita.porcoes} porções</span>
+                    <div className="infos">
+                        <ReceitaInfo
+                            icone={<FaRegClock />}
+                            texto={`${receita.tempoPreparo} min`}
+                        />
+                        <ReceitaInfo
+                            icone={<IoRestaurantOutline />}
+                            texto={`${receita.porcoes} porções`}
+                        />
+                        <ReceitaInfo icone={<PiChefHatBold />
+} texto={`${receita.complexidade}`} />
                     </div>
                 </div>
 

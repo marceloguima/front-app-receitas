@@ -10,7 +10,7 @@ import CampoEntradaAdmin from "../../components/Campo-entrada-admin";
 import Loader from "../../components/Loader";
 
 // Ícones
-import { PiChefHatFill } from "react-icons/pi";
+import { PiChefHatBold } from "react-icons/pi";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TiPencil } from "react-icons/ti";
@@ -310,6 +310,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                 placeholder="Ex: Torta de limão"
                                 value={titulo}
                                 onChange={(e) => setTitulo(e.target.value)}
+                                required
                             />
 
                             <CampoEntradaAdmin
@@ -317,6 +318,8 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                 placeholder="Ex: Sobremesa, Prato principal, Bebida"
                                 value={categoria}
                                 onChange={(e) => setCategoria(e.target.value)}
+                                                                required
+
                             />
                         </div>
 
@@ -340,6 +343,8 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                     setTempoPreparo(e.target.value)
                                 }
                                 tipo="number"
+                                                                required
+
                             />
 
                             <CampoEntradaAdmin
@@ -348,6 +353,8 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                 value={porcoes}
                                 onChange={(e) => setPorcoes(e.target.value)}
                                 tipo="number"
+                                                                required
+
                             />
 
                             <CampoEntradaAdmin
@@ -432,6 +439,8 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                                         evento.target.value,
                                                     )
                                                 }
+                                                                                required
+
                                             />
 
                                             {/* Campo: Unidade de medida */}
@@ -557,7 +566,8 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                 {/* Botão para abrir modal de cadastro de receitas */}
                 <Botao onClick={abrirModalReceita}>
                     <span className="icon">
-                        <PiChefHatFill />
+                       <PiChefHatBold />
+
                     </span>
                     Cadastrar Receita
                 </Botao>

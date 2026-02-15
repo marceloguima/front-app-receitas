@@ -16,8 +16,10 @@ export default function Home(props) {
     const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState("");
     const [loading, setLoading] = useState(true);
-    // const [tituloSecao, setatituloSecao] = useState("");
     const [mensagem, setMensagem] = useState("");
+
+    const [resultadosBusca, setResultadosBusca] = useState([]); 
+    const [fezBusca, setFezBusca] = useState(false); 
 
     useEffect(() => {
         async function carregarReceitas() {
@@ -41,41 +43,35 @@ export default function Home(props) {
     async function handleBuscar(evento) {
         evento.preventDefault();
         setLoading(true);
+
+        if (busca.trim() === "") {
+            setFezBusca(false);
+            setResultadosBusca([]);
+            setLoading(false);
+            return;
+        }
         try {
             const dados = await apiBuscaReceitas(busca);
-            console.log("dados buscados " + dados);
+            console.log("dados buscados ", dados);
 
-            // verificação para alterar o título da seção conforme a busca evitando título vazio.
-            if (busca == "") {
-                setatituloSecao("Receitas do dia");
-            } else {
-                setatituloSecao(`Receita de ${busca}.`);
-            }
+            setResultadosBusca(dados); 
+            setFezBusca(true); 
 
-            setLoading(false);
-            // verificação para caso a busca não retorne resultados.
-            if (dados == "") {
-                //    alert("Não encontrei nenhuma receita com " + busca)
+            if (dados.length === 0) {
                 setMensagem(
-                    `Desculpe, no momento não encontramos receita com "${busca}". Fique à vontade para tentar outra!`,
+                    `Desculpe, não encontramos receita com "${busca}".`,
                 );
-                setatituloSecao(tituloSecao);
-                setTimeout(() => {
-                    setMensagem("");
-                }, 7000);
-
-                carregarReceitas();
+                setTimeout(() => setMensagem(""), 7000);
             } else {
                 setMensagem("");
             }
-            setLoading(false);
 
-            setReceitas(dados);
+            // setReceitas(dados);
         } catch (erro) {
             console.error("erro ao buscar receitas", erro);
             console.log("erro ao buscar");
-            setLoading(false);
         }
+        setLoading(false);
     }
 
     return (
@@ -83,27 +79,63 @@ export default function Home(props) {
             <Header />
             <div className="sections">
                 <section className="hero">
-                    <h1>As melhores receitas você encontra aqui!</h1>
-                    <form
-                        className="form-buscar"
-                        value={busca}
-                        onChange={setBusca}
-                        onSubmit={handleBuscar}
-                    >
-                        <input
-                            type="text"
-                            placeholder="Buscar"
-                            className="input-barra-busca"
-                            value={props.value}
-                            onChange={(e) => onChange(e.target.value)}
-                        />
-                        <button type="submit" className="btn-buscar">
-                            <FaSearch />
-                        </button>
-                    </form>
-                    <div className="conteudo-esquerdo"></div>
+                    <div className="content-hero">
+                        <h1>As melhores receitas você encontra aqui!</h1>
+                        <form className="form-buscar" onSubmit={handleBuscar}>
+                            <input
+                                type="text"
+                                placeholder="Buscar"
+                                className="input-barra-busca"
+                                value={busca}
+                                onChange={(e) => setBusca(e.target.value)}
+                            />
+                            <button type="submit" className="btn-buscar">
+                                <FaSearch />
+                            </button>
+                        </form>
+                    </div>
                 </section>
                 <Menu />
+
+                {/* SEÇÃO DE RESULTADOS DA BUSCA */}
+                {fezBusca && (
+                    <section className="pratos-do-dia resultados-busca">
+                        <h2 className="titulo-secao">
+                            {` ${resultadosBusca.length} resultados para "${busca}"`}
+                        </h2>
+                        <p className="mensagem-pratos-do-dia">{mensagem}</p>
+
+                        <div className="cards_card">
+                            {loading ? (
+                                Array.from({ length: 4 }).map((_, i) => (
+                                    <LoaderSkeletonCard key={i} />
+                                ))
+                            ) : resultadosBusca.length > 0 ? (
+                                resultadosBusca.map((receita) => (
+                                    <Card
+                                        _id={receita._id}
+                                        key={receita._id}
+                                        src={receita.imagem}
+                                        alt={
+                                            "imagem da receita de " +
+                                            receita.titulo
+                                        }
+                                        titulo={receita.titulo}
+                                        tempoPreparo={`${receita.tempoPreparo} min`}
+                                        complexidade={`${receita.complexidade}`}
+                                        porcoes={`${receita.porcoes}`}
+                                    />
+                                ))
+                            ) : (
+                                <p>
+                                    Nenhuma receita encontrada. Que tal
+                                    perguntar para O Chefinho?
+                                </p>
+                            )}
+                        </div>
+                        <hr />
+                    </section>
+                )}
 
                 {/* Entradas */}
                 <section className="pratos-do-dia">
@@ -149,8 +181,8 @@ export default function Home(props) {
                               receitas
                                   .filter(function (receita) {
                                       return (
-                                          receita.categoria ===
-                                          "Prato Principal"
+                                          receita.categoria.toLowerCase() ===
+                                          "prato principal"
                                       );
                                   })
                                   .map((receita) => (

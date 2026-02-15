@@ -1,6 +1,7 @@
 .navlink{
     width: 100%;
-    max-width: 246px;
+    max-width: 320px;
+    /* min-width: 208px; */
         height: 100%;
 
 }
@@ -24,7 +25,7 @@
     height: 100%;
     background: linear-gradient(
         360deg,
-        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.452) 0%,
         rgba(250, 250, 250, 0) 100%
     );
     z-index: 1;
@@ -44,7 +45,7 @@
 
 .info-card {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     position: absolute;
     bottom: 10px;
     z-index: 1;
@@ -64,25 +65,9 @@
     margin-top: 10px;
 }
 
-.porcoes,
-.temp,
-.dif {
-    background: var(--cinza-100);
-    padding: 2px 8px;
-    border-radius: 10px;
-    min-width: 72px;
-}
-
-.p-temp,
-.p-dif,
-.p-porcoes {
-    font-size: 0.8rem;
-    color: var(--preto-700);
-    font-weight: 500;
+.icon-info{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 5px;
 }
 
 
@@ -131,12 +116,7 @@
     margin-top: 20px;
     cursor: pointer;
 }
-/* 
-.div-btn-link:hover{
-    border: solid 1px var(--cor-primaria);
-    background: var(--cor-secundaria);
-    font-weight: 500;
-} */
+
 
 @media (max-width: 480px) {
     .card{
@@ -149,15 +129,10 @@
     .info-card h3{
         font-size: 1rem;
     }
-    
+/*     
 .dif,
 .temp {
     padding: 1px 6px;
-}
+} */
 
-.p-temp,
-.p-dif {
-    font-size: 0.6rem;
-   
-}
 }

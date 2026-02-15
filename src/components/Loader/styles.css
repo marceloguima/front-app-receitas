@@ -1,4 +1,14 @@
+.caixa-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
 
+.caixa-spinner p {
+    font-size: 1.2rem;
+    color: var(--cor-primaria);
 
 .spinner {
     color: var(--cor-primaria);

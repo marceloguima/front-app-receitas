@@ -3,12 +3,12 @@ import "./styles.css"
 import { BiLoaderAlt } from "react-icons/bi";
 
 
-function Loader({texto, className, variant}) {
-const classesSpiner = `spinner ${variant}`
+function Loader({texto, variant}) {
+const classesSpiner = `caixa-spinner ${variant}`
 
     return (
-        <div className={className}>
-            <BiLoaderAlt className={classesSpiner} />
+        <div className={classesSpiner}>
+            <BiLoaderAlt className="spinner"/>
             <p>{texto}</p>
         </div>
     );

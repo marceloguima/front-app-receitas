@@ -5,8 +5,13 @@ import { Link, NavLink } from "react-router-dom";
 import { FaRegClock } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
+import { IoRestaurantOutline } from "react-icons/io5";
+import { PiChefHatFill } from "react-icons/pi";
+import { PiChefHatBold } from "react-icons/pi";
 
 import "./style.css";
+// componentes
+import ReceitaInfo from "../ReceitaInfo";
 
 const Card = (props) => {
     const [favorito, setFavorito] = useState(false);
@@ -24,7 +29,10 @@ const Card = (props) => {
             <div className="card">
                 <div className="overlay-card"></div>
                 <div className="dif">
-                    <p className="p-dif">{props.complexidade}</p>
+                    <ReceitaInfo
+                        icone={<PiChefHatBold />}
+                        texto={props.complexidade}
+                    ></ReceitaInfo>
                 </div>
 
                 <button className="btn-favorito" onClick={favoritar}>
@@ -36,12 +44,16 @@ const Card = (props) => {
                     <h3>{props.titulo}</h3>
                     <div className="temp-porcoes">
                         <div className="temp">
-                            <p className="p-temp">
-                                <FaRegClock /> {props.tempoPreparo}
-                            </p>
+                            <ReceitaInfo
+                                icone={<FaRegClock />}
+                                texto={`${props.tempoPreparo}`}
+                            />
                         </div>
                         <div className="porcoes">
-                            <p className="p-porcoes">{`${props.porcoes} Porções`}</p>
+                            <ReceitaInfo
+                                icone={<IoRestaurantOutline />}
+                                texto={`${props.porcoes} porções`}
+                            />
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
     max-width: 800px; 
     
     /* Isso é o que centraliza a caixa inteira na tela */
-    margin: 40px auto; 
+    margin: 140px auto; 
     
     padding: 0 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,6 +20,15 @@
     text-align: center;
     margin-bottom: 10px;
 }
+
+/* loading */
+.spinner-detalhes{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* fim loading */
 
 .descricao {
     text-align: center;
@@ -43,29 +52,24 @@
 
 .imagem-destaque {
     width: 100%;
-    height: 450px; /* Mantém a altura padrão para não ficar gigante */
-    object-fit: cover; /* Faz a foto preencher o espaço sem distorcer */
+    height: 450px; 
+    object-fit: cover; 
     display: block;
 }
 
-.info-rapida {
-    position: absolute; /* Tira do fluxo e joga por cima da imagem */
-    bottom: 0;          /* Cola na parte de baixo */
-    left: 0;
+.infos {
+    position: absolute; 
+    bottom: 0;
     width: 100%;
-    
-    /* Cria uma faixa preta translúcida com desfoque tipo vidro (Glassmorphism) */
-    background: rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(5px);
-    
-    color: white;
-    padding: 15px 0;
-    
+    height: 60px;
+    background: linear-gradient(360deg,rgba(0, 0, 0, 0.685) 51%, rgba(88, 88, 88, 0) 100%);
+
     display: flex;
-    justify-content: center; /* Centraliza os ícones */
-    gap: 40px; /* Dá espaço entre o tempo e a porção */
-    font-size: 1.2rem;
-    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+
+
 }
 
 /* ==========================================

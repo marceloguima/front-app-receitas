@@ -1,26 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-
 import Logo from "../Logo";
 
 
 import "./styles.css";
+// icones
+// import { IoHome } from "react-icons/io5";
 
 const Header = () => {
-
-   
-
     return (
         <header className="header">
-            <nav>
-                <div className="logo-btn-ia">
-                    <Logo className="logo-home" />
-                    <div className="link-ia">
-                        <NavLink to="/ia" className="btn-link-ia">
+            <nav className="nav-links-header">
+                <ul className="links-header">
+                    <li>
+                        <NavLink to="/">
+                            <Logo className="logo-header" />
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/">
+                            {/* <IoHome /> */}
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/ia" className="btn-links-header">
                             Crie receitas com IA
                         </NavLink>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </nav>
         </header>
     );

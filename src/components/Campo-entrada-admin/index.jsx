@@ -9,7 +9,7 @@ const CampoEntradaAdmin = ({ textLabel, id, tipo, accept, placeholder, children,
 
             {tipo === "select" && <select id={id}  type={tipo} className="select" {...rest} >{children}</select>}
             {tipo !== "textarea" && tipo !== "select" && (
-                <input type={tipo} id={id} placeholder={placeholder} required {...rest}/>
+                <input type={tipo} id={id} placeholder={placeholder} {...rest}/>
             )}
         </div>
     );

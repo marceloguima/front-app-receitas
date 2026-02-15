@@ -1,13 +1,25 @@
 .header {
     width: 100%;
-    height: 130px;
+    height: 110px;
     z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: absolute;
+    border-bottom: solid 2px var(--laranja-450);
+    background: rgba(252, 235, 227, 0.315);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
+.nav-links-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
-
-.btn-link-ia{
+.btn-links-header {
     background: var(--cor-bg-secundaria);
     color: var(--cor-texto-secundario);
     border: solid 1px var(--cor-primaria);
@@ -19,14 +31,18 @@
     font-weight: 500;
 }
 
-.btn-link-ia:hover{
+.btn-links-header:hover {
     background: var(--cor-secundaria);
-    transition: 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition:
+        0.3s ease-in-out,
+        color 0.3s ease-in-out;
 }
 
-
-
 .logo-btn-ia {
+}
+
+.links-header {
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -34,46 +50,37 @@
     padding: 0 2%;
 }
 
-.link-ia {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-
-
-.logo-home {
+.logo-header {
     width: 120px;
 }
 
-.logo-home img {
+.logo-header img {
     width: 100%;
 }
 
-
 @media (max-width: 1080px) {
-    .div-btn_search-menu{
+    .div-btn_search-menu {
         justify-content: end;
         gap: 20px;
     }
 
-    .formulario-link-ia{
+    .formulario-link-ia {
         width: 80%;
     }
 }
 @media (max-width: 980px) {
-    .btn-link-ia{
+    .btn-links-header {
         font-size: 0.8rem;
         padding: 8px 16px;
     }
 }
 
 @media (max-width: 420px) {
-    .logo-home{
+    .logo-home {
         width: 80px;
     }
 
-       .btn-link-ia{
+    .btn-links-header {
         font-size: 0.7rem;
     }
 }

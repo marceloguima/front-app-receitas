@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/Loader";
-
 import "./style.css";
 import Header from "../../components/Header";
+
+const API_URL = import.meta.env.VITE_API_URL;
 // icones
 import { FaRegClock } from "react-icons/fa";
 import { IoRestaurantOutline } from "react-icons/io5";
@@ -23,9 +24,8 @@ const DetalhesReceita = () => {
         const buscarReceita = async () => {
             setLoading(true);
             try {
-                const resposta = await axios.get(
-                    `http://localhost:3001/api/receitas/${id}`,
-                );
+               const resposta = await axios.get(`${API_URL}/${id}`);
+                // `http://localhost:3001/api/receitas/${id}` || `https://receitas-backend.onrender.com/api/receitas/${id}`,
                 setReceita(resposta.data);
                 setLoading(false);
             } catch (erro) {
@@ -73,8 +73,10 @@ const DetalhesReceita = () => {
                             icone={<IoRestaurantOutline />}
                             texto={`${receita.porcoes} porções`}
                         />
-                        <ReceitaInfo icone={<PiChefHatBold />
-} texto={`${receita.complexidade}`} />
+                        <ReceitaInfo
+                            icone={<PiChefHatBold />}
+                            texto={`${receita.complexidade}`}
+                        />
                     </div>
                 </div>
 

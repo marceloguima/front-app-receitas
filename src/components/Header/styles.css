@@ -96,10 +96,6 @@ gap: 20px;
     }
 
     
-.link-home-link-ia a{
-    font-size: 0.8rem;
-
-}
 }
 
 @media (max-width: 768px) {
@@ -108,7 +104,7 @@ width: 60px;
    }
 
 .link-home-link-ia a{
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 
 }
 
@@ -132,6 +128,6 @@ width: 60px;
     }
 
     .btn-links-header {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 }

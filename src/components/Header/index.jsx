@@ -2,9 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo";
 
-
 import "./styles.css";
 // icones
+import { HiSparkles } from "react-icons/hi2";
+
 // import { IoHome } from "react-icons/io5";
 
 const Header = () => {
@@ -17,17 +18,21 @@ const Header = () => {
                             <Logo className="logo-header" />
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/" className="links_header">
-                            {/* <IoHome /> */}
-                            Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/ia" className="btn-links-header">
-                            Crie receitas com IA
-                        </NavLink>
-                    </li>
+
+                    <div className="link-home-link-ia">
+                        <li>
+                            <NavLink to="/" className="links_home">
+                                {/* <IoHome /> */}
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/ia" className="btn-links-header">
+                                <HiSparkles />
+                                Crie receitas
+                            </NavLink>
+                        </li>
+                    </div>
                 </ul>
             </nav>
         </header>

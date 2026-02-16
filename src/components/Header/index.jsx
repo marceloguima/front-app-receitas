@@ -18,7 +18,7 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/">
+                        <NavLink to="/" className="links_header">
                             {/* <IoHome /> */}
                             Home
                         </NavLink>

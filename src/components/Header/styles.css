@@ -19,6 +19,13 @@
     gap: 20px;
 }
 
+.links_header {
+    text-decoration: none;
+    color: var(--cor-texto-secundario);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 .btn-links-header {
     background: var(--cor-bg-secundaria);
     color: var(--cor-texto-secundario);
@@ -38,8 +45,6 @@
         color 0.3s ease-in-out;
 }
 
-.logo-btn-ia {
-}
 
 .links-header {
     height: 100%;

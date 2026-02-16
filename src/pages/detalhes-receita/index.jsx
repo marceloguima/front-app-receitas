@@ -24,7 +24,7 @@ const DetalhesReceita = () => {
             setLoading(true);
             try {
                 const resposta = await axios.get(
-                    `http://localhost:3001/receitas/${id}`,
+                    `http://localhost:3001/api/receitas/${id}`,
                 );
                 setReceita(resposta.data);
                 setLoading(false);

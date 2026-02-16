@@ -1,29 +1,73 @@
-.footer {
-  padding: 16px 24px;
-  background-image: url(imagem-hero.png);
-  background-position: center;
-  background-size: cover;
-  font-size: 0.9rem;
-  text-align: center;
-  border-top: 1px solid var(--cor-primaria);
-  position: relative;
+.footer-moderno {
+    background-color: #1a1a1a; 
+    padding: 10px; 
+    font-family: sans-serif;
+    margin-top: 30px; 
+    height: 250px;
 }
 
-
-
-.footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(360deg,rgba(0, 0, 0, 0.83) 51%, rgba(8, 8, 8, 0.5) 100%);
-  z-index: 1;
+.footer-conteudo {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+    padding-bottom: 10px;
 }
 
-.footer p{
-  z-index: 5 !important;
-  color: #ffffff;
-  position: relative;
+.footer-marca {
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-marca .logo img {
+  width: 100px;
+}
+
+.footer-marca p {
+    max-width: 300px;
+    line-height: 1.5;
+    color: #bbbbbb;
+}
+
+.footer-links h4, .footer-tech h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #bbbbbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #e38b06; 
+}
+
+.footer-tech p {
+    color: #bbbbbb;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #888888;
 }

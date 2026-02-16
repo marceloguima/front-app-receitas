@@ -138,7 +138,7 @@ export default function Home(props) {
                 )}
 
                 {/* Entradas */}
-                <section className="pratos-do-dia">
+                <section className="pratos-do-dia" id="entradas">
                     <p className="mensagem-pratos-do-dia">{mensagem}</p>
                     <h2 className="titulo-secao">Entradas</h2>
                     <div className="cards_card">
@@ -170,7 +170,7 @@ export default function Home(props) {
                 </section>
 
                 {/* Pratos principais */}
-                <section className="pratos-do-dia">
+                <section className="pratos-do-dia" id="prato-principal">
                     <h2 className="titulo-secao">Prato Principal</h2>
                     <div className="cards_card">
                         {loading
@@ -204,7 +204,7 @@ export default function Home(props) {
                 </section>
 
                 {/* bebidas */}
-                <section className="pratos-do-dia">
+                <section className="pratos-do-dia" id="bebidas">
                     <h2 className="titulo-secao">Bebidas</h2>
                     <div className="cards_card">
                         {loading
@@ -235,7 +235,7 @@ export default function Home(props) {
                 </section>
 
                 {/* Sobremesas */}
-                <section className="pratos-do-dia">
+                <section className="pratos-do-dia" id="sobremesas">
                     <h2 className="titulo-secao">Sobremesas</h2>
                     <div className="cards_card">
                         {loading

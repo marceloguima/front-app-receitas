@@ -45,13 +45,13 @@
 }
 
 .show-anunc-iA {
-    bottom: 160px;
+    bottom: 300px;
     left: 20px;
     transition: ease-in-out 0.5s;
 }
 
 .hiden-anunc-IA {
-    bottom: 160px;
+    bottom: 300px;
     left: -500px;
     transition: ease-in-out 0.5s;
 }

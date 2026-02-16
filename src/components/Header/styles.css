@@ -56,7 +56,7 @@
 }
 
 .logo-header {
-    width: 120px;
+    width: 100px;
 }
 
 .logo-header img {
@@ -78,6 +78,23 @@
         font-size: 0.8rem;
         padding: 8px 16px;
     }
+}
+
+@media (max-width: 768px) {
+   .logo-header{
+width: 80px;
+   }
+
+    .btn-links-header {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 580px) {
+.header {
+    height: 80px;
+}
 }
 
 @media (max-width: 420px) {

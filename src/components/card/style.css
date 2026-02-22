@@ -76,7 +76,6 @@
 }
 
 .btn-favorito {
-    /* background: var(--cinza-100); */
     background: var(--cinza-100);
     padding: 4px;
     display: flex;

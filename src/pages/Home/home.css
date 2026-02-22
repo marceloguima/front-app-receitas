@@ -259,7 +259,7 @@
 }
 
 .fala-do-chef {
-    max-width: 250px;
+    max-width: 290px;
     min-width: 240px;
     background: var(--cor-bg-destaque);
     padding: 10px;
@@ -268,8 +268,8 @@
     border: solid 1px var(--cor-primaria);
     visibility: hidden;
     position: absolute;
-    bottom: 90px;
-    right: 0;
+    bottom: 65px;
+    right: -33px;
     z-index: 10;
 }
 

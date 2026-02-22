@@ -8,7 +8,7 @@ import { HiSparkles } from "react-icons/hi2";
 
 // import { IoHome } from "react-icons/io5";
 
-const Header = () => {
+const Header = ({ abrirChat, fecharChat }) => {
     return (
         <header className="header">
             <nav className="nav-links-header">
@@ -22,15 +22,22 @@ const Header = () => {
                     <div className="link-home-link-ia">
                         <li>
                             <NavLink to="/" className="links_home">
-                                {/* <IoHome /> */}
-                                Home
+                                Início
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/ia" className="btn-links-header">
+                            <button onClick={fecharChat} className="links_home">
+                                Nossas receitas
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className="btn-links-header"
+                                onClick={abrirChat}
+                            >
                                 <HiSparkles />
                                 Crie receitas
-                            </NavLink>
+                            </button>
                         </li>
                     </div>
                 </ul>

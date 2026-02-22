@@ -184,7 +184,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
         
         try {
             const resposta = await axios.post(
-                "http://localhost:3001/receitas",
+                "http://localhost:3001/api/receitas",
                 novaReceita,
             );
             console.log("Resposta do servidor:", resposta);

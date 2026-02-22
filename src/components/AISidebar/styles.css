@@ -1,6 +1,6 @@
 .sidbar {
     height: 100vh;
-    background: var(--quinta-cor);
+    background: var(--laranja-50);
     border-right: solid 4px var(--cor-primaria);
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
 }
 
 .sidbar-open {
-    width: 250px;
+    width: 200px;
     padding: 20px;
     transition: ease-out 0.3s;
 }
@@ -16,6 +16,11 @@
 .sidbar-close {
     width: 60px;
     transition: ease-out 0.3s;
+}
+
+.buttons{
+    width: 100%;
+    margin-left: 12px;
 }
 
 .btn-open-sidbar {
@@ -99,9 +104,41 @@
 }
 
 @media (max-width: 880px) {
+    /* .sidbar {
+        position: absolute;
+        z-index: 6;
+    } */
+
+    /* .sidbar-close {
+        left: -100px;
+    } */
+
+    /* .btn-open-sidbar {
+        position: relative;
+        left: 120px;
+        top: -100px;
+    } */
+
+    /* .logo-sidbar{
+        width: 100%;
+    } */
+
+    /* .logo-sidbar img {
+        width: 50%;
+    } */
+}
+
+
+
+/* abaixo de 520px a sidbar se esconde por completo e só aparec ao clique */
+@media (max-width: 520px) {
     .sidbar {
         position: absolute;
         z-index: 6;
+    }
+
+    .sidbar-open {
+        left: 0;
     }
 
     .sidbar-close {
@@ -119,6 +156,6 @@
     }
 
     .logo-sidbar img {
-        width: 40%;
+        width: 50%;
     }
 }

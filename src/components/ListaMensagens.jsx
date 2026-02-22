@@ -10,13 +10,12 @@ const ListaMensagens = ({ mensagens }) => {
                     key={mensagem.id}
                     className={`caixa-texto ${mensagem.remetente}`}
                 >
-                    <img
-                        src={`./avatar-${mensagem.remetente}.png`}
-                        alt={`imagem representando o ${mensagem.remetente}`}
-                        className={`avatar-${mensagem.remetente}`}
-                    />
+                  
                     <div className={`mensagem ${mensagem.remetente}`}>
-                        <p>{mensagem.texto}</p>
+                        {mensagem.remetente === "ia" ? (<div 
+                            className="container-resposta-chefinho"
+                            dangerouslySetInnerHTML={{ __html: mensagem.texto }} 
+                        />) : (<p>{mensagem.texto}</p>)}
                     </div>
                 </div>
                 

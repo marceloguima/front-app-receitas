@@ -12,7 +12,9 @@ body {
         -apple-system,
         sans-serif;
     background: var(--quarta-cor);
+    overflow: hidden;
 }
+
 /* 
  
 :root {
@@ -94,17 +96,15 @@ body {
 }
 
 .container {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    overflow: hidden;
+    flex-direction: row-reverse;
 }
 
-/* para todas li */
-li {
-    list-style: none;
-}
 
 a {
     text-decoration: none;
 }
+

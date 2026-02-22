@@ -24,7 +24,7 @@ const DetalhesReceita = () => {
         const buscarReceita = async () => {
             setLoading(true);
             try {
-               const resposta = await axios.get(`${API_URL}/${id}`);
+               const resposta = await axios.get(`${API_URL}/receitas/${id}`);
                 // `http://localhost:3001/api/receitas/${id}` || `https://receitas-backend.onrender.com/api/receitas/${id}`,
                 setReceita(resposta.data);
                 setLoading(false);

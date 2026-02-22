@@ -1,41 +1,43 @@
 
 /* input */
-.area-saida-chat{
-    /* position: fixed; */
-    width: 100%;
-    max-width: 1080px;
-    border-radius: 20px;
+.area-input-chat{
+      width: 100%;
+    border-radius: 10px;
     padding: 10px ;
     border: solid 1px #ccc;
+    background: var(--cinza-50);
     box-shadow: 0 2px 4px #00000046;
     z-index: 5;
 }
 
-.area-saida-chat input{
+
+.area-input-chat form{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.area-input-chat input{
     width: 90%;
     border: none;
     outline: none;
-    font-size: 1rem;
+    font-size: .9rem;
     padding: 10px;
     background: transparent;
 }
 
-.area-buttons{
-    display: flex;
-    justify-content: end;
-    margin-top: 10px;
-}
 
-.area-buttons button{
+.area-input-chat button{
     margin-left: 10px;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: #ee6307;
     background: transparent;
     border: solid 1px #ee6307;

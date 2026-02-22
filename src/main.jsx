@@ -4,7 +4,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import ErrorPage from "./pages/Error-page/PaginaErro";
 import Home from "./pages/Home/Home";
-import AIGenerator from "./pages/pageIA/AIGenerator";
 import DetalhesReceita from "./pages/detalhes-receita";
 import TelaAdmin from "./pages/Admin";
 
@@ -29,11 +28,7 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
 
-            {
-                path: "ia",
-                element: <AIGenerator />,
-            },
-
+          
             {
                 path: "/detalhes/:id",
                 element: <DetalhesReceita />,

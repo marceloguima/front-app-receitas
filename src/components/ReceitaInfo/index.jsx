@@ -1,10 +1,12 @@
 import React from "react";
 import "./styles.css";
-// icones
 
-const ReceitaInfo = ({icone, texto}) => {
+
+const ReceitaInfo = ({icone, texto, variant}) => {
+const classesDasInfo = `info_rapida ${variant}`
+
     return (
-        <div className="info_rapida">
+        <div className={classesDasInfo}>
             <span className="icon-info">
                 {icone}
             </span>

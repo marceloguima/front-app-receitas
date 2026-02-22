@@ -1,60 +1,63 @@
 /* classe padrão do botão */
-.btn{
-  background: var(--cor-primaria);
-  color: var(--branco);
-  box-shadow: var(--sombra-card);
-  padding: 10px 20px ;
-  border-radius: 10px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn {
+    border: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
-
+    font-size: .9rem;
+    padding: 0 20px;
+    height: var(--altura-btn_input);
+    cursor: pointer;
+    background: var(--cor-bg-destaque);
+    border: solid 1px var(--cor-primaria);
+    color: var(--cor-texto-secundario);
+    border-radius: 30px;
+    box-shadow: 1px 4px 6px #0000004d;
 }
 
-.btn span svg{
-  font-size: 1.3rem;
+.btn:hover {
+    background: var(--cor-secundaria-hover);
+    transition: ease-in-out 0.3s;
 }
 
+.btn span svg {
+    font-size: 1.3rem;
+}
 
-.btn svg{
-  font-size: 1.3rem;
+.btn svg {
+    font-size: 1.3rem;
 }
 
 /* classe a ser chamada quando o botão for secundário "menos atenção" */
-.btn-secundario{
+.btn-secundario {
     background: var(--cinza-100);
     border: solid 1px var(--cinza-400);
     color: var(--cor-texto-secundario);
-    transition: ease-in .2s;
+    transition: ease-in 0.2s;
 }
 
-.btn-secundario:hover{
+.btn-secundario:hover {
     background: var(--cinza-200);
     border: solid 1px var(--cor-primaria);
 }
 
-
-.btn-primario:hover{
+.btn-primario:hover {
     background: var(--cor-primaria-hover);
 }
 
-.btn-danger{
-  background: var(--vermelho);
+.btn-danger {
+    background: var(--vermelho);
 }
 
-
-.btn-p{
-  padding: 0;
-  width: 100%;
-  height: 45px;
-  width: 45px;
+.btn-p {
+    padding: 0;
+    width: 100%;
+    height: 45px;
+    width: 45px;
 }
 
-.btn-p svg{
-  font-size: 1.3rem;
+.btn-p svg {
+    font-size: 1.3rem;
 }

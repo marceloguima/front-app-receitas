@@ -15,20 +15,18 @@ const handleSubmit = (e) => {
 }
 
     return (
-        <div className="area-saida-chat">
+        <div className="area-input-chat">
             <form  onSubmit={handleSubmit} >
                 <input
                     type="text"
-                    placeholder="Ex: arroz, alho, sal, bife e feijão."
+                    placeholder="Escreva o seu pedido."
                     value={mensagem}
                     onChange={(e)=>setMensagem(e.target.value)}
                     disabled={desabilitado}
                 />
-                <div className="area-buttons">
                     <button type="submit">
                         <FaLocationArrow />
                     </button>
-                </div>
             </form>
         </div>
     );

@@ -20,8 +20,7 @@ main.minha-IA {
     justify-content: space-between;
     padding: 0 20px;
     border-radius: 10px 10px 0 0;
-        box-shadow: 0 4px 10px var(--preto-700);
-
+    box-shadow: 0 4px 10px var(--preto-700);
     z-index: 11;
 }
 
@@ -36,13 +35,15 @@ main.minha-IA {
     object-fit: cover;
 }
 
-.buttons-header-chef{
+.buttons-header-chef {
     width: 80px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.botao-fechar-chef, .botao-expandir-chef {
+.botao-fechar-chef,
+.botao-expandir-chef {
     background: transparent;
     border: none;
     font-size: 2rem;
@@ -50,10 +51,9 @@ main.minha-IA {
     color: var(--cor-primaria);
 }
 
-.title-chef{
+.title-chef {
     font-size: 1.2rem;
 }
-
 
 .area-chat {
     display: flex;
@@ -62,10 +62,9 @@ main.minha-IA {
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    /* padding: 10px; */
     overflow-x: hidden;
 }
-
 
 /* Início estilos da barra de rolagem */
 .mensagem_mensagens::-webkit-scrollbar {
@@ -87,8 +86,6 @@ main.minha-IA {
 }
 
 /* Fim estilos da barra de rolagem */
-
-
 
 .mensagem_mensagens {
     width: 100%;
@@ -125,7 +122,7 @@ main.minha-IA {
 .mensagem {
     padding: 15px;
     box-shadow: 0 2px 4px #00000046;
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
 .user {
@@ -185,8 +182,6 @@ main.minha-IA {
     font-size: 3rem;
     animation: spin 1.4s linear infinite;
 }
-
-
 
 @keyframes spin {
     0% {
@@ -270,7 +265,7 @@ main.minha-IA {
 
 @media (max-width: 880px) {
     .area-chat {
-        padding: 70px 5%;
+        padding: 5%;
     }
 }
 
@@ -285,6 +280,10 @@ main.minha-IA {
         top: -50px;
         right: -15px;
     } */
+
+    .area-prompet {
+        margin-bottom: 50px;
+    }
 }
 
 @media (max-width: 480px) {

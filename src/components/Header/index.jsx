@@ -26,9 +26,9 @@ const Header = ({ abrirChat, fecharChat }) => {
                             </NavLink>
                         </li>
                         <li>
-                            <button onClick={fecharChat} className="links_home">
+                            {/* <button onClick={fecharChat} className="links_home">
                                 Nossas receitas
-                            </button>
+                            </button> */}
                         </li>
                         <li>
                             <button

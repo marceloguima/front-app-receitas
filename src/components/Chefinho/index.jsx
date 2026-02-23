@@ -111,7 +111,7 @@ export default function OChefinho({
                         <ListaMensagens mensagens={mensagens} />
                     </div>
 
-                    {loading && <Loader texto="Gerando sua receita..." />}
+                    {loading && <Loader texto="Gerando sua receita..."  variant="loader-chef"/>}
                     <div className="area-prompet">
                         <SaidaMensagem
                             onEnviarMensagem={onEnviarMensagem}

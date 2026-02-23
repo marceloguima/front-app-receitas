@@ -5,9 +5,9 @@ main.minha-IA {
     display: flex;
     flex-direction: column;
     padding: 0 0 40px 0;
-    margin-top: 100px;
-    z-index: 10;
+    margin-top: 110px;
     position: relative;
+    z-index: 100;
 }
 
 .header-chef {
@@ -62,8 +62,16 @@ main.minha-IA {
     align-items: center;
     width: 100%;
     height: 100%;
-    /* padding: 10px; */
+    padding: 0 10px;
     overflow-x: hidden;
+}
+
+.loader-chef p{
+    font-size: 1rem;
+}
+
+.loader-chef .spinner{
+    font-size: 2rem;
 }
 
 /* Início estilos da barra de rolagem */
@@ -97,11 +105,14 @@ main.minha-IA {
 /* __________________________________________________________ */
 .caixa-texto {
     position: relative;
+   
     max-width: 900px;
     background: transparent !important;
     border: none !important;
     z-index: 1;
 }
+
+
 
 .caixa-texto.user {
     width: 100%;
@@ -111,12 +122,32 @@ main.minha-IA {
     padding-right: 10px;
 }
 
+.caixa-texto.user .btn-like{
+    display: none;
+}
+
 .caixa-texto.ia {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     padding-left: 10px;
     margin: 20px 0;
+}
+
+.btn-like{
+    width: 80px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 30px;
+
+}
+
+.btn-like button{
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    color: var(--preto-700);
 }
 
 .mensagem {
@@ -158,24 +189,12 @@ main.minha-IA {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-bottom: 40px;
+   
 }
 
+
 /* ------------------------------------- */
-/* .loading-overlay {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 1080px;
-} */
-/* 
-.loading-overlay p {
-    color: var(--cor-primaria);
-    font-size: 1.2rem;
-    font-weight: 600;
-    animation: animaTexto 1s alternate infinite;
-} */
 
 .spinner {
     color: var(--cor-primaria);
@@ -282,7 +301,7 @@ main.minha-IA {
     } */
 
     .area-prompet {
-        margin-bottom: 50px;
+        margin-bottom: 80px;
     }
 }
 

@@ -1,0 +1,15 @@
+.mensagens{
+    width: 100%;
+    min-height: 20px;
+    margin-left: 10px;
+    
+}
+
+.span-erro{
+    color: #ff0000;
+    font-size: .8rem;
+}
+
+.p-sucess{
+    color: #02911a;
+}

@@ -6,7 +6,7 @@ import axios from "axios";
 import Botao from "../../components/Botao";
 import Modal from "../../components/Modal";
 import FormAdmin from "../../components/Form-cadastro-admin";
-import CampoEntradaAdmin from "../../components/Campo-entrada-admin";
+import CampoInput from "../../components/Campo-entrada";
 import Loader from "../../components/Loader";
 
 // Ícones
@@ -305,7 +305,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                     >
                         {/* Linha de inputs: Título e Categoria */}
                         <div className="line-inputs">
-                            <CampoEntradaAdmin
+                            <CampoInput
                                 textLabel="Titulo *"
                                 placeholder="Ex: Torta de limão"
                                 value={titulo}
@@ -313,7 +313,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                 required
                             />
 
-                            <CampoEntradaAdmin
+                            <CampoInput
                                 textLabel="Categoria *"
                                 placeholder="Ex: Sobremesa, Prato principal, Bebida"
                                 value={categoria}
@@ -324,7 +324,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                         </div>
 
                         {/* Campo de descrição da receita */}
-                        <CampoEntradaAdmin
+                        <CampoInput
                             tipo="textarea"
                             textLabel="Descrição da receita *"
                             placeholder="Descreva sua receita..."
@@ -335,7 +335,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
 
                         {/* Linha de inputs: Tempo, Rendimento e Nível */}
                         <div className="line-inputs">
-                            <CampoEntradaAdmin
+                            <CampoInput
                                 textLabel="Tempo de preparo (min) *"
                                 placeholder="Ex: 20"
                                 value={tempoPreparo}
@@ -347,7 +347,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
 
                             />
 
-                            <CampoEntradaAdmin
+                            <CampoInput
                                 textLabel="Rendimento em porções *"
                                 placeholder="Ex: 4"
                                 value={porcoes}
@@ -357,7 +357,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
 
                             />
 
-                            <CampoEntradaAdmin
+                            <CampoInput
                                 tipo="select"
                                 textLabel="Nível"
                                 value={complexidade}
@@ -369,7 +369,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                 <option value="médio">Médio</option>
                                 <option value="difícil">Difícil</option>
                                 <option value="nivel-chef">Nível Chef</option>
-                            </CampoEntradaAdmin>
+                            </CampoInput>
                         </div>
 
                         {/* Seção de ingredientes dinâmica */}
@@ -429,7 +429,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                             )}
 
                                             {/* Campo: Nome do ingrediente */}
-                                            <CampoEntradaAdmin
+                                            <CampoInput
                                                 placeholder="Ex: Farinha de trigo"
                                                 value={ingrediente.nome}
                                                 onChange={(evento) =>
@@ -444,7 +444,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                             />
 
                                             {/* Campo: Unidade de medida */}
-                                            <CampoEntradaAdmin
+                                            <CampoInput
                                                 placeholder="Ex: Xícara, colher, ml..."
                                                 value={ingrediente.unidade}
                                                 onChange={(evento) =>
@@ -457,7 +457,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                                             />
 
                                             {/* Campo: Quantidade */}
-                                            <CampoEntradaAdmin
+                                            <CampoInput
                                                 tipo="number"
                                                 placeholder="Ex: 2"
                                                 value={ingrediente.quantidade}
@@ -519,7 +519,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
 </p>
                     
   {/* Campo de modo de preparo */}
-                        <CampoEntradaAdmin
+                        <CampoInput
                             tipo="textarea"
                             textLabel="Modo de preparo"
                             placeholder="Descreva o modo de preparo..."
@@ -529,7 +529,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
                         />
 
                         {/* Campo de imagem */}
-                        <CampoEntradaAdmin
+                        <CampoInput
                         type="file"
                           accept="image/*"
                             textLabel="Foto da Receita"
@@ -551,7 +551,7 @@ console.log("1. Arquivo selecionado no input:", imagemSelecionada);
             {modalAnuncioAberto && (
                 <Modal onClick={fecharModais}>
                     <FormAdmin titulo="Cadastre um anúncio">
-                        <CampoEntradaAdmin
+                        <CampoInput
                             textLabel="Nome"
                             placeholder="Titulo do anúncio"
                         />

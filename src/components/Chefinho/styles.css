@@ -66,11 +66,11 @@ main.minha-IA {
     overflow-x: hidden;
 }
 
-.loader-chef p{
+.loader-chef p {
     font-size: 1rem;
 }
 
-.loader-chef .spinner{
+.loader-chef .spinner {
     font-size: 2rem;
 }
 
@@ -105,14 +105,12 @@ main.minha-IA {
 /* __________________________________________________________ */
 .caixa-texto {
     position: relative;
-   
+
     max-width: 900px;
     background: transparent !important;
     border: none !important;
     z-index: 1;
 }
-
-
 
 .caixa-texto.user {
     width: 100%;
@@ -122,7 +120,7 @@ main.minha-IA {
     padding-right: 10px;
 }
 
-.caixa-texto.user .btn-like{
+.caixa-texto.user .btn-like {
     display: none;
 }
 
@@ -134,16 +132,15 @@ main.minha-IA {
     margin: 20px 0;
 }
 
-.btn-like{
+.btn-like {
     width: 80px;
     height: 30px;
     display: flex;
     justify-content: space-between;
     margin: 5px 30px;
-
 }
 
-.btn-like button{
+.btn-like button {
     background: transparent;
     border: none;
     font-size: 1.3rem;
@@ -190,9 +187,26 @@ main.minha-IA {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
-   
 }
 
+.dicas-seguranca {
+    background: #ffc2c2;
+    padding: 10px;
+    box-shadow: var(--sombra-card);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.dicas-seguranca h4 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.dicas-seguranca p {
+    text-align: start;
+    letter-spacing: 0.1px;
+    font-weight: 400;
+}
 
 /* ------------------------------------- */
 
@@ -202,19 +216,20 @@ main.minha-IA {
     animation: spin 1.4s linear infinite;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.icone-ia-loader {
+    width: 30px;
+    position: absolute;
+    color: #fc4c07;
+    transform: translate(-30%);
+    /* animation: anima-pisca 1.4s linear infinite; */
 }
+
 
 @keyframes anima-pisca {
     0% {
         opacity: 0.5;
     }
+   
     100% {
         opacity: 1;
     }

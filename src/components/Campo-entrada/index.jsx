@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const CampoEntradaAdmin = ({ textLabel, id, tipo, accept, placeholder, children, ...rest}) => {
+const CampoInput = ({ textLabel, id, tipo, placeholder, children, ...rest}) => {
     return (
         <div className="grupo-input">
             <label htmlFor={id}>{textLabel}</label>
@@ -15,4 +15,4 @@ const CampoEntradaAdmin = ({ textLabel, id, tipo, accept, placeholder, children,
     );
 };
 
-export default CampoEntradaAdmin;
+export default CampoInput;

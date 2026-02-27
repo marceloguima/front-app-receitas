@@ -8,15 +8,15 @@ import { HiSparkles } from "react-icons/hi2";
 
 // import { IoHome } from "react-icons/io5";
 
-const Header = ({ abrirChat, fecharChat }) => {
+const Header = ({ abrirChat, fecharChat, login }) => {
     return (
         <header className="header">
             <nav className="nav-links-header">
                 <ul className="links-header">
                     <li>
-                        <NavLink to="/">
+                        
                             <Logo className="logo-header" />
-                        </NavLink>
+                        
                     </li>
 
                     <div className="link-home-link-ia">
@@ -33,10 +33,10 @@ const Header = ({ abrirChat, fecharChat }) => {
                         <li>
                             <button
                                 className="btn-links-header"
-                                onClick={abrirChat}
+                                onClick={login}
                             >
-                                <HiSparkles />
-                                Crie receitas
+                                {/* <HiSparkles /> */}
+                               Login
                             </button>
                         </li>
                     </div>

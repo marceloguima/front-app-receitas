@@ -1,13 +1,27 @@
+// Dependências
 import React, { Children } from "react";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
+// Componentes
 import Header from "../../components/Header";
 import Card from "../../components/card";
-import { useEffect, useState } from "react";
 import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
 import LoaderSkeletonCard from "../../components/Loader-skeleton";
 import Botao from "../../components/Botao";
 import OChefinho from "../../components/Chefinho";
 import Footer from "../../components/Footer";
-// import ModalIA from "../../components/Modal-anunc-IA";
+import FormularioCadastroUsuario from "../../components/formulario-cad-user";
+import FormularioLogin from "../../components/formulario-login";
+
+// Bibliotecas
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import "./home.css";
 
 // ICONES
 import { RiDrinks2Fill } from "react-icons/ri";
@@ -15,11 +29,10 @@ import { GiCakeSlice } from "react-icons/gi";
 import { BiSolidBowlHot } from "react-icons/bi";
 import { MdDinnerDining } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
-
 import { MdOutlineCloseFullscreen } from "react-icons/md";
-import { RiExpandDiagonalSFill } from "react-icons/ri";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
-import "./home.css";
+import { RiExpandDiagonalSFill } from "react-icons/ri";
 
 export default function Home() {
     const [receitas, setReceitas] = useState([]);
@@ -35,6 +48,9 @@ export default function Home() {
 
     const [resultadosBusca, setResultadosBusca] = useState([]);
     const [fezBusca, setFezBusca] = useState(false);
+
+    const [showFormulario, setShowFormulario] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     useEffect(() => {
         async function carregarReceitas() {
@@ -80,7 +96,6 @@ export default function Home() {
             } else {
                 setMensagem("");
             }
-
         } catch (erro) {
             console.error("erro ao buscar receitas", erro);
             console.log("erro ao buscar");
@@ -93,7 +108,6 @@ export default function Home() {
         console.log("abrir chat");
     };
 
-    
     const expandirChatIA = () => {
         setChefExpandido(!chefExpandido);
         console.log("expandir chat");
@@ -105,30 +119,48 @@ export default function Home() {
         console.log("fechar chat");
     };
 
+    // Mede o fim da página
+    const lidarComScroll = (evento) => {
+        evento.preventDefault();
+        const elemento = evento.target;
 
+        const totalRolado = elemento.scrollTop;
+        const tamanhoDaTela = elemento.clientHeight;
+        const tamanhoTotal = elemento.scrollHeight;
 
-// Mede o fim da página
-const lidarComScroll = (evento) => {
-    evento.preventDefault()
-    const elemento = evento.target;
-    
-    const totalRolado = elemento.scrollTop;
-    const tamanhoDaTela = elemento.clientHeight;
-    const tamanhoTotal = elemento.scrollHeight;
+        if (totalRolado + tamanhoDaTela >= tamanhoTotal - 80) {
+            console.log(
+                "Chegou no fim da página! Hora de chamar mais receitas!",
+            );
 
-    if (totalRolado + tamanhoDaTela >= tamanhoTotal - 80) {
-        console.log("Chegou no fim da página! Hora de chamar mais receitas!");
-        
-      setMensagemIA(true)
-    }
-    if(totalRolado + tamanhoDaTela < tamanhoTotal - 500)
-    setMensagemIA(false)
-};
+            setMensagemIA(true);
+        }
+        if (totalRolado + tamanhoDaTela < tamanhoTotal - 500)
+            setMensagemIA(false);
+    };
 
+    // swiper
+    const sobremesas = receitas.filter(
+        (receita) => receita.categoria === "Sobremesa",
+    );
+    console.log("sobremesas", sobremesas);
+
+    // cadastro de usuario
+    const controleEntrada = () => {
+        setShowFormulario(true);
+    };
+
+    const closeFormulario = () => {
+        setShowFormulario(false);
+    };
+
+    const alternaFormulario = () => {
+        setIsLogin(!isLogin);
+    };
 
     return (
         <>
-            <Header abrirChat={criarReceitaComIA} />
+            <Header login={controleEntrada} />
             <OChefinho
                 variant={
                     chefOpen
@@ -323,6 +355,88 @@ const lidarComScroll = (evento) => {
                     </section>
                 )}
 
+                {/* Swiper */}
+                <section className="carrossel-destaques">
+                    <h2 className="titulo-secao">Sobremesas Irresistíveis</h2>
+
+                    <Swiper
+                        modules={[Autoplay, Navigation, Pagination]}
+                        spaceBetween={30}
+                        slidesPerView={1} /* No celular, mostra 1 por vez */
+                        loop={true}
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: true,
+                        }}
+                        navigation={true}
+                        pagination={{
+                            clickable: true,
+                        }} /* As bolinhas de navegação embaixo */
+                        breakpoints={{
+                            700: {
+                                slidesPerView: 2,
+                            } /* Em tablets, mostra 2 */,
+                            1024: { slidesPerView: 2 } /* No PC, mostra 3 */,
+                        }}
+                        className="meu-swiper"
+                    >
+                        {/* O map agora roda SÓ nas sobremesas */}
+                        {sobremesas.map((receita) => (
+                            <SwiperSlide key={receita._id}>
+                                <div className="card-slide">
+                                    <img src={receita.imagem} alt="" />
+                                    <div className="informacoes-overlay">
+                                        <h2>{receita.titulo}</h2>
+                                        <NavLink to={`/detalhes`}>
+                                            Ver receita
+                                        </NavLink>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </section>
+
+                {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
+
+                {showFormulario && (
+                    <div className="formulario-cadastro-overlay">
+                        <div className="corpo-formulario">
+                            <button
+                                className="btn-fecha-form"
+                                type="button"
+                                onClick={closeFormulario}
+                            >
+                                {" "}
+                                <IoCloseCircleOutline />
+                            </button>{" "}
+                            {isLogin ? (
+                                <FormularioLogin />
+                            ) : (
+                                <FormularioCadastroUsuario alternaDeCadastroParaLogin={alternaFormulario}/>
+                            )}
+                            <div className="alternar-formulario">
+                                <p>
+                                    {isLogin
+                                        ? "Ainda não tem uma conta?"
+                                        : "Já tem uma conta?"}
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={alternaFormulario}
+                                >
+                                    {isLogin ? "Crie agora" : "Entrar"}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* ++++++++++++++++++++++++ usar depois +++++++++++++++++++++++++++++++ */}
+                {/**/}
+                {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+                {/*-------------------------------------- Fim Formulario de cadastro/Login ------------------------------ */}
+
                 {/* bebidas */}
                 {(categoriaAtiva === "bebidas" ||
                     categoriaAtiva === "todas") && (
@@ -359,7 +473,7 @@ const lidarComScroll = (evento) => {
                     </section>
                 )}
 
-                {/* Sobremesas */}
+                {/* Sobremesas
                 {(categoriaAtiva === "sobremesas" ||
                     categoriaAtiva === "todas") && (
                     <section className="pratos-do-dia" id="sobremesas">
@@ -393,17 +507,23 @@ const lidarComScroll = (evento) => {
                                       ))}
                         </div>
                     </section>
-                )}
-
-                
+                )} */}
 
                 <div className="campo-chama-chefinho">
                     <button onClick={criarReceitaComIA}>
                         <img src="./avatar-ia.png" alt="" />
                     </button>
 
-                    <div className={mensagemIA ? "fala-do-chef ativa" : "fala-do-chef"}>
-                <p>{mensagemIA ? "Não achou o que queria? Fique tranquilo! Me diga o que tem na geladeira e eu crio uma receita exclusiva pra você." : "Oi, sou o Chefinho! Que tal criarmos uma receita juntos?"}</p>
+                    <div
+                        className={
+                            mensagemIA ? "fala-do-chef ativa" : "fala-do-chef"
+                        }
+                    >
+                        <p>
+                            {mensagemIA
+                                ? "Não achou o que queria? Fique tranquilo! Me diga o que tem na geladeira e eu crio uma receita exclusiva pra você."
+                                : "Oi, sou o Chefinho! Que tal criarmos uma receita juntos?"}
+                        </p>
                     </div>
                 </div>
                 <Footer />

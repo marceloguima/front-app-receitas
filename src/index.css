@@ -90,7 +90,8 @@ body {
 
     --altura-btn_input: 45px;
     --padding-btn: 10px 20px;
-    --sombra-card: 1px 4px 10px #4d4d4d;
+    --sombra-card: 1px 4px 6px #4d4d4d88;
+
     
     --border-radius-btn: 30px;
 }

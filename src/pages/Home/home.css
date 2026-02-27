@@ -1,3 +1,72 @@
+/*Classes adicionais do Formulario de cadastro */
+
+.formulario-cadastro-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #030303b6;
+    z-index: 100;
+}
+
+.corpo-formulario {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: var(--sombra-card);
+    position: relative;
+    z-index: 101;
+}
+
+.btn-fecha-form {
+    position: absolute;
+    top: -40px;
+    right: -80px;
+    background: transparent;
+    border: none;
+    color: var(--cor-texto-inverso);
+    font-size: 2.2rem;
+}
+
+.area-botoes-cadastro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.btn-acao-formulario-cadastro {
+    background-color: var(--cor-primaria);
+    width: 100%;
+    color: var(--cor-texto-inverso);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+.alternar-formulario {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 5px;
+}
+
+.alternar-formulario button {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #424242;
+}
+/* Fim Formulario de cadastro */
+
 .sections {
     width: 100%;
     display: flex;
@@ -176,6 +245,115 @@
     list-style: none;
 }
 
+/* ============================================ */
+
+.carrossel-destaques {
+    width: 100%;
+    padding: 20px 10px;
+    background: #f7e3d63d;
+    border-radius: 20px;
+    box-shadow: var(--sombra-card);
+    max-width: 1200px;
+}
+
+.meu-swiper {
+    width: 100%;
+    padding: 40px 5px;
+    min-height: 400px;
+}
+
+.card-slide {
+    width: 570px;
+    height: 340px;
+    position: relative;
+    box-shadow: var(--sombra-card);
+    border-radius: 10px;
+}
+
+.card-slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.informacoes-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 180px;
+    background: #0a0a0a;
+    background: linear-gradient(
+        360deg,
+        rgba(10, 10, 10, 0.86) 17%,
+        rgba(255, 255, 255, 0) 69%
+    );
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.informacoes-overlay h2 {
+    color: var(--cor-texto-inverso);
+    margin-left: 35px;
+}
+
+.informacoes-overlay a {
+    background: var(--cor-primaria);
+    padding: 10px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 35px;
+    border-radius: 30px;
+    color: var(--cor-texto-inverso);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    border: solid 2px var(--cor-primaria);
+    opacity: 0.6;
+    box-shadow: var(--sombra-card);
+}
+
+.swiper-button-prev {
+    margin-left: 10px !important;
+}
+
+.swiper-button-next {
+    margin-right: 10px;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    opacity: 1;
+}
+
+.swiper-navigation-icon {
+    width: 20px !important;
+    color: var(--cor-primaria);
+}
+
+/* bolinhas */
+.swiper-pagination-bullet {
+    background: var(--cor-primaria);
+}
+
+/* bolinha ativa */
+.swiper-pagination-bullet-active {
+    width: 20px;
+    border-radius: 5px;
+}
+
+/* ======================================== */
+
 .pratos-do-dia {
     width: 100%;
     margin-top: 10px;
@@ -228,24 +406,25 @@
 .campo-chama-chefinho button {
     width: 100px;
     background: transparent;
+    border-radius: 50%;
     border: none;
     cursor: pointer;
     position: absolute;
     right: -80px;
     bottom: 0;
-    animation: anima-avatar 2.2s infinite;
+    animation: pulsar 1.8s infinite;
 }
 
-/* animação para botão pulsar */
-@keyframes anima-avatar {
+/* EFEITO PULSO */
+@keyframes pulsar {
     0% {
-        transform: translateY(0);
+        box-shadow: 0 0 0 0 rgba(243, 82, 33, 0.7);
     }
-    50% {
-        transform: translateY(-6px);
+    70% {
+        box-shadow: 0 0 0 20px rgba(243, 93, 33, 0);
     }
     100% {
-        transform: translateY(0);
+        box-shadow: 0 0 0 0 rgba(243, 65, 33, 0);
     }
 }
 
@@ -253,7 +432,6 @@
     width: 100%;
     filter: drop-shadow(2px 6px 10px #525252);
     object-fit: cover;
-    animation: anima 1.5s infinite;
 }
 
 .fala-do-chef {
@@ -274,13 +452,11 @@
     visibility: visible;
 }
 
-
 @media (min-width: 780px) {
     .campo-chama-chefinho button:hover + .fala-do-chef {
         visibility: visible;
     }
 }
-
 
 .fala-do-chef p {
     color: var(--cor-texto-secundario);

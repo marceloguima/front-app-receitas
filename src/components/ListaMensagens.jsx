@@ -116,6 +116,7 @@ const ListaMensagens = ({ mensagens }) => {
             {mensagens.map((mensagem) => (
                 <ItemMensagem key={mensagem.id} mensagem={mensagem} />
             ))}
+            <img src="" alt="" />
         </>
     );
 };

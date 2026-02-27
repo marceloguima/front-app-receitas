@@ -10,6 +10,8 @@ import SaidaMensagem from "../Formulario-prompet";
 
 // icones
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { HiSparkles } from "react-icons/hi2";
+
 
 export default function OChefinho({
     className,
@@ -109,9 +111,9 @@ export default function OChefinho({
                 <div className="area-chat">
                     <div className="mensagem_mensagens">
                         <ListaMensagens mensagens={mensagens} />
+                    {loading && <Loader   variant="loader-chef">< HiSparkles className="icone-ia-loader"/></Loader>}
                     </div>
 
-                    {loading && <Loader texto="Gerando sua receita..."  variant="loader-chef"/>}
                     <div className="area-prompet">
                         <SaidaMensagem
                             onEnviarMensagem={onEnviarMensagem}

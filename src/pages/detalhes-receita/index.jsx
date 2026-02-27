@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import "./style.css";
 import Header from "../../components/Header";
 
+
 const API_URL = import.meta.env.VITE_API_URL;
 // icones
 import { FaRegClock } from "react-icons/fa";

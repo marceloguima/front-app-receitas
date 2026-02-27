@@ -14,7 +14,7 @@
     border: solid 1px var(--cor-primaria);
     color: var(--cor-texto-secundario);
     border-radius: 30px;
-    box-shadow: 1px 4px 6px #0000004d;
+    box-shadow: var(--sombra-card);
 }
 
 .btn:hover {

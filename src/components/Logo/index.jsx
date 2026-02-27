@@ -1,9 +1,10 @@
 import React from "react";
+import imagemLogo from "/logo2.png"
 
 function Logo({className}) {
     return (
         <div className={className}>
-            <img src="./logo2.png" alt="logo" />
+            <img src={imagemLogo} alt="logo" />
         </div>
     );
 }

@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import "./styles.css";
 import CampoInput from "../Campo-entrada";
 import Botao from "../Botao";
+import Loader from "../Loader";
+import axios from "axios";
 
-const FormularioCadastroUsuario = ({alternaDeCadastroParaLogin}) => {
-// mensagem sucesso
-const [mensagemSucesso, setMensagemSucesso] = useState("")
+const FormularioCadastroUsuario = ({ alternaDeCadastroParaLogin }) => {
+    // mensagem sucesso
+    const [mensagemSucesso, setMensagemSucesso] = useState("");
+    const [mensagemErro, setMensagemErro] = useState("");
 
     // Mensagem rodapé input
     const [mensagemValidaSenha, setMensagemValidaSenha] = useState("");
@@ -13,6 +16,7 @@ const [mensagemSucesso, setMensagemSucesso] = useState("")
         useState("");
     const [mensagemValidaNome, setMensagemValidaNome] = useState("");
     const [mensagemValidaEmail, setMensagemValidaEmail] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // valores do inputs
     const [nome, setNome] = useState("");
@@ -20,7 +24,7 @@ const [mensagemSucesso, setMensagemSucesso] = useState("")
     const [senha, setSenha] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
 
-    const enviarDadosUsuario = (e) => {
+    const enviarDadosUsuario = async (e) => {
         e.preventDefault();
 
         // Guarda o resultado de cada validação (true ou false)
@@ -28,18 +32,60 @@ const [mensagemSucesso, setMensagemSucesso] = useState("")
         const isEmailValido = validaEmail();
         const isSenhaValida = validaFormatoSenha();
 
-        // Se TUDO for true, aí sim enviamos pro servidor!
+        // Se TUDO for true, aí sim envio pro servidor!
         if (isNomeValido && isEmailValido && isSenhaValida) {
             console.log(
                 "Formulário perfeito! Preparando para enviar ao banco:",
                 { nome, email, senha },
-                
             );
-            setMensagemSucesso("Conta criada com sucesso!")
-            setTimeout(() => {
-               alternaDeCadastroParaLogin()
-            }, 2000);
-            // Aqui vai entrar o código de requisição do backend no futuro#####################################
+
+            const novoUsuario = {
+                nome,
+                email,
+                senha,
+            };
+          
+
+            setLoading(true);
+            try {
+                const resposta = await axios.post(
+                    "http://localhost:3001/api/usuarios",
+                    novoUsuario,
+                );
+                console.log("Resposta do servidor:", resposta);
+
+                setMensagemSucesso("Conta criada com sucesso!");
+                setLoading(false);
+
+                setTimeout(() => {
+                    alternaDeCadastroParaLogin();
+                }, 2000);
+
+                console.log(novoUsuario);
+
+            } catch (erro) {
+                setMensagemErro("Erro ao cadastrar. Tente mais tarde.");
+
+                // após 2 segundos limpo a mensagem e o formulário
+                setTimeout(() => {
+                    setMensagemErro("");
+                    setConfirmaSenha("");
+                    setEmail("");
+                    setNome("");
+                    setSenha("");
+                }, 4000);
+
+                console.error("Erro ao salvar:", erro);
+                console.error(
+                    "Erro detalhado:",
+                    erro.response ? erro.response.data : erro.message,
+                );
+
+                // Mensagem caso o usuario já tenha cadastro.
+                const mensagemDoBanco = erro.response.data.mensagem;
+                setMensagemErro(mensagemDoBanco);
+                setLoading(false)
+            }
         } else {
             console.log("Formulário tem erros. Corrija antes de enviar.");
         }
@@ -82,9 +128,7 @@ const [mensagemSucesso, setMensagemSucesso] = useState("")
             setMensagemValidaSenha("* Senha é obrigatório *");
             isValid = false;
         } else if (!regexSenha.test(senha)) {
-            setMensagemValidaSenha(
-                "* A senha deve ter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas, números e símbolos. *",
-            );
+            setMensagemValidaSenha("* Crie uma senha mais segura *");
             isValid = false;
         } else {
             setMensagemValidaSenha("");
@@ -107,8 +151,9 @@ const [mensagemSucesso, setMensagemSucesso] = useState("")
     return (
         <form className="formulario-cadastro" onSubmit={enviarDadosUsuario}>
             <h1>Cadastro</h1>
-             <div className="mensagens">
+            <div className="mensagens">
                 <p className="p-sucess">{mensagemSucesso}</p>
+                <p className="p-erro">{mensagemErro}</p>
             </div>
             <CampoInput
                 type="text"
@@ -150,8 +195,22 @@ const [mensagemSucesso, setMensagemSucesso] = useState("")
             <div className="mensagens">
                 <span className="span-erro">{mensagemValidaConfirmaSenha}</span>
             </div>
-            <div className="area-botoes-cadastro">
-                <Botao variant="btn-acao-formulario-cadastro">Cadastrar</Botao>
+            <div
+                className={
+                    senha !== "" && senha.length > 4 && !regexSenha.test(senha)
+                        ? "aviso-senha-segura ativo"
+                        : "aviso-senha-segura"
+                }
+            >
+                <span className="span-senha-segura">
+                    A senha deve ter pelo menos 8 caracteres, incluindo
+                    maiúsculas, minúsculas, números e símbolos.
+                </span>
+            </div>
+            <div className="area-botao-cadastro">
+                <Botao variant="btn-acao-formulario-cadastro">
+                    {loading ? <Loader variant="spinner-botao" texto="Aguarde..."/> : "Cadastrar"}
+                </Botao>
             </div>
         </form>
     );

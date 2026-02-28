@@ -397,46 +397,6 @@ export default function Home() {
                     </Swiper>
                 </section>
 
-                {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
-
-                {showFormulario && (
-                    <div className="formulario-cadastro-overlay">
-                        <div className="corpo-formulario">
-                            <button
-                                className="btn-fecha-form"
-                                type="button"
-                                onClick={closeFormulario}
-                            >
-                                {" "}
-                                <IoCloseCircleOutline />
-                            </button>{" "}
-                            {isLogin ? (
-                                <FormularioLogin />
-                            ) : (
-                                <FormularioCadastroUsuario alternaDeCadastroParaLogin={alternaFormulario}/>
-                            )}
-                            <div className="alternar-formulario">
-                                <p>
-                                    {isLogin
-                                        ? "Ainda não tem uma conta?"
-                                        : "Já tem uma conta?"}
-                                </p>
-                                <button
-                                    type="button"
-                                    onClick={alternaFormulario}
-                                >
-                                    {isLogin ? "Crie agora" : "Entrar"}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {/* ++++++++++++++++++++++++ usar depois +++++++++++++++++++++++++++++++ */}
-                {/**/}
-                {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
-                {/*-------------------------------------- Fim Formulario de cadastro/Login ------------------------------ */}
-
                 {/* bebidas */}
                 {(categoriaAtiva === "bebidas" ||
                     categoriaAtiva === "todas") && (
@@ -473,42 +433,7 @@ export default function Home() {
                     </section>
                 )}
 
-                {/* Sobremesas
-                {(categoriaAtiva === "sobremesas" ||
-                    categoriaAtiva === "todas") && (
-                    <section className="pratos-do-dia" id="sobremesas">
-                        <h2 className="titulo-secao">Sobremesas</h2>
-                        <div className="cards_card">
-                            {loading
-                                ? Array.from({ length: 8 }).map((_, i) => (
-                                      <LoaderSkeletonCard key={i} />
-                                  ))
-                                : Array.isArray(receitas) &&
-                                  receitas
-                                      .filter(function (receita) {
-                                          return (
-                                              receita.categoria === "Sobremesa"
-                                          );
-                                      })
-                                      .map((receita) => (
-                                          <Card
-                                              _id={receita._id}
-                                              key={receita._id}
-                                              src={receita.imagem}
-                                              alt={
-                                                  "imagem da receita de " +
-                                                  receita.titulo
-                                              }
-                                              titulo={receita.titulo}
-                                              tempoPreparo={`${receita.tempoPreparo} min`}
-                                              complexidade={`${receita.complexidade}`}
-                                              porcoes={`${receita.porcoes}`}
-                                          />
-                                      ))}
-                        </div>
-                    </section>
-                )} */}
-
+                {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">
                     <button onClick={criarReceitaComIA}>
                         <img src="./avatar-ia.png" alt="" />
@@ -528,7 +453,46 @@ export default function Home() {
                 </div>
                 <Footer />
             </div>
-            {/* </div> */}
+            {/* Fim área do botão com avatar do chefinho */}
+
+            {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
+            {showFormulario && (
+                <div className="formulario-cadastro-overlay">
+                    <div className="corpo-formulario">
+                        <button
+                            className="btn-fecha-form"
+                            type="button"
+                            onClick={closeFormulario}
+                        >
+                            {" "}
+                            <IoCloseCircleOutline />
+                        </button>{" "}
+                        <span className="texto-btn-fechar">Fechar</span>
+                        {isLogin ? (
+                            <FormularioLogin />
+                        ) : (
+                            <FormularioCadastroUsuario
+                                alternaDeCadastroParaLogin={alternaFormulario}
+                            />
+                        )}
+                        <div className="alternar-formulario">
+                            <p>
+                                {isLogin
+                                    ? "Não tem uma conta?"
+                                    : "Já tem uma conta?"}
+                            </p>
+                            <button type="button" onClick={alternaFormulario}>
+                                {isLogin ? "Crie agora" : "Entrar"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ++++++++++++++++++++++++ usar depois +++++++++++++++++++++++++++++++ */}
+            {/**/}
+            {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+            {/*-------------------------------------- Fim Formulario de cadastro/Login ------------------------------ */}
         </>
     );
 }

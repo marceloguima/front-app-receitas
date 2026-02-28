@@ -1,15 +1,64 @@
-.mensagens{
+.mensagens {
     width: 100%;
     min-height: 20px;
     margin-left: 10px;
-    
 }
 
-.span-erro{
+.aviso-senha-segura {
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 45px;
+    margin: 10px 0 20px 0;
+    border-radius: 5px;
+    border: solid 1px #b3b3b3;
+    box-shadow: var(--sombra-card);
+}
+
+.span-senha-segura {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.aviso-senha-segura.ativo{
+    background: #ff323228;
     color: #ff0000;
-    font-size: .8rem;
+    border: solid 1px #ff0000;
 }
 
-.p-sucess{
+.span-erro {
+    color: #ff0000;
+    font-size: 0.8rem;
+}
+
+.p-sucess {
     color: #02911a;
+}
+
+.p-erro{
+    color: #ff0000;
+}
+
+.btn-acao-formulario-cadastro {
+    background-color: var(--cor-primaria);
+    width: 100%;
+    color: var(--cor-texto-inverso);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    transition: ease 0.2s;
+}
+
+.btn-acao-formulario-cadastro:hover {
+    background-color: var(--cor-primaria);
+}
+
+.spinner-botao svg{
+    color: #ffff !important;
+}
+
+.spinner-botao p{
+    color: #ffff !important;
+    font-size: .9rem;
 }

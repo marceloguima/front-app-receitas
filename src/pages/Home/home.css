@@ -1,13 +1,13 @@
 /*Classes adicionais do Formulario de cadastro */
-
 .formulario-cadastro-overlay {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: #030303b6;
+    padding: 10px;
     z-index: 100;
 }
 
@@ -25,29 +25,27 @@
 
 .btn-fecha-form {
     position: absolute;
-    top: -40px;
-    right: -80px;
+    top: 10px;
+    right: 10px;
     background: transparent;
     border: none;
-    color: var(--cor-texto-inverso);
+    color: var(--cor-primaria);
     font-size: 2.2rem;
+    cursor: pointer;
 }
 
-.area-botoes-cadastro {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0;
+.texto-btn-fechar{
+    position: absolute;
+    right: 50px;
+    top: 15px;
+    opacity: 0;
+    transition: ease .3s;
 }
 
-.btn-acao-formulario-cadastro {
-    background-color: var(--cor-primaria);
-    width: 100%;
-    color: var(--cor-texto-inverso);
-    font-weight: 600;
-    letter-spacing: 0.4px;
+.btn-fecha-form:hover +.texto-btn-fechar{
+opacity: 1;
 }
+
 
 .alternar-formulario {
     width: 100%;

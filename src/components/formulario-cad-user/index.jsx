@@ -44,12 +44,12 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 email,
                 senha,
             };
-          
 
             setLoading(true);
+            const urlDaApi = import.meta.env.VITE_API_URL;
             try {
                 const resposta = await axios.post(
-                    "http://localhost:3001/api/usuarios",
+                    `${urlDaApi}/usuarios/login`,
                     novoUsuario,
                 );
                 console.log("Resposta do servidor:", resposta);
@@ -62,9 +62,8 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 }, 2000);
 
                 console.log(novoUsuario);
-
             } catch (erro) {
-                setLoading(false)
+                setLoading(false);
                 setMensagemErro("Erro ao cadastrar. Tente mais tarde.");
 
                 // após 3 segundos limpo a mensagem e o formulário
@@ -85,7 +84,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 // Mensagem caso o usuario já tenha cadastro.
                 const mensagemDoBanco = erro.response.data.mensagem;
                 setMensagemErro(mensagemDoBanco);
-                setLoading(false)
+                setLoading(false);
             }
         } else {
             console.log("Formulário tem erros. Corrija antes de enviar.");
@@ -157,7 +156,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <p className="p-erro">{mensagemErro}</p>
             </div>
             <CampoInput
-            id="nome"
+                id="nome"
                 type="text"
                 textLabel="Nome"
                 placeholder="Informe seu primeiro nome"
@@ -168,7 +167,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <span className="span-erro">{mensagemValidaNome}</span>
             </div>
             <CampoInput
-            id="email"
+                id="email"
                 type="text"
                 textLabel="Email"
                 placeholder="Informe seu email"
@@ -179,7 +178,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <span className="span-erro">{mensagemValidaEmail}</span>
             </div>
             <CampoInput
-            id="password"
+                id="password"
                 type="password"
                 textLabel="Senha"
                 placeholder="Crie uma senha"
@@ -190,7 +189,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <span className="span-erro">{mensagemValidaSenha}</span>
             </div>
             <CampoInput
-            id="confirma-senha"
+                id="confirma-senha"
                 type="password"
                 textLabel="Confirme a senha"
                 placeholder="Confirme a senha "
@@ -214,7 +213,11 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
             </div>
             <div className="area-botao-cadastro">
                 <Botao variant="btn-acao-formulario-cadastro">
-                    {loading ? <Loader variant="spinner-botao" texto="Aguarde..."/> : "Cadastrar"}
+                    {loading ? (
+                        <Loader variant="spinner-botao" texto="Aguarde..." />
+                    ) : (
+                        "Cadastrar"
+                    )}
                 </Botao>
             </div>
         </form>

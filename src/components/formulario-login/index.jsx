@@ -5,7 +5,7 @@ import CampoInput from "../Campo-entrada";
 import Botao from "../Botao";
 import Loader from "../Loader";
 
-const FormularioLogin = ({ liberaEntrada, onclickRedefinir}) => {
+const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [loading, setLoading] = useState(false);
@@ -16,34 +16,38 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir}) => {
 
     const logarUsuario = async (e) => {
         e.preventDefault();
-    
-        
+
         const campoEmailValido = verificaCampoEmail();
         const campoSenhaValido = verificaCampoSenha();
-        
+
         // Se TUDO for true, aí sim envio pro servidor!
         if (campoEmailValido && campoSenhaValido) {
             console.log(
                 "Formulário perfeito! Preparando para enviar ao banco:",
                 { email, senha },
             );
-            
+
             setLoading(true);
             const usuario = {
                 email,
                 senha,
             };
-            
+
+            const urlDaApi = import.meta.env.VITE_API_URL;
             try {
                 const resposta = await axios.post(
-                    "http://localhost:3001/api/usuarios/login",
+                    `${urlDaApi}/usuarios/login`,
                     usuario,
                 );
+
                 console.log("Resposta do servidor:", resposta.data);
-                
+
                 setMensagemSucesso("Acesso liberado!");
-                localStorage.setItem("crachaDoUsuario", JSON.stringify(resposta.data.usuario));
-                
+                localStorage.setItem(
+                    "crachaDoUsuario",
+                    JSON.stringify(resposta.data.usuario),
+                );
+
                 setLoading(false);
                 setTimeout(() => {
                     liberaEntrada();
@@ -58,7 +62,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir}) => {
                 );
                 setMensagemErro(erro.response.data.mensagem);
                 setTimeout(() => {
-                    setMensagemErro("")
+                    setMensagemErro("");
                 }, 3000);
             }
         } else {

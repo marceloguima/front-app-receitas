@@ -1,0 +1,32 @@
+.suporte-login{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.suporte-login button{
+    background: transparent;
+    border: none;
+    color: var(--cor-texto-terciario);
+    cursor: pointer;
+    font-size: .9rem;
+}
+
+.suporte-login button:hover{
+    text-decoration: underline;
+}
+
+.lembrar-usuario{
+    color: var(--cor-texto-terciario);
+    display: flex;
+    gap: 5px;
+    
+}
+
+.lembrar-usuario input, label{
+    cursor: pointer;
+}
+
+.lembrar-usuario label:hover{
+    text-decoration: underline;
+}

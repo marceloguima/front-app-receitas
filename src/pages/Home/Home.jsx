@@ -52,6 +52,11 @@ export default function Home() {
     const [showFormulario, setShowFormulario] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
 
+
+   
+
+
+
     useEffect(() => {
         async function carregarReceitas() {
             setLoading(true);
@@ -103,14 +108,17 @@ export default function Home() {
         setLoading(false);
     }
 
+
+    // Chamando após o login, feca o formulário de login e abre a IA
     const criarReceitaComIA = () => {
+        closeFormulario()
         setChefOpen(true);
-        console.log("abrir chat");
     };
 
+
+    // expandir ou encolher
     const expandirChatIA = () => {
         setChefExpandido(!chefExpandido);
-        console.log("expandir chat");
     };
 
     const fecharChatIA = () => {
@@ -145,7 +153,7 @@ export default function Home() {
     );
     console.log("sobremesas", sobremesas);
 
-    // cadastro de usuario
+    // cadastro/login de usuario
     const controleEntrada = () => {
         setShowFormulario(true);
     };
@@ -158,6 +166,11 @@ export default function Home() {
         setIsLogin(!isLogin);
     };
 
+
+
+
+
+   
     return (
         <>
             <Header login={controleEntrada} />
@@ -435,7 +448,8 @@ export default function Home() {
 
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">
-                    <button onClick={criarReceitaComIA}>
+                    {/* por enquanto estaou chamando o login toda vez que o usuario tentar usar a IA. */}
+                    <button onClick={controleEntrada}>
                         <img src="./avatar-ia.png" alt="" />
                     </button>
 
@@ -468,8 +482,10 @@ export default function Home() {
                             <IoCloseCircleOutline />
                         </button>{" "}
                         <span className="texto-btn-fechar">Fechar</span>
+
+                        {/* O Chat com a ia será apenas para usuários logados */}
                         {isLogin ? (
-                            <FormularioLogin liberaEntrada={closeFormulario} />
+                            <FormularioLogin liberaEntrada={criarReceitaComIA} />
                         ) : (
                             <FormularioCadastroUsuario
                                 alternaDeCadastroParaLogin={alternaFormulario}

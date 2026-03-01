@@ -45,7 +45,7 @@ body {
     --laranja-700: #b34505;
     --laranja-800: #8a3604;
     --laranja-900: #662803;
-    --vermelho:#f80c0c;
+    --vermelho: #f80c0c;
 
     /* Neutros / texto / borda */
     --cinza-50: #f7f7f7;
@@ -54,8 +54,10 @@ body {
     --cinza-400: #cccccc;
     --cinza-500: #ebebeb;
 
+    --preto-600: #424242;
     --preto-700: #333333;
     --preto-800: #252525;
+
     --branco: #ffffff;
 }
 
@@ -77,6 +79,7 @@ body {
     /* Texto */
     --cor-texto-principal: var(--preto-800);
     --cor-texto-secundario: var(--preto-700);
+    --cor-texto-terciario:var(--preto-600);
     --cor-texto-inverso: var(--branco);
     --cor-texto-suave: var(--cinza-400);
 
@@ -92,7 +95,6 @@ body {
     --padding-btn: 10px 20px;
     --sombra-card: 1px 4px 6px #4d4d4d88;
 
-    
     --border-radius-btn: 30px;
 }
 
@@ -104,8 +106,6 @@ body {
     flex-direction: row-reverse;
 }
 
-
 a {
     text-decoration: none;
 }
-

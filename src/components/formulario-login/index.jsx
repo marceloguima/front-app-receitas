@@ -5,7 +5,7 @@ import CampoInput from "../Campo-entrada";
 import Botao from "../Botao";
 import Loader from "../Loader";
 
-const FormularioLogin = ({ liberaEntrada }) => {
+const FormularioLogin = ({ liberaEntrada, onclickRedefinir}) => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [loading, setLoading] = useState(false);
@@ -16,32 +16,34 @@ const FormularioLogin = ({ liberaEntrada }) => {
 
     const logarUsuario = async (e) => {
         e.preventDefault();
-
+    
+        
         const campoEmailValido = verificaCampoEmail();
         const campoSenhaValido = verificaCampoSenha();
-
+        
         // Se TUDO for true, aí sim envio pro servidor!
         if (campoEmailValido && campoSenhaValido) {
             console.log(
                 "Formulário perfeito! Preparando para enviar ao banco:",
                 { email, senha },
             );
-
+            
             setLoading(true);
-           const usuario = {
+            const usuario = {
                 email,
                 senha,
             };
-
+            
             try {
                 const resposta = await axios.post(
-                    "http://localhost:3001/api/usuarios",
+                    "http://localhost:3001/api/usuarios/login",
                     usuario,
                 );
-                console.log("Resposta do servidor:", resposta);
-
+                console.log("Resposta do servidor:", resposta.data);
+                
                 setMensagemSucesso("Acesso liberado!");
-
+                localStorage.setItem("crachaDoUsuario", JSON.stringify(resposta.data.usuario));
+                
                 setLoading(false);
                 setTimeout(() => {
                     liberaEntrada();
@@ -50,11 +52,14 @@ const FormularioLogin = ({ liberaEntrada }) => {
                 console.log(usuario);
             } catch (erro) {
                 setLoading(false);
-                console.error("Erro ao salvar:", erro);
                 console.error(
                     "Erro detalhado:",
                     erro.response ? erro.response.data : erro.message,
                 );
+                setMensagemErro(erro.response.data.mensagem);
+                setTimeout(() => {
+                    setMensagemErro("")
+                }, 3000);
             }
         } else {
             console.log("Formulário tem erros. Corrija antes de enviar.");
@@ -90,6 +95,7 @@ const FormularioLogin = ({ liberaEntrada }) => {
                 <p className="p-erro">{mensagemErro}</p>
             </div>
             <CampoInput
+                id="email"
                 textLabel="E-mail"
                 placeholder="Informe seu email"
                 value={email}
@@ -99,6 +105,7 @@ const FormularioLogin = ({ liberaEntrada }) => {
                 <span className="span-erro">{mensagemEmail}</span>
             </div>
             <CampoInput
+                id="senha"
                 textLabel="Senha"
                 placeholder="Informe sua senha"
                 value={senha}
@@ -107,6 +114,17 @@ const FormularioLogin = ({ liberaEntrada }) => {
             <div className="mensagens">
                 <span className="span-erro">{mensagemSenha}</span>
             </div>
+            {/* Área para redefinir e escolher a opção  de salvar a senha. */}
+            <div className="suporte-login">
+                <div className="lembrar-usuario">
+                    <input type="checkbox" id="salvar-senha" />
+                    <label htmlFor="salvar-senha">Lembrar de mim</label>
+                </div>
+                <button type="button" onClick={onclickRedefinir}>
+                    Esqueceu a senha?
+                </button>
+            </div>
+            {/* Botão principal, quando está aguardando o texto troca para um loader */}
             <div className="area-botoes-cadastro">
                 <Botao variant="btn-acao-formulario-cadastro">
                     {loading ? (

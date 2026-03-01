@@ -157,6 +157,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <p className="p-erro">{mensagemErro}</p>
             </div>
             <CampoInput
+            id="nome"
                 type="text"
                 textLabel="Nome"
                 placeholder="Informe seu primeiro nome"
@@ -167,6 +168,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <span className="span-erro">{mensagemValidaNome}</span>
             </div>
             <CampoInput
+            id="email"
                 type="text"
                 textLabel="Email"
                 placeholder="Informe seu email"
@@ -177,6 +179,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <span className="span-erro">{mensagemValidaEmail}</span>
             </div>
             <CampoInput
+            id="password"
                 type="password"
                 textLabel="Senha"
                 placeholder="Crie uma senha"
@@ -187,6 +190,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 <span className="span-erro">{mensagemValidaSenha}</span>
             </div>
             <CampoInput
+            id="confirma-senha"
                 type="password"
                 textLabel="Confirme a senha"
                 placeholder="Confirme a senha "

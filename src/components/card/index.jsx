@@ -17,11 +17,10 @@ const Card = (props) => {
     const [favorito, setFavorito] = useState(false);
 
     function favoritar(e) {
-        // eventos para evitar que o card pegue o clique do botão
         e.preventDefault();
         e.stopPropagation();
         setFavorito(!favorito);
-        console.log("clicou");
+        controleEntrada()
     }
 
     return (
@@ -35,9 +34,9 @@ const Card = (props) => {
                     ></ReceitaInfo>
                 </div>
 
-                <button className="btn-favorito" onClick={favoritar}>
+                <button type="button" className="btn-favorito" onClick={favoritar}>
                     {favorito ? <MdFavorite /> : <MdFavoriteBorder />}
-                </button>
+                    </button>
 
                 <img src={props.src} className="img-card" alt={props.alt} />
                 <div className="info-card">

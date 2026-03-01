@@ -1,3 +1,4 @@
+/* para login e cadastro */
 .mensagens {
     width: 100%;
     min-height: 20px;
@@ -45,6 +46,8 @@
     background-color: var(--cor-primaria);
     width: 100%;
     color: var(--cor-texto-inverso);
+    border-radius: 10px;
+    margin-top: 15px;
     font-weight: 600;
     letter-spacing: 0.4px;
     transition: ease 0.2s;

@@ -469,7 +469,7 @@ export default function Home() {
                         </button>{" "}
                         <span className="texto-btn-fechar">Fechar</span>
                         {isLogin ? (
-                            <FormularioLogin />
+                            <FormularioLogin liberaEntrada={closeFormulario} />
                         ) : (
                             <FormularioCadastroUsuario
                                 alternaDeCadastroParaLogin={alternaFormulario}

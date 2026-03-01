@@ -5,7 +5,7 @@ import Botao from "../Botao";
 import Loader from "../Loader";
 import axios from "axios";
 
-const FormularioCadastroUsuario = ({ alternaDeCadastroParaLogin }) => {
+const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
     // mensagem sucesso
     const [mensagemSucesso, setMensagemSucesso] = useState("");
     const [mensagemErro, setMensagemErro] = useState("");
@@ -58,22 +58,23 @@ const FormularioCadastroUsuario = ({ alternaDeCadastroParaLogin }) => {
                 setLoading(false);
 
                 setTimeout(() => {
-                    alternaDeCadastroParaLogin();
+                    alternaCadastroParaLogin();
                 }, 2000);
 
                 console.log(novoUsuario);
 
             } catch (erro) {
+                setLoading(false)
                 setMensagemErro("Erro ao cadastrar. Tente mais tarde.");
 
-                // após 2 segundos limpo a mensagem e o formulário
+                // após 3 segundos limpo a mensagem e o formulário
                 setTimeout(() => {
                     setMensagemErro("");
                     setConfirmaSenha("");
                     setEmail("");
                     setNome("");
                     setSenha("");
-                }, 4000);
+                }, 3000);
 
                 console.error("Erro ao salvar:", erro);
                 console.error(

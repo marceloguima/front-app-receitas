@@ -287,9 +287,52 @@ export default function Home() {
                     </section>
                 )}
 
+  {/* Swiper sobremesas*/}
+                <section className="carrossel-destaques">
+                    <h2 className="titulo-secao">Sobremesas Irresistíveis</h2>
+
+                    <Swiper
+                        modules={[Autoplay, Navigation, Pagination]}
+                        spaceBetween={30}
+                        slidesPerView={1} /* No celular, mostra 1 por vez */
+                        loop={true}
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: true,
+                        }}
+                        // navigation={true}
+                        pagination={{
+                            clickable: true,
+                        }} /* As bolinhas de navegação embaixo */
+                        breakpoints={{
+                            700: {
+                                slidesPerView: 1,
+                            } /* Em tablets, mostra 2 */,
+                            1024: { slidesPerView: 1 } /* No PC, mostra 3 */,
+                        }}
+                        className="meu-swiper"
+                    >
+                        {/* O map agora roda SÓ nas sobremesas */}
+                        {sobremesas.map((receita) => (
+                            <SwiperSlide key={receita._id}>
+                                <div className="card-slide">
+                                    <div className="informacoes-card">
+                                        <h2>{receita.titulo}</h2>
+                                        <p>{receita.descricao}</p>
+                                        <NavLink to={`/detalhes`}>
+                                            Ver receita
+                                        </NavLink>
+                                    </div>
+                                    <img src={receita.imagem} alt="" />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </section>
+
+
                 {/* Entradas */}
-                {(categoriaAtiva === "entradas" ||
-                    categoriaAtiva === "todas") && (
+               
                     <section className="pratos-do-dia" id="entradas">
                         <p className="mensagem-pratos-do-dia">{mensagem}</p>
                         <h2 className="titulo-secao">Entradas</h2>
@@ -319,18 +362,17 @@ export default function Home() {
                                               complexidade={`${receita.complexidade}`}
                                               porcoes={`${receita.porcoes}`}
                                           />
-                                      ))}
+                                      ))
+                                      }
                         </div>
                     </section>
-                )}
+                
 
                
 
                
 
-                {/* Pratos principais */}
-                {(categoriaAtiva === "pratoPrincipal" ||
-                    categoriaAtiva === "todas") && (
+            
                     <section className="pratos-do-dia" id="prato-principal">
                         <h2 className="titulo-secao">Prato Principal</h2>
                         <div className="cards_card">
@@ -363,54 +405,12 @@ export default function Home() {
                                       ))}
                         </div>
                     </section>
-                )}
+                
 
-                {/* Swiper sobremesas*/}
-                <section className="carrossel-destaques">
-                    <h2 className="titulo-secao">Sobremesas Irresistíveis</h2>
-
-                    <Swiper
-                        modules={[Autoplay, Navigation, Pagination]}
-                        spaceBetween={30}
-                        slidesPerView={1} /* No celular, mostra 1 por vez */
-                        loop={true}
-                        autoplay={{
-                            delay: 5000,
-                            disableOnInteraction: true,
-                        }}
-                        navigation={true}
-                        pagination={{
-                            clickable: true,
-                        }} /* As bolinhas de navegação embaixo */
-                        breakpoints={{
-                            700: {
-                                slidesPerView: 1,
-                            } /* Em tablets, mostra 2 */,
-                            1024: { slidesPerView: 1 } /* No PC, mostra 3 */,
-                        }}
-                        className="meu-swiper"
-                    >
-                        {/* O map agora roda SÓ nas sobremesas */}
-                        {sobremesas.map((receita) => (
-                            <SwiperSlide key={receita._id}>
-                                <div className="card-slide">
-                                    <div className="informacoes-card">
-                                        <h2>{receita.titulo}</h2>
-                                        <p>{receita.descricao}</p>
-                                        <NavLink to={`/detalhes`}>
-                                            Ver receita
-                                        </NavLink>
-                                    </div>
-                                    <img src={receita.imagem} alt="" />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </section>
+              
 
                 {/* bebidas */}
-                {(categoriaAtiva === "bebidas" ||
-                    categoriaAtiva === "todas") && (
+             
                     <section className="pratos-do-dia" id="bebidas">
                         <h2 className="titulo-secao">Bebidas</h2>
                         <div className="cards_card">
@@ -442,7 +442,7 @@ export default function Home() {
                                       ))}
                         </div>
                     </section>
-                )}
+           
 
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">

@@ -109,3 +109,17 @@ body {
 a {
     text-decoration: none;
 }
+
+
+/* Remove o olho nativo de revelar senha (foco no Microsoft Edge/IE) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+/* Remove botões nativos de preenchimento/senha no Chrome e Safari */
+input[type="password"]::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+}

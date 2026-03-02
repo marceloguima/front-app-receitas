@@ -98,6 +98,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                 <p className="p-sucess">{mensagemSucesso}</p>
                 <p className="p-erro">{mensagemErro}</p>
             </div>
+
             <CampoInput
                 id="email"
                 textLabel="E-mail"
@@ -105,11 +106,14 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
+
             <div className="mensagens">
                 <span className="span-erro">{mensagemEmail}</span>
-            </div>
+            </div> 
+
             <CampoInput
                 id="senha"
+                tipo="password"
                 textLabel="Senha"
                 placeholder="Informe sua senha"
                 value={senha}

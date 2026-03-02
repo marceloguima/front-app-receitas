@@ -24,6 +24,8 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
     const [senha, setSenha] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
 
+  
+
     const enviarDadosUsuario = async (e) => {
         e.preventDefault();
 
@@ -49,7 +51,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
             const urlDaApi = import.meta.env.VITE_API_URL;
             try {
                 const resposta = await axios.post(
-                    `${urlDaApi}/usuarios/login`,
+                    `${urlDaApi}/usuarios/cadastro`,
                     novoUsuario,
                 );
                 console.log("Resposta do servidor:", resposta);
@@ -179,7 +181,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
             </div>
             <CampoInput
                 id="password"
-                type="password"
+                tipo="password"
                 textLabel="Senha"
                 placeholder="Crie uma senha"
                 value={senha}
@@ -190,7 +192,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
             </div>
             <CampoInput
                 id="confirma-senha"
-                type="password"
+                tipo="password"
                 textLabel="Confirme a senha"
                 placeholder="Confirme a senha "
                 value={confirmaSenha}

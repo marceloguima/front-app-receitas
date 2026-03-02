@@ -52,11 +52,7 @@ export default function Home() {
     const [showFormulario, setShowFormulario] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
 
-
-   
-
-
-
+    // Carrega os dados no início quando a página carrega
     useEffect(() => {
         async function carregarReceitas() {
             setLoading(true);
@@ -108,13 +104,11 @@ export default function Home() {
         setLoading(false);
     }
 
-
     // Chamando após o login, feca o formulário de login e abre a IA
     const criarReceitaComIA = () => {
-        closeFormulario()
+        closeFormulario();
         setChefOpen(true);
     };
-
 
     // expandir ou encolher
     const expandirChatIA = () => {
@@ -147,11 +141,15 @@ export default function Home() {
             setMensagemIA(false);
     };
 
-    // swiper
-    const sobremesas = receitas.filter(
-        (receita) => receita.categoria === "Sobremesa",
-    );
-    console.log("sobremesas", sobremesas);
+    // Armazena  em variável para usar no Swiper e garante que seja um array, mesmo
+    // que seja vazio, caso os dados não venham.
+    const sobremesas = Array.isArray(receitas)
+        ? receitas.filter((receita) => receita.categoria === "Sobremesa")
+        : [];
+
+    const entradas = Array.isArray(receitas)
+        ? receitas.filter((receita) => receita.categoria === "Entrada")
+        : [];
 
     // cadastro/login de usuario
     const controleEntrada = () => {
@@ -166,11 +164,6 @@ export default function Home() {
         setIsLogin(!isLogin);
     };
 
-
-
-
-
-   
     return (
         <>
             <Header login={controleEntrada} />
@@ -331,6 +324,10 @@ export default function Home() {
                     </section>
                 )}
 
+               
+
+               
+
                 {/* Pratos principais */}
                 {(categoriaAtiva === "pratoPrincipal" ||
                     categoriaAtiva === "todas") && (
@@ -368,7 +365,7 @@ export default function Home() {
                     </section>
                 )}
 
-                {/* Swiper */}
+                {/* Swiper sobremesas*/}
                 <section className="carrossel-destaques">
                     <h2 className="titulo-secao">Sobremesas Irresistíveis</h2>
 
@@ -387,9 +384,9 @@ export default function Home() {
                         }} /* As bolinhas de navegação embaixo */
                         breakpoints={{
                             700: {
-                                slidesPerView: 2,
+                                slidesPerView: 1,
                             } /* Em tablets, mostra 2 */,
-                            1024: { slidesPerView: 2 } /* No PC, mostra 3 */,
+                            1024: { slidesPerView: 1 } /* No PC, mostra 3 */,
                         }}
                         className="meu-swiper"
                     >
@@ -397,13 +394,14 @@ export default function Home() {
                         {sobremesas.map((receita) => (
                             <SwiperSlide key={receita._id}>
                                 <div className="card-slide">
-                                    <img src={receita.imagem} alt="" />
-                                    <div className="informacoes-overlay">
+                                    <div className="informacoes-card">
                                         <h2>{receita.titulo}</h2>
+                                        <p>{receita.descricao}</p>
                                         <NavLink to={`/detalhes`}>
                                             Ver receita
                                         </NavLink>
                                     </div>
+                                    <img src={receita.imagem} alt="" />
                                 </div>
                             </SwiperSlide>
                         ))}
@@ -482,13 +480,14 @@ export default function Home() {
                             <IoCloseCircleOutline />
                         </button>{" "}
                         <span className="texto-btn-fechar">Fechar</span>
-
                         {/* O Chat com a ia será apenas para usuários logados */}
                         {isLogin ? (
-                            <FormularioLogin liberaEntrada={criarReceitaComIA} />
+                            <FormularioLogin
+                                liberaEntrada={criarReceitaComIA}
+                            />
                         ) : (
                             <FormularioCadastroUsuario
-                                alternaDeCadastroParaLogin={alternaFormulario}
+                                alternaCadastroParaLogin={alternaFormulario}
                             />
                         )}
                         <div className="alternar-formulario">

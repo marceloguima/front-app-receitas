@@ -1,4 +1,5 @@
 .grupo-input {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -6,7 +7,15 @@
     gap: 4px;
 }
 
-.grupo-input input, textarea, select{
+.input-senha{
+
+}
+
+.input_input_senha{
+width: 100%;
+}
+
+.grupo-input  input, textarea, select{
     background: var(--cinza-50);
     border: solid 1px var(--cinza-400);
     border-radius: 10px;
@@ -33,4 +42,13 @@ background: var(--cinza-500);
 
 .textarea{
     height: 80px;
+}
+
+.olho-input{
+    position: absolute;
+    top: 38px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
 }

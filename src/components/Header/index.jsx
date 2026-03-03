@@ -4,19 +4,17 @@ import Logo from "../Logo";
 
 import "./styles.css";
 // icones
-import { HiSparkles } from "react-icons/hi2";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 // import { IoHome } from "react-icons/io5";
 
-const Header = ({ abrirChat, fecharChat, login }) => {
+const Header = ({ abrirChat, fecharChat, login, usuario }) => {
     return (
         <header className="header">
             <nav className="nav-links-header">
                 <ul className="links-header">
                     <li>
-                        
-                            <Logo className="logo-header" />
-                        
+                        <Logo className="logo-header" />
                     </li>
 
                     <div className="link-home-link-ia">
@@ -35,8 +33,8 @@ const Header = ({ abrirChat, fecharChat, login }) => {
                                 className="btn-links-header"
                                 onClick={login}
                             >
-                                {/* <HiSparkles /> */}
-                               Login
+<FaRegCircleUser />
+                                {usuario}
                             </button>
                         </li>
                     </div>

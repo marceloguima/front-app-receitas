@@ -42,7 +42,8 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
                 console.log("Resposta do servidor:", resposta.data);
 
-                setMensagemSucesso("Acesso liberado!");
+
+                setMensagemSucesso(`Seja bem vindo ! ${resposta.data.usuario.nome}`);
                 localStorage.setItem(
                     "crachaDoUsuario",
                     JSON.stringify(resposta.data.usuario),
@@ -50,7 +51,8 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
                 setLoading(false);
                 setTimeout(() => {
-                    liberaEntrada();
+                    // garda os dados do usuário para usar na home fora do formulário.
+                    liberaEntrada(resposta.data.usuario);
                 }, 2000);
 
                 console.log(usuario);

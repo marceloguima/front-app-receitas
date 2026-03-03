@@ -40,7 +40,7 @@ gap: 10px;
 }
 
 .btn-links-header {
-    font-size: 1em;
+    font-size: .9em;
     background: var(--cor-bg-destaque);
     color: var(--cor-texto-secundario);
     border: solid 1px var(--cor-primaria);
@@ -48,8 +48,10 @@ gap: 10px;
     padding: 12px 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
     border-radius: 30px;
     font-weight: 600;
+    gap: 5px;
 }
 
 

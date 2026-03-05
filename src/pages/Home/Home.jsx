@@ -1,6 +1,6 @@
 // Dependências
 import React, { Children } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
 // Componentes
@@ -14,13 +14,6 @@ import Footer from "../../components/Footer";
 import FormularioCadastroUsuario from "../../components/formulario-cad-user";
 import FormularioLogin from "../../components/formulario-login";
 
-// Bibliotecas
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
 import "./home.css";
 
 // ICONES
@@ -31,6 +24,9 @@ import { MdDinnerDining } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
+
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
 
 import { RiExpandDiagonalSFill } from "react-icons/ri";
 
@@ -53,6 +49,8 @@ export default function Home() {
     const [isLogin, setIsLogin] = useState(true);
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
+
+    const slides = useRef(null);
 
     // Carrega os dados no início quando a página carrega
     useEffect(() => {
@@ -166,6 +164,20 @@ export default function Home() {
     const alternaFormulario = () => {
         setIsLogin(!isLogin);
     };
+
+    // funções dos slides
+    const handleLeft = (e) => {
+        e.preventDefault();
+        console.log(slides.current.offsetWidth);
+        slides.current.scrollLeft += slides.current.offsetWidth
+    };
+
+    const handleRight = (e) => {
+        e.preventDefault();
+        console.log(slides.current.offsetWidth);
+        slides.current.scrollLeft -= slides.current.offsetWidth
+    };
+    // fim funções dos slides
 
     return (
         <>
@@ -298,46 +310,42 @@ export default function Home() {
                 )}
 
                 {/* Swiper sobremesas*/}
-                <section className="carrossel-destaques">
+                <section className="secao-entradas">
                     <h2 className="titulo-secao">Sobremesas Irresistíveis</h2>
-
-                    <Swiper
-                        modules={[Autoplay, Navigation, Pagination]}
-                        spaceBetween={30}
-                        slidesPerView={1} /* No celular, mostra 1 por vez */
-                        loop={true}
-                        autoplay={{
-                            delay: 5000,
-                            disableOnInteraction: true,
-                        }}
-                        // navigation={true}
-                        pagination={{
-                            clickable: true,
-                        }} /* As bolinhas de navegação embaixo */
-                        breakpoints={{
-                            700: {
-                                slidesPerView: 1,
-                            } /* Em tablets, mostra 2 */,
-                            1024: { slidesPerView: 1 } /* No PC, mostra 3 */,
-                        }}
-                        className="meu-swiper"
-                    >
-                        {/* O map agora roda SÓ nas sobremesas */}
-                        {sobremesas.map((receita) => (
-                            <SwiperSlide key={receita._id}>
-                                <div className="card-slide">
-                                    <div className="informacoes-card">
-                                        <h2>{receita.titulo}</h2>
-                                        <p>{receita.descricao}</p>
-                                        <NavLink to={`/detalhes`}>
-                                            Ver receita
-                                        </NavLink>
-                                    </div>
-                                    <img src={receita.imagem} alt="" />
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                    <div className="itens-secao-entradas-slides" ref={slides}>
+                        {loading
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <LoaderSkeletonCard key={i} />
+                              ))
+                            : Array.isArray(receitas) &&
+                              receitas
+                                  .filter(function (receita) {
+                                      return receita.categoria === "Sobremesa";
+                                  })
+                                  .map((receita) => (
+                                      <Card
+                                          _id={receita._id}
+                                          key={receita._id}
+                                          src={receita.imagem}
+                                          alt={
+                                              "imagem da receita de " +
+                                              receita.titulo
+                                          }
+                                          titulo={receita.titulo}
+                                          tempoPreparo={`${receita.tempoPreparo} min`}
+                                          complexidade={`${receita.complexidade}`}
+                                          porcoes={`${receita.porcoes}`}
+                                      />
+                                  ))}
+                    </div>
+                    <div className="buttons-slides">
+                        <button className="prev" onClick={handleRight}>
+                            <GrPrevious />
+                        </button>
+                        <button className="next" onClick={handleLeft}>
+                            <GrNext />
+                        </button>
+                    </div>
                 </section>
 
                 {/* Entradas */}

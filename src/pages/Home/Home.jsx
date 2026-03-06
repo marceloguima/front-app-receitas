@@ -13,6 +13,7 @@ import OChefinho from "../../components/Chefinho";
 import Footer from "../../components/Footer";
 import FormularioCadastroUsuario from "../../components/formulario-cad-user";
 import FormularioLogin from "../../components/formulario-login";
+import CardCirculo from "../../components/card-circular";
 
 import "./home.css";
 
@@ -25,10 +26,8 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
-import { GrNext } from "react-icons/gr";
-import { GrPrevious } from "react-icons/gr";
-
 import { RiExpandDiagonalSFill } from "react-icons/ri";
+import Slideprimary from "../../components/slide1";
 
 export default function Home() {
     const [receitas, setReceitas] = useState([]);
@@ -49,8 +48,6 @@ export default function Home() {
     const [isLogin, setIsLogin] = useState(true);
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
-
-    const slides = useRef(null);
 
     // Carrega os dados no início quando a página carrega
     useEffect(() => {
@@ -165,20 +162,6 @@ export default function Home() {
         setIsLogin(!isLogin);
     };
 
-    // funções dos slides
-    const handleLeft = (e) => {
-        e.preventDefault();
-        console.log(slides.current.offsetWidth);
-        slides.current.scrollLeft += slides.current.offsetWidth
-    };
-
-    const handleRight = (e) => {
-        e.preventDefault();
-        console.log(slides.current.offsetWidth);
-        slides.current.scrollLeft -= slides.current.offsetWidth
-    };
-    // fim funções dos slides
-
     return (
         <>
             <Header
@@ -208,6 +191,7 @@ export default function Home() {
                 }
             />
 
+            {/* /A sections é uma div que engloba todas as seções e é responsável por informar a posição de scroll.  */}
             <div className="sections" onScroll={lidarComScroll}>
                 <section className="hero">
                     <div className="content-hero">
@@ -305,48 +289,8 @@ export default function Home() {
                                 </p>
                             )}
                         </div>
-                        <hr />
                     </section>
                 )}
-
-                {/* Swiper sobremesas*/}
-                <section className="secao-entradas">
-                    <h2 className="titulo-secao">Sobremesas Irresistíveis</h2>
-                    <div className="itens-secao-entradas-slides" ref={slides}>
-                        {loading
-                            ? Array.from({ length: 8 }).map((_, i) => (
-                                  <LoaderSkeletonCard key={i} />
-                              ))
-                            : Array.isArray(receitas) &&
-                              receitas
-                                  .filter(function (receita) {
-                                      return receita.categoria === "Sobremesa";
-                                  })
-                                  .map((receita) => (
-                                      <Card
-                                          _id={receita._id}
-                                          key={receita._id}
-                                          src={receita.imagem}
-                                          alt={
-                                              "imagem da receita de " +
-                                              receita.titulo
-                                          }
-                                          titulo={receita.titulo}
-                                          tempoPreparo={`${receita.tempoPreparo} min`}
-                                          complexidade={`${receita.complexidade}`}
-                                          porcoes={`${receita.porcoes}`}
-                                      />
-                                  ))}
-                    </div>
-                    <div className="buttons-slides">
-                        <button className="prev" onClick={handleRight}>
-                            <GrPrevious />
-                        </button>
-                        <button className="next" onClick={handleLeft}>
-                            <GrNext />
-                        </button>
-                    </div>
-                </section>
 
                 {/* Entradas */}
 
@@ -414,19 +358,17 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* bebidas */}
-
-                <section className="pratos-do-dia" id="bebidas">
-                    <h2 className="titulo-secao">Bebidas</h2>
-                    <div className="cards_card">
-                        {loading
+                {/* seção sobremesas*/}
+                <Slideprimary
+                    cardReceitas={
+                        loading
                             ? Array.from({ length: 8 }).map((_, i) => (
                                   <LoaderSkeletonCard key={i} />
                               ))
                             : Array.isArray(receitas) &&
                               receitas
                                   .filter(function (receita) {
-                                      return receita.categoria === "Bebidas";
+                                      return receita.categoria === "Sobremesa";
                                   })
                                   .map((receita) => (
                                       <Card
@@ -442,7 +384,27 @@ export default function Home() {
                                           complexidade={`${receita.complexidade}`}
                                           porcoes={`${receita.porcoes}`}
                                       />
-                                  ))}
+                                  ))
+                    }
+                />
+
+                {/* bebidas */}
+                <section className="pratos-do-dia" id="bebidas">
+                    <h2 className="titulo-secao">Bebidas</h2>
+
+                    <div className="circulos">
+                        {Array.isArray(receitas) &&
+                            receitas
+                                .filter(function (receita) {
+                                    return receita.categoria === "Bebida";
+                                })
+                                .map((receita) => (
+                                    <CardCirculo
+                                        imagem={receita.imagem}
+                                        titulo={receita.titulo}
+                                        alt={`imagem de ${receita.titulo}`}
+                                    />
+                                ))}
                     </div>
                 </section>
 

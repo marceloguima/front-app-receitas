@@ -68,6 +68,7 @@
 }
 /* Fim Formulario de cadastro */
 
+/* A sections é uma div que engloba todas as seções e é responsável por informar a posição de scroll. */
 .sections {
     width: 100%;
     display: flex;
@@ -247,60 +248,6 @@
 }
 
 /* =====================carrolsel======================= */
-.secao-entradas {
-    height: 400px;
-    position: relative;
-    padding: 20px;
-    background: #ece5e34d;
-    box-shadow: var(--sombra-card);
-    border-radius: 10px;
-}
-
-.itens-secao-entradas-slides {
-    max-width: 1200px;
-    padding: 10px;
-    overflow: hidden;
-    display: flex;
-    height: 300px;
-    margin-top: 20px;
-    gap: 40px;
-}
-
-.buttons-slides{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 120px;
-}
-
-.prev, .next{
-    width: 60px;
-    height: 60px;
-    color: var(--cor-primaria);
-    font-size: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--cor-bg-destaque);
-    border: solid 1px var(--cor-primaria);
-    position: absolute;
-    border-radius:50%;
-    bottom: 40px;
-    z-index: 12;
-    
-}
-
-.prev{
-    left: -40px;
-    
-}
-
-.next{
-    right: -2px;
-
-}
-/* ======================================== */
 
 .pratos-do-dia {
     width: 100%;
@@ -335,7 +282,14 @@
     /* justify-items: center;; */
     padding: 2rem;
     gap: 50px;
-    border-top: solid 2px var(--cor-primaria);
+}
+
+/* seção circular */
+.circulos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
 }
 
 .hiden-modal {

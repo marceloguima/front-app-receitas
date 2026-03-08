@@ -1,4 +1,6 @@
 .secao-entradas {
+    width: 100%;
+    max-width: 1200px;
     height: 400px;
     position: relative;
     padding: 20px;

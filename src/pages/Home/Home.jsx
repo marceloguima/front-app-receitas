@@ -33,15 +33,48 @@ import ReceitaInfo from "../../components/ReceitaInfo";
 export default function Home() {
     const [receitas, setReceitas] = useState([]);
 
+    // ---------------------------------------------------------
+    const [paginaAtual, setPaginaAtual] = useState(0);
     const [cardClicado, setCardClicado] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const cardDestaque =
         cardClicado || (receitas && receitas.length > 0 ? receitas[0] : null);
 
-    const cardsMini = Array.isArray(receitas)
-        ? receitas.filter((card) => card._id !== cardDestaque._id)
-        : [];
+    useEffect(() => {
+        const checarTamanhoDaTela = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        // roda no primeiro caregamento para saber o tamanho da tela
+        checarTamanhoDaTela();
+
+        window.addEventListener("resize", checarTamanhoDaTela);
+
+        return () => window.removeEventListener("resize", checarTamanhoDaTela);
+    }, []);
+
+    const itensPorPagina = isMobile ? 4 : 7;
+
+    const indiceInicio = paginaAtual * itensPorPagina;
+    const indiceFim = indiceInicio + itensPorPagina;
+    const receitasDestaTela = receitas.slice(indiceInicio, indiceFim);
+
+    // paginação
+    const irProximaPagina = () => {
+        if (indiceFim >= receitas.length) {
+            setPaginaAtual(paginaAtual); // Volta pro começo se acabou a lista
+        } else {
+            setPaginaAtual(paginaAtual + 1); // Vai pro próximo lote
+        }
+        setCardClicado(null); // Zera o clique para o novo lote assumir o topo
+    };
+
+    const cardsMini = receitasDestaTela.filter(
+        (card) => cardDestaque && card._id !== cardDestaque._id
+    );
+
+ 
     console.log("cards mini", cardsMini);
-    // verificar
+    // -----------------------------------------------------------------------
 
     const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
     const [chefOpen, setChefOpen] = useState(false);
@@ -338,48 +371,67 @@ export default function Home() {
 
                 <section className="prato-principal" id="prato-principal">
                     <h2 className="titulo-secao">Prato Principal</h2>
-                    <div className="cards-prato-principal">
-                        {/* Troquei para cardDestaque, que é a variável segura que criamos */}
-                        {cardDestaque && (
-                            <div className="card-destaque">
-                                <img
-                                    src={
-                                        cardDestaque.imagem
-                                    } /* 2. Avisando que quero a IMAGEM do objeto */
-                                    alt={
-                                        cardDestaque.titulo
-                                    } /* 2. Avisando que quero o TITULO do objeto */
-                                />
-                                <div className="info-destaque">
-                                    <h3>{cardDestaque.titulo}</h3> 
-                                    <div className="info">
-                                    <ReceitaInfo texto={`${cardDestaque.tempoPreparo} min.`}/>
-                                    <ReceitaInfo texto={cardDestaque.complexidade}/>
-                                    <ReceitaInfo texto={`${cardDestaque.porcoes} porções`}/>
-                                    </div>
-                                  <Botao variant="btn-card-destaque">Ver receita</Botao>
-                                </div>
-                            </div>
-                        )}
-                        <div className="coluna-pequenos">
-                            {cardsMini.map((receita) => (
-                                <div
-                                    key={
-                                        receita.id
-                                    }
-                                    className="card-mini"
-                                    // chamando o State que guarda o clique!
-                                    onClick={() => setCardClicado(receita)}
-                                >
+                   
+                        <div className="cards-prato-principal">
+                            {/* Troquei para cardDestaque, que é a variável segura que criamos */}
+                            {cardDestaque && (
+                                <div className="card-destaque"
+                                     key={cardDestaque._id}
+                                     >
                                     <img
-                                        src={receita.imagem}
-                                        alt={receita.titulo}
+                                        src={
+                                            cardDestaque.imagem
+                                        } /* 2. Avisando que quero a IMAGEM do objeto */
+                                        alt={
+                                            cardDestaque.titulo
+                                        } /* 2. Avisando que quero o TITULO do objeto */
                                     />
-                                    <h4>{receita.titulo}</h4>
+                                    <div className="info-destaque">
+                                        <h3 className="titulo-card-destaque">{cardDestaque.titulo}</h3>
+                                        <div className="info">
+                                            <ReceitaInfo
+                                                texto={`${cardDestaque.tempoPreparo} min.`}
+                                            />
+                                            <ReceitaInfo
+                                                texto={
+                                                    cardDestaque.complexidade
+                                                }
+                                            />
+                                            <ReceitaInfo
+                                                texto={`${cardDestaque.porcoes} porções`}
+                                            />
+                                        </div>
+                                        <Botao variant="btn-card-destaque">
+                                            Ver receita
+                                        </Botao>
+                                    </div>
                                 </div>
-                            ))}
+                            )}
+                            <div className="coluna-pequenos">
+                                {cardsMini.map((receita) => (
+                                    <div
+                                        key={receita._id}
+                                        className="card-mini"
+                                        // chamando o State que guarda o clique!
+                                        onClick={() => setCardClicado(receita)}
+                                    >
+                                        <img
+                                            src={receita.imagem}
+                                            alt={receita.titulo}
+                                        />
+                                        <h4 className="titulo-card-mini">{receita.titulo}</h4>
+                                    </div>
+                                ))}
+                                {receitas.length > itensPorPagina && (
+                                    <button
+                                        className="btn-ver-outras"
+                                        onClick={irProximaPagina}
+                                    >
+                                        Ver outras opções
+                                    </button>
+                                )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 {/* seção sobremesas*/}
@@ -424,6 +476,7 @@ export default function Home() {
                                 })
                                 .map((receita) => (
                                     <CardCirculo
+                                        key={receita._id}
                                         imagem={receita.imagem}
                                         titulo={receita.titulo}
                                         alt={`imagem de ${receita.titulo}`}

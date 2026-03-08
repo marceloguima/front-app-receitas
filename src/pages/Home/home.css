@@ -252,10 +252,10 @@
 .prato-principal {
     width: 100%;
     max-width: 1200px;
-    /* border: solid 1px var(--cor-primaria); */
     box-shadow: var(--sombra-card);
     border-radius: 10px;
-    padding: 10px;
+    padding: 40px;
+    
 }
 
 .prato-principal h2{
@@ -266,12 +266,12 @@
     width: 100%;
     height: 500px;
     display: flex;
+    /* gap: 40px; */
 }
 
 .card-destaque {
-    width: 30%;
+    width: 310px;
     height: 500px;
-    /* border: solid 1px var(--cor-primaria); */
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     background: #fff;
@@ -282,6 +282,10 @@
     height: 60%;
     border-radius: 10px 10px 0 0;
     object-fit: cover;
+}
+
+.titulo-card-destaque{
+    text-overflow: ellipsis;
 }
 
 .info-destaque {
@@ -303,6 +307,7 @@
 
 .btn-card-destaque{
     width: 100%;
+    height: 45px;
     background: var(--cor-primaria);
     color: #ffff;
 }
@@ -311,18 +316,18 @@
     width: 70%;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 20px;
-    gap: 15px;
-    overflow: auto;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 40px;
 }
 
 .card-mini {
-    width: 48%;
-    height: 150px;
+    width: 42%;
+    min-width: 230px;
+    height: 120px;
     display: flex;
     gap: 10px;
     align-items: center;
-    /* border: solid 1px var(--cor-primaria); */
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     background: #fff;
@@ -330,10 +335,27 @@
 }
 
 .card-mini img {
-    width: 140px;
+    width: 120px;
     height: 100%;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px ;
     object-fit: cover;
+}
+
+.titulo-card-mini{
+    font-size: .9rem;
+}
+
+.btn-ver-outras{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.btn-ver-outras:hover{
+    background-color: #e0e0e0;
+ 
+    border-radius: 30px;
 }
 
 /* =====================Fim seção pratos principal======================= */
@@ -349,7 +371,6 @@
 .titulo-secao {
     color: var(--cor-texto-secundario);
     width: 100%;
-    max-width: 1200px;
     text-align: start;
 }
 
@@ -440,6 +461,8 @@
     .campo-chama-chefinho button:hover + .fala-do-chef {
         visibility: visible;
     }
+
+  
 }
 
 .fala-do-chef p {
@@ -494,6 +517,68 @@ footer {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 30px;
     }
+
+      .prato-principal{
+        padding: 10px;
+        height: 380px;
+    }
+
+
+.card-destaque {
+    height: 300px;
+   
+}
+.btn-card-destaque{
+    height: 40px;
+}
+
+.card-destaque img{
+height: 50%;
+}
+
+.titulo-card-destaque{
+font-size: .9rem;
+}
+
+.info-destaque{
+    padding: 10px;
+    height: 160px;
+}
+
+.info{
+    padding: 10px 0;
+}
+
+.coluna-pequenos{
+    width: 60%;
+    padding: 0 10px;
+    height: 250px;
+    gap:  12px ;
+   
+}
+
+.card-mini{
+    width: 100%;
+    min-width: none;
+    height: 70px;
+    }
+
+
+
+
+
+.card-mini img {
+    width: 120px;
+    height: 100%;
+    border-radius: 10px ;
+    object-fit: cover;
+}
+
+.titulo-card-mini{
+    font-size: .8rem;
+}
+
+
 
     .campo-chama-chefinho button {
         width: 60px;
@@ -569,6 +654,11 @@ footer {
         grid-auto-rows: 200px;
         padding: 18px;
     }
+
+    
+.titulo-card-mini{
+    font-size: .7rem;
+}
 }
 
 @media (max-width: 380px) {

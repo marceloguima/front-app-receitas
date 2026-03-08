@@ -1,5 +1,6 @@
 .info_rapida{
     background: var(--cinza-100);
+    box-shadow: var(--sombra-card);
     padding: 2px 8px;
     border-radius: 30px;
     min-width: 72px;

@@ -1,7 +1,8 @@
 .nav-link{
     width: 150px;
-    height: 200px;
+    height: auto;
     display: flex;
+    gap: 10px;
     flex-direction: column;
     align-items: center;
 }

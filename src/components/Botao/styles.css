@@ -1,7 +1,7 @@
 /* classe padrão do botão */
 .btn {
     border: none;
-    font-weight: 500;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;

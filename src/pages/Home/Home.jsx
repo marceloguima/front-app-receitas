@@ -28,9 +28,20 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 
 import { RiExpandDiagonalSFill } from "react-icons/ri";
 import Slideprimary from "../../components/slide1";
+import ReceitaInfo from "../../components/ReceitaInfo";
 
 export default function Home() {
     const [receitas, setReceitas] = useState([]);
+
+    const [cardClicado, setCardClicado] = useState(null);
+    const cardDestaque =
+        cardClicado || (receitas && receitas.length > 0 ? receitas[0] : null);
+
+    const cardsMini = Array.isArray(receitas)
+        ? receitas.filter((card) => card._id !== cardDestaque._id)
+        : [];
+    console.log("cards mini", cardsMini);
+    // verificar
 
     const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
     const [chefOpen, setChefOpen] = useState(false);
@@ -128,15 +139,13 @@ export default function Home() {
         const tamanhoDaTela = elemento.clientHeight;
         const tamanhoTotal = elemento.scrollHeight;
 
-        if (totalRolado + tamanhoDaTela >= tamanhoTotal - 80) {
-            console.log(
-                "Chegou no fim da página! Hora de chamar mais receitas!",
-            );
-
+        if (totalRolado + tamanhoDaTela >= tamanhoTotal - 300) {
+            // Ao chegar no fim da página aparece um balão com mensagem da IA e some depois de 5 segundos
             setMensagemIA(true);
+            setTimeout(() => {
+                setMensagemIA(false);
+            }, 5000);
         }
-        if (totalRolado + tamanhoDaTela < tamanhoTotal - 500)
-            setMensagemIA(false);
     };
 
     // Armazena  em variável para usar no Swiper e garante que seja um array, mesmo
@@ -161,6 +170,8 @@ export default function Home() {
     const alternaFormulario = () => {
         setIsLogin(!isLogin);
     };
+
+    // lista só com as receitas que NÃO são o destaque atual
 
     return (
         <>
@@ -325,36 +336,49 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="pratos-do-dia" id="prato-principal">
+                <section className="prato-principal" id="prato-principal">
                     <h2 className="titulo-secao">Prato Principal</h2>
-                    <div className="cards_card">
-                        {loading
-                            ? Array.from({ length: 8 }).map((_, i) => (
-                                  <LoaderSkeletonCard key={i} />
-                              ))
-                            : Array.isArray(receitas) &&
-                              receitas
-                                  .filter(function (receita) {
-                                      return (
-                                          receita.categoria.toLowerCase() ===
-                                          "prato principal"
-                                      );
-                                  })
-                                  .map((receita) => (
-                                      <Card
-                                          _id={receita._id}
-                                          key={receita._id}
-                                          src={receita.imagem}
-                                          alt={
-                                              "imagem da receita de " +
-                                              receita.titulo
-                                          }
-                                          titulo={receita.titulo}
-                                          tempoPreparo={`${receita.tempoPreparo} min`}
-                                          complexidade={`${receita.complexidade}`}
-                                          porcoes={`${receita.porcoes}`}
-                                      />
-                                  ))}
+                    <div className="cards-prato-principal">
+                        {/* Troquei para cardDestaque, que é a variável segura que criamos */}
+                        {cardDestaque && (
+                            <div className="card-destaque">
+                                <img
+                                    src={
+                                        cardDestaque.imagem
+                                    } /* 2. Avisando que quero a IMAGEM do objeto */
+                                    alt={
+                                        cardDestaque.titulo
+                                    } /* 2. Avisando que quero o TITULO do objeto */
+                                />
+                                <div className="info-destaque">
+                                    <h3>{cardDestaque.titulo}</h3> 
+                                    <div className="info">
+                                    <ReceitaInfo texto={`${cardDestaque.tempoPreparo} min.`}/>
+                                    <ReceitaInfo texto={cardDestaque.complexidade}/>
+                                    <ReceitaInfo texto={`${cardDestaque.porcoes} porções`}/>
+                                    </div>
+                                  <Botao variant="btn-card-destaque">Ver receita</Botao>
+                                </div>
+                            </div>
+                        )}
+                        <div className="coluna-pequenos">
+                            {cardsMini.map((receita) => (
+                                <div
+                                    key={
+                                        receita.id
+                                    }
+                                    className="card-mini"
+                                    // chamando o State que guarda o clique!
+                                    onClick={() => setCardClicado(receita)}
+                                >
+                                    <img
+                                        src={receita.imagem}
+                                        alt={receita.titulo}
+                                    />
+                                    <h4>{receita.titulo}</h4>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 

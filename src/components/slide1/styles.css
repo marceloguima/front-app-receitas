@@ -1,56 +1,133 @@
+/* ==========================================================================
+   CARROSSEL CUSTOMIZADO (Sobremesas / Entradas)
+   ========================================================================== */
+
 .secao-entradas {
     width: 100%;
     max-width: 1200px;
-    height: 400px;
     position: relative;
-    padding: 20px;
-    background: #ece5e34d;
-    box-shadow: var(--sombra-card);
-    border-radius: 10px;
+    padding: 30px 20px;
+    background: transparent; /* Removi o fundo se quiser deixar igual ao seu print */
+    margin: 20px auto;
+}
+
+.titulo-secao {
+    padding-left: 10px;
 }
 
 .itens-secao-entradas-slides {
-    max-width: 1200px;
-    padding: 10px;
-    overflow: hidden;
     display: flex;
-    height: 300px;
-    margin-top: 20px;
-    gap: 40px;
+    gap: 30px;
+    
+    /* 1. SOLUÇÃO DA SOMBRA CORTADA: 
+       Aumentamos o padding superior e inferior (20px) para dar espaço 
+       para a sombra "respirar" sem ser cortada pelo overflow. */
+    padding: 20px 10px; 
+    
+    /* Mágica do Scroll nativo */
+    overflow-x: auto; 
+    scroll-behavior: smooth; 
+    scroll-snap-type: x mandatory; 
 }
 
-.buttons-slides{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 120px;
+/* Esconde a barra de rolagem nativa, mantendo a função */
+.itens-secao-entradas-slides::-webkit-scrollbar {
+    display: none;
+}
+.itens-secao-entradas-slides {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.prev, .next{
-    width: 60px;
-    height: 60px;
+/* Tamanho Padrão (Desktop) */
+.itens-secao-entradas-slides > * {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    
+    /* No Desktop, cabem 4 cards */
+    width: calc(25% - 22.5px); 
+}
+
+/* ==========================================================================
+   BOTÕES DE NAVEGAÇÃO
+   ========================================================================== */
+
+.btn-slide {
+    width: 50px;
+    height: 50px;
     color: var(--cor-primaria);
-    font-size: 2rem;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--cor-bg-destaque);
+    background: #fff;
     border: solid 1px var(--cor-primaria);
     position: absolute;
-    border-radius:50%;
-    bottom: 40px;
-    z-index: 12;
+    border-radius: 50%;
     
+    /* Centraliza perfeitamente no eixo Y da seção inteira */
+    top: 55%; 
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.prev{
-    left: -40px;
-    
+.prev { left: -15px; }
+.next { right: -15px; }
+
+/* 2. SOLUÇÃO DO HOVER TRAVADO NO CELULAR:
+   Essa regra garante que o efeito de passar o mouse SÓ vai acontecer 
+   em dispositivos que realmente têm um mouse (computadores). */
+@media (hover: hover) {
+    .btn-slide:hover {
+        background: var(--cor-primaria);
+        color: #fff;
+        transform: translateY(-50%) scale(1.1);
+    }
 }
 
-.next{
-    right: -2px;
+/* ==========================================================================
+   MEDIA QUERIES (A Mágica da Responsividade)
+   ========================================================================== */
 
+/* TABLETS (até 992px) - 3 Cards na tela */
+@media (max-width: 992px) {
+    .itens-secao-entradas-slides > * {
+        width: calc(33.333% - 20px); 
+    }
 }
-/* ======================================== */
+
+/* CELULARES (até 768px) */
+@media (max-width: 768px) {
+    .secao-entradas {
+        padding: 20px 0; /* Tira o padding lateral para aproveitar mais a tela */
+    }
+
+    .itens-secao-entradas-slides {
+        gap: 15px; /* Reduz o buraco entre os cards */
+        padding: 20px 10px; /* Mantém o respiro da sombra */
+    }
+
+    /* 3. SOLUÇÃO EXATOS 2 CARDS NA TELA PEQUENA */
+    .itens-secao-entradas-slides > * {
+        /* Matemática: 50% menos metade do gap (15px / 2 = 7.5px) */
+        width: calc(50% - 7.5px); 
+    }
+
+    /* 4. SOLUÇÃO DE ESCONDER AS SETAS NO MOBILE */
+    .btn-slide {
+        display: none; /* Como a pessoa usa o dedo, arranca os botões fora! */
+    }
+}
+
+/* CELULARES MUITO PEQUENOS (Opcional - Abaixo de 480px) */
+@media (max-width: 480px) {
+    /* Se 2 cards ficarem muito espremidos num celular bem pequeno,
+       descomente o código abaixo para mostrar apenas 1 card por vez. */
+       
+    /* .itens-secao-entradas-slides > * {
+        width: calc(100% - 20px); 
+    } */
+}

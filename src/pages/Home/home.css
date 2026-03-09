@@ -1,4 +1,11 @@
-/*Classes adicionais do Formulario de cadastro */
+/* ==========================================================================
+   ARQUIVO GLOBAL (home.css)
+   Organizado por Módulos para facilitar a criação de componentes no futuro
+   ========================================================================== */
+
+/* ==========================================================================
+   1. FORMULÁRIO DE CADASTRO / LOGIN
+   ========================================================================== */
 .formulario-cadastro-overlay {
     position: absolute;
     display: flex;
@@ -66,9 +73,10 @@
 .alternar-formulario button:hover {
     text-decoration: underline;
 }
-/* Fim Formulario de cadastro */
 
-/* A sections é uma div que engloba todas as seções e é responsável por informar a posição de scroll. */
+/* ==========================================================================
+   2. LAYOUT BASE E BARRA DE ROLAGEM GERAL
+   ========================================================================== */
 .sections {
     width: 100%;
     display: flex;
@@ -81,20 +89,12 @@
     padding: 0 10px;
 }
 
-/* Início estilos da barra de rolagem */
 .sections::-webkit-scrollbar {
     width: 8px;
 }
 
-.sections::-webkit-scrollbar-track {
-    /* background: var(--cor-secundaria); */
-    /* background: #ffebde; */
-}
-
 .sections::-webkit-scrollbar-thumb {
     background: var(--cor-primaria);
-
-    /* truque para diminuir a altura da barra de rolagem */
     border-top: solid 30px transparent;
     border-bottom: solid 30px transparent;
     border-left: solid 2px transparent;
@@ -102,8 +102,9 @@
     background-clip: padding-box;
 }
 
-/* Fim estilos da barra de rolagem */
-
+/* ==========================================================================
+   3. SEÇÃO HERO E BARRA DE BUSCA
+   ========================================================================== */
 .hero {
     display: flex;
     padding: 10px;
@@ -159,13 +160,11 @@
     z-index: 5;
     transition: linear 0.5s;
 }
-
 .expandido {
     width: 40%;
     z-index: 5;
     transition: linear 0.5s;
 }
-
 .fechado {
     width: 0;
     padding: 0 !important;
@@ -173,7 +172,6 @@
     transition: linear 0.5s;
 }
 
-/* Busca */
 .form-buscar {
     display: flex;
     align-items: center;
@@ -222,8 +220,9 @@
     background: var(--cor-secundaria-hover);
 }
 
-/* Fim busca */
-
+/* ==========================================================================
+   4. MENU DE NAVEGAÇÃO DE CATEGORIAS
+   ========================================================================== */
 .nav-menu {
     width: 100%;
     max-width: 1200px;
@@ -246,120 +245,142 @@
 .nav-itens-menu li {
     list-style: none;
 }
+.nav-itens-menu button {
+    font-size: 0.9rem;
+}
 
-/* ===================== Inicio seção pratos principal======================= */
-
+/* ==========================================================================
+   5. SEÇÃO: PRATO PRINCIPAL (LADO A LADO - DESKTOP E MOBILE)
+   ========================================================================== */
 .prato-principal {
     width: 100%;
     max-width: 1200px;
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     padding: 40px;
-    
+    margin: 10px;
 }
 
-.prato-principal h2{
+.prato-principal h2 {
     margin-bottom: 20px;
 }
 
 .cards-prato-principal {
     width: 100%;
-    height: 500px;
     display: flex;
-    /* gap: 40px; */
+    gap: 20px;
+    align-items: stretch;
 }
 
+/* Card Grande (Máximo de 380px no Desktop) */
 .card-destaque {
-    width: 310px;
-    height: 500px;
+    flex: 1; /* Ocupa metade do espaço se houver espaço */
+    max-width: 380px; /* Trava de segurança no desktop */
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .card-destaque img {
     width: 100%;
-    height: 60%;
-    border-radius: 10px 10px 0 0;
+    height: 250px;
     object-fit: cover;
 }
 
-.titulo-card-destaque{
-    text-overflow: ellipsis;
-}
-
 .info-destaque {
-    width: 100%;
-    height: 40%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    justify-content: space-between;
     padding: 20px;
+    flex: 1;
 }
 
-.info{
+.titulo-card-destaque {
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.info {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
-.btn-card-destaque{
+.btn-card-destaque {
     width: 100%;
     height: 45px;
     background: var(--cor-primaria);
     color: #ffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
+/* Coluna de Cards Pequenos */
 .coluna-pequenos {
-    width: 70%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    padding: 0 40px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 colunas no desktop (6 minis) */
+    gap: 15px;
+    align-content: start;
 }
 
 .card-mini {
-    width: 42%;
-    min-width: 230px;
-    height: 120px;
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     background: #fff;
     cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease;
+}
+
+.card-mini:hover {
+    transform: translateY(-2px);
 }
 
 .card-mini img {
-    width: 120px;
-    height: 100%;
-    border-radius: 10px ;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
     object-fit: cover;
 }
 
-.titulo-card-mini{
-    font-size: .9rem;
+.titulo-card-mini {
+    font-size: 0.9rem;
+    flex: 1;
 }
 
-.btn-ver-outras{
+/* Botão "Ver Outras" */
+.btn-ver-outras {
+    grid-column: 1 / -1; /* Ocupa toda a largura do Grid */
     background: transparent;
-    border: none;
+    border: 1px solid #ccc;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #555;
+    transition: 0.3s;
 }
 
-.btn-ver-outras:hover{
-    background-color: #e0e0e0;
- 
-    border-radius: 30px;
+.btn-ver-outras:hover {
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
 }
 
-/* =====================Fim seção pratos principal======================= */
-
+/* ==========================================================================
+   6. CARDS GENÉRICOS (Resultados da Busca, Entradas, Sobremesas)
+   ========================================================================== */
 .mensagem-pratos-do-dia {
     max-width: 400px;
     text-align: center;
@@ -379,13 +400,14 @@
     max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 260px;
-    /* justify-items: center;; */
+    grid-auto-rows: min-content; /* Deixa o card ter a altura que ele precisar */
     padding: 2rem;
     gap: 50px;
 }
 
-/* seção circular */
+/* ==========================================================================
+   7. SEÇÃO BEBIDAS (Círculos)
+   ========================================================================== */
 .circulos {
     width: 100%;
     display: flex;
@@ -393,13 +415,15 @@
     gap: 40px;
 }
 
+/* ==========================================================================
+   8. COMPONENTE IA E BALÃO DE MENSAGEM
+   ========================================================================== */
 .hiden-modal {
     position: absolute;
     right: 200px;
     transition: ease-in-out 0.5s;
 }
 
-/* Início botão ia fim da página */
 .campo-chama-chefinho {
     position: fixed;
     right: 90px;
@@ -420,7 +444,6 @@
     animation: pulsar 1.8s infinite;
 }
 
-/* EFEITO PULSO */
 @keyframes pulsar {
     0% {
         box-shadow: 0 0 0 0 rgba(243, 82, 33, 0.7);
@@ -457,21 +480,20 @@
     visibility: visible;
 }
 
-@media (min-width: 780px) {
-    .campo-chama-chefinho button:hover + .fala-do-chef {
-        visibility: visible;
-    }
-
-  
-}
-
 .fala-do-chef p {
     color: var(--cor-texto-secundario);
     font-size: 1rem;
 }
 
-/* Fim botão ia fim da página */
+@media (min-width: 780px) {
+    .campo-chama-chefinho button:hover + .fala-do-chef {
+        visibility: visible;
+    }
+}
 
+/* ==========================================================================
+   9. RODAPÉ (Footer)
+   ========================================================================== */
 footer {
     width: 100vw;
     height: 150px;
@@ -479,6 +501,9 @@ footer {
     margin-top: 100px;
 }
 
+/* ==========================================================================
+   10. MEDIA QUERIES (A MÁGICA DA RESPONSIVIDADE)
+   ========================================================================== */
 @media (max-width: 1380px) {
     .campo-chama-chefinho button {
         width: 80px;
@@ -492,106 +517,98 @@ footer {
     .hero h1 {
         font-size: 2rem;
     }
-
     .nav-itens-menu {
         gap: 10px;
     }
-
     .aberto {
         width: 100%;
     }
-
     .sections {
         width: 0;
         padding: 0 !important;
         border: none;
     }
-
     .botao-expandir-chef {
         visibility: hidden;
     }
 }
 
+/* === CELULARES MÉDIOS E TABLETS (780px) === */
 @media (max-width: 780px) {
     .cards_card {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr; /* Entradas / Busca mudam para 3 aqui */
         gap: 30px;
     }
 
-      .prato-principal{
+    /* ------- PRATO PRINCIPAL LADO A LADO ------- */
+    .prato-principal {
+        padding: 15px;
+    }
+
+    .cards-prato-principal {
+        /* flex-direction: row; MANTÉM LADO A LADO no mobile! */
+        gap: 10px;
+    }
+
+    /* Destaque fica com 50% da tela */
+    .card-destaque {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .card-destaque img {
+        height: 120px;
+    } /* Ajusta a foto para não tomar a tela inteira */
+    .info-destaque {
         padding: 10px;
-        height: 380px;
+    }
+    .titulo-card-destaque {
+        font-size: 0.9rem;
     }
 
-
-.card-destaque {
-    height: 300px;
-   
-}
-.btn-card-destaque{
-    height: 40px;
-}
-
-.card-destaque img{
-height: 50%;
-}
-
-.titulo-card-destaque{
-font-size: .9rem;
-}
-
-.info-destaque{
-    padding: 10px;
-    height: 160px;
-}
-
-.info{
-    padding: 10px 0;
-}
-
-.coluna-pequenos{
-    width: 60%;
-    padding: 0 10px;
-    height: 250px;
-    gap:  12px ;
-   
-}
-
-.card-mini{
-    width: 100%;
-    min-width: none;
-    height: 70px;
+    /* Empilha as "pílulas" de informação para caber na metadinha da tela */
+    .info {
+        padding: 5px 0;
+        gap: 5px;
+    }
+    .btn-card-destaque {
+        height: 35px;
+        font-size: 0.8rem;
     }
 
+    /* A coluna da direita também fica com 50% e empilha os 3 minis */
+    .coluna-pequenos {
+        gap: 12px;
+       grid-template-columns: 1fr;
 
+    }
 
+    .card-mini {
+        padding: 5px;
+        gap: 8px;
+    }
 
+    .card-mini img {
+        width: 50px;
+        height: 50px;
+    }
 
-.card-mini img {
-    width: 120px;
-    height: 100%;
-    border-radius: 10px ;
-    object-fit: cover;
-}
-
-.titulo-card-mini{
-    font-size: .8rem;
-}
-
-
+    .titulo-card-mini {
+        font-size: 0.7rem;
+    }
+    .btn-ver-outras {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    /* --------------------------------------------- */
 
     .campo-chama-chefinho button {
         width: 60px;
     }
-
     .fala-do-chef {
         bottom: 65px;
         right: -33px;
     }
-}
-
-.nav-itens-menu button {
-    font-size: 0.9rem;
 }
 
 @media (max-width: 680px) {
@@ -607,28 +624,40 @@ font-size: .9rem;
     }
 }
 
+/* === CELULARES PEQUENOS (Forçando 2 Cards em Sobremesas e Entradas) === */
 @media (max-width: 620px) {
     .cards_card {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr; /* MÁGICA: Força 2 cards menores lado a lado */
+        gap: 15px;
+        padding: 10px;
     }
-
-    /* =====================carrolsel======================= */
 }
 
 @media (max-width: 580px) {
     .card-slide {
         width: 100%;
         height: auto;
-
         display: flex;
         flex-direction: column-reverse;
     }
-
     .card-slide img {
         width: 100%;
         height: 50%;
         object-fit: cover;
+    }
+
+    .card-destaque{
+        min-width: 215px !important;
+    }
+
+    .info{
+        padding: 5px;
+    }
+
+    .pilula-info{
+        font-size: .7rem;
+        padding: 1px 2px;
+        width: 50px !important;
     }
 }
 
@@ -636,29 +665,31 @@ font-size: .9rem;
     .hero {
         height: 50vh;
     }
-
     .content-hero {
         gap: 20px;
         margin-top: 100px;
     }
-
     .hero h1 {
         font-size: 1.7rem;
     }
-
     .nav-menu {
         padding: 0 10px;
     }
 
+    /* Reforça os 2 cards para as telas mais finas de todas */
     .cards_card {
-        grid-auto-rows: 200px;
-        padding: 18px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 10px;
     }
 
-    
-.titulo-card-mini{
-    font-size: .7rem;
-}
+    .titulo-card-mini{
+        font-size: .6rem;
+    }
+
+    .prato-principal{
+        padding: 8px;
+    }
 }
 
 @media (max-width: 380px) {
@@ -670,5 +701,3 @@ font-size: .9rem;
         padding: 2px;
     }
 }
-
-/* ================================== */

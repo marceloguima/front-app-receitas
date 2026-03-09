@@ -389,15 +389,15 @@ export default function Home() {
                                     <div className="info-destaque">
                                         <h3 className="titulo-card-destaque">{cardDestaque.titulo}</h3>
                                         <div className="info">
-                                            <ReceitaInfo
+                                            <ReceitaInfo variant="pilula-info"
                                                 texto={`${cardDestaque.tempoPreparo} min.`}
                                             />
-                                            <ReceitaInfo
+                                            <ReceitaInfo variant="pilula-info"
                                                 texto={
                                                     cardDestaque.complexidade
                                                 }
                                             />
-                                            <ReceitaInfo
+                                            <ReceitaInfo variant="pilula-info"
                                                 texto={`${cardDestaque.porcoes} porções`}
                                             />
                                         </div>

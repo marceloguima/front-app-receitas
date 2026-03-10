@@ -113,7 +113,7 @@
     justify-content: center;
     gap: 40px;
     width: 100vw;
-    min-height: 650px;
+    min-height: 500px;
     background-image: url(/imagem-hero.png);
     backdrop-filter: blur(10px);
     background-size: cover;
@@ -155,6 +155,7 @@
     align-items: center;
 }
 
+/* Início estilos da IA chefinho */
 .aberto {
     width: 30%;
     z-index: 5;
@@ -171,6 +172,7 @@
     border: none;
     transition: linear 0.5s;
 }
+/* Fim estilos da IA chefinho */
 
 .form-buscar {
     display: flex;
@@ -255,6 +257,10 @@
 
 
 /* Card Grande (Máximo de 380px no Desktop) */
+#prato-principal{
+    padding: 10px;
+}
+
 .card-destaque {
     flex: 1; /* Ocupa metade do espaço se houver espaço */
     max-width: 380px; /* Trava de segurança no desktop */
@@ -347,7 +353,7 @@
     /* grid-column: 1 / -1; Ocupa toda a largura do Grid */
     justify-self: center;
     width: 200px;
-    height: ;
+    height: 45px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -384,10 +390,20 @@
     display: flex;
     padding: 20px;
     gap: 40px;
+
+/*================== cuida de eliminar a barra de rolagem lateral============== */
       overflow-x: auto; 
+      scrollbar-width: none;
     scroll-behavior: smooth; 
     scroll-snap-type: x mandatory; 
+    -ms-overflow-style: none;
 }
+
+.circulos::-webkit-scrollbar {
+    display: none;
+}
+/* ============================================= */
+
 
 /* ==========================================================================
    8. COMPONENTE IA E BALÃO DE MENSAGEM

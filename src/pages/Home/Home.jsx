@@ -3,14 +3,18 @@ import React, { Children } from "react";
 import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
+// Função
+import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
+
+// Skeletons de carregamento
+import LoaderSkeletonCard from "../../components/Loader-skeleton";
+import SkeletonCardCirculo from "../../components/loader-skeleton-card-circle";
+import SkeletonCardDestaque from "../../components/Skeleton-card-destaque";
+import SkeletonCardMini from "../../components/Skeleton-card-mini";
+
 // Componentes
 import Header from "../../components/Header";
 import Card from "../../components/card";
-import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
-
-import LoaderSkeletonCard from "../../components/Loader-skeleton";
-import SkeletonCardCirculo from "../../components/loader-skeleton-card-circle"; 
-
 import Botao from "../../components/Botao";
 import OChefinho from "../../components/Chefinho";
 import Footer from "../../components/Footer";
@@ -25,6 +29,7 @@ import SecaoEntradas from "../../components/secao-entradas";
 import SecaoSobremesas from "../../components/secao-sobremesas";
 import SecaoBebidas from "../../components/secao-bebidas";
 
+// css
 import "./home.css";
 
 // ICONES
@@ -41,43 +46,46 @@ export default function Home() {
     const [receitas, setReceitas] = useState([]);
 
     // ---------------------------------------------------------
-    const [paginaAtual, setPaginaAtual] = useState(0);
-    const [cardClicado, setCardClicado] = useState(null);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const cardDestaque =
-        cardClicado || (receitas && receitas.length > 0 ? receitas[0] : null);
-
+    
     useEffect(() => {
         const checarTamanhoDaTela = () => {
             setIsMobile(window.innerWidth < 768);
         };
         // roda no primeiro caregamento para saber o tamanho da tela
         checarTamanhoDaTela();
-
+        
         window.addEventListener("resize", checarTamanhoDaTela);
-
+        
         return () => window.removeEventListener("resize", checarTamanhoDaTela);
     }, []);
+    
+    // paginação seção pratos principal
+    const [cardClicado, setCardClicado] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+    const [paginaAtual, setPaginaAtual] = useState(0);
     const itensPorPagina = isMobile ? 4 : 7;
-
+    
     const indiceInicio = paginaAtual * itensPorPagina;
-    const indiceFim = indiceInicio + itensPorPagina;
+    const indiceFim = indiceInicio + itensPorPagina ;
     const receitasDestaTela = receitas.slice(indiceInicio, indiceFim);
-
-    // paginação
-    const irProximaPagina = () => {
-        if (indiceFim >= receitas.length) {
-            setPaginaAtual(paginaAtual); // Volta pro começo se acabou a lista
-        } else {
-            setPaginaAtual(paginaAtual + 1); // Vai pro próximo lote
-        }
-        setCardClicado(null); // Zera o clique para o novo lote assumir o topo
-    };
+    
+    const cardDestaque =
+    cardClicado || (receitasDestaTela.length > 0 ? receitasDestaTela[0] : null);
 
     const cardsMini = receitasDestaTela.filter(
         (card) => cardDestaque && card._id !== cardDestaque._id,
     );
+
+    const irProximaPagina = () => {
+        if (indiceFim >= receitas.length) {
+            setPaginaAtual(0); // Volta pro começo se acabou a lista
+        } else {
+            setPaginaAtual(paginaAtual +1 ); // Vai pro próximo lote
+        }
+        setCardClicado(null); // Zera o clique para o novo lote assumir o topo
+    };
+
 
     console.log("cards mini", cardsMini);
     // -----------------------------------------------------------------------
@@ -88,7 +96,7 @@ export default function Home() {
 
     const [busca, setBusca] = useState("");
     // loader para cards (ele é um skeleton)
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [mensagem, setMensagem] = useState("");
     const [mensagemIA, setMensagemIA] = useState(false);
 
@@ -97,7 +105,7 @@ export default function Home() {
 
     const [showFormulario, setShowFormulario] = useState(false);
     // loader spinner
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
@@ -189,14 +197,6 @@ export default function Home() {
         }
     };
 
-    // const sobremesas = Array.isArray(receitas)
-    //     ? receitas.filter((receita) => receita.categoria === "Sobremesa")
-    //     : [];
-
-    // const entradas = Array.isArray(receitas)
-    //     ? receitas.filter((receita) => receita.categoria === "Entrada")
-    //     : [];
-
     // cadastro/login de usuario
     const controleEntrada = () => {
         setShowFormulario(true);
@@ -219,7 +219,7 @@ export default function Home() {
                 usuario={
                     usuarioLogado
                         ? `Olá, ${usuarioLogado.nome}`
-                        : "Faça login e aproveite"
+                        : "Faça login"
                 }
             />
             <OChefinho
@@ -347,7 +347,7 @@ export default function Home() {
                 <SecaoEntradas>
                     {" "}
                     {loading
-                        ? Array.from({ length: 4 }).map((_, i) => (
+                        ? Array.from({length: 4}).map((_, i) => (
                               <LoaderSkeletonCard key={i} />
                           ))
                         : Array.isArray(receitas) &&
@@ -375,53 +375,65 @@ export default function Home() {
 
                 {/* Início seção pratos principal */}
                 <SlideSecundary>
-                    {cardDestaque && (
-                        <div className="card-destaque" key={cardDestaque._id}>
-                            <img
-                                src={cardDestaque.imagem}
-                                alt={cardDestaque.titulo}
-                            />
-                            <div className="info-destaque">
-                                <h3 className="titulo-card-destaque">
-                                    {cardDestaque.titulo}
-                                </h3>
-                                <div className="info">
-                                    <ReceitaInfo
-                                        variant="pilula-info"
-                                        texto={`${cardDestaque.tempoPreparo} min.`}
-                                    />
-                                    <ReceitaInfo
-                                        variant="pilula-info"
-                                        texto={cardDestaque.complexidade}
-                                    />
-                                    <ReceitaInfo
-                                        variant="pilula-info"
-                                        texto={`${cardDestaque.porcoes} porções`}
-                                    />
-                                </div>
-                                <Botao variant="btn-card-destaque">
-                                    Ver receita
-                                </Botao>
-                            </div>
-                        </div>
-                    )}
-                    <div className="coluna-pequenos">
-                        {cardsMini.map((receita) => (
+                    {loading ? (
+                        <SkeletonCardDestaque />
+                    ) : (
+                        cardDestaque && (
                             <div
-                                key={receita._id}
-                                className="card-mini"
-                                // chamando o State que guarda o clique!
-                                onClick={() => setCardClicado(receita)}
+                                className="card-destaque"
+                                key={cardDestaque._id}
                             >
                                 <img
-                                    src={receita.imagem}
-                                    alt={receita.titulo}
+                                    src={cardDestaque.imagem}
+                                    alt={cardDestaque.titulo}
                                 />
-                                <h4 className="titulo-card-mini">
-                                    {receita.titulo}
-                                </h4>
+                                <div className="info-destaque">
+                                    <h3 className="titulo-card-destaque">
+                                        {cardDestaque.titulo}
+                                    </h3>
+                                    <div className="info">
+                                        <ReceitaInfo
+                                            variant="pilula-info"
+                                            texto={`${cardDestaque.tempoPreparo} min.`}
+                                        />
+                                        <ReceitaInfo
+                                            variant="pilula-info"
+                                            texto={cardDestaque.complexidade}
+                                        />
+                                        <ReceitaInfo
+                                            variant="pilula-info"
+                                            texto={`${cardDestaque.porcoes} porções`}
+                                        />
+                                    </div>
+                                    <Botao variant="btn-card-destaque">
+                                        Ver receita
+                                    </Botao>
+                                </div>
                             </div>
-                        ))}
+                        )
+                    )}
+                    <div className="coluna-pequenos">
+                        {loading
+                        // A variável (intensPorPagina) usada abaixo, tem o resultado que varia  a quantidade de cards em diferentes tamanhos de tela
+                            ? Array.from({length: isMobile ? 4 : 8}).map((_, i) => (
+                                  <SkeletonCardMini key={i} />
+                              ))
+                            : cardsMini.map((receita) => (
+                                  <div
+                                      key={receita._id}
+                                      className="card-mini"
+                                      // chamando o State que guarda o clique!
+                                      onClick={() => setCardClicado(receita)}
+                                  >
+                                      <img
+                                          src={receita.imagem}
+                                          alt={receita.titulo}
+                                      />
+                                      <h4 className="titulo-card-mini">
+                                          {receita.titulo}
+                                      </h4>
+                                  </div>
+                              ))}
                         {receitas.length > itensPorPagina && (
                             <button
                                 className="btn-ver-outras"
@@ -434,7 +446,7 @@ export default function Home() {
                 </SlideSecundary>
                 {/* ----Fim  seção pratos principal------ */}
 
-                {/* seção sobremesas*/}
+                {/* Início seção sobremesas*/}
                 <SecaoSobremesas
                     cardReceita={
                         loading
@@ -463,47 +475,28 @@ export default function Home() {
                                   ))
                     }
                 />
+                {/* FIm seção sobremesas*/}
 
                 {/* bebidas */}
                 <SecaoBebidas>
-                    {loading ?  Array.from({ length: 8 }).map((_, i) => (
-                                  <SkeletonCardCirculo key={i} />
-                              )):(
-
-                     Array.isArray(receitas) &&
-                        receitas
-                            .filter(function (receita) {
-                                return receita.categoria === "Bebida";
-                            })
-                            .map((receita) => (
-                                <CardCirculo
-                                    key={receita._id}
-                                    imagem={receita.imagem}
-                                    titulo={receita.titulo}
-                                    alt={`imagem de ${receita.titulo}`}
-                                />
-                            ))
-                    ) }
+                    {loading
+                        ? Array.from({ length: 8 }).map((_, i) => (
+                              <SkeletonCardCirculo key={i} />
+                          ))
+                        : Array.isArray(receitas) &&
+                          receitas
+                              .filter(function (receita) {
+                                  return receita.categoria === "Bebida";
+                              })
+                              .map((receita) => (
+                                  <CardCirculo
+                                      key={receita._id}
+                                      imagem={receita.imagem}
+                                      titulo={receita.titulo}
+                                      alt={`imagem de ${receita.titulo}`}
+                                  />
+                              ))}
                 </SecaoBebidas>
-                {/* <section className="secoes" id="bebidas">
-                    <h2 className="titulo-secao">Bebidas</h2>
-
-                    <div className="circulos">
-                        {Array.isArray(receitas) &&
-                            receitas
-                                .filter(function (receita) {
-                                    return receita.categoria === "Bebida";
-                                })
-                                .map((receita) => (
-                                    <CardCirculo
-                                        key={receita._id}
-                                        imagem={receita.imagem}
-                                        titulo={receita.titulo}
-                                        alt={`imagem de ${receita.titulo}`}
-                                    />
-                                ))}
-                    </div>
-                </section> */}
 
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">

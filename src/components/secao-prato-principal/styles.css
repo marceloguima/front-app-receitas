@@ -1,6 +1,4 @@
 
-
-
 .prato-principal h2 {
     margin-bottom: 20px;
 }
@@ -9,6 +7,6 @@
     width: 100%;
     display: flex;
     gap: 20px;
-    padding: 20px;
+    padding: 20px 5px;
    
 }

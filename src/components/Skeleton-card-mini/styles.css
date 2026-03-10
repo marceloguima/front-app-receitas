@@ -1,0 +1,31 @@
+/* Desativa a interação do mouse enquanto é esqueleto */
+.skeleton-wrapper {
+    pointer-events: none;
+    cursor: default;
+    box-shadow: none !important;
+    background: #f0f0f0 !important;
+}
+
+/* O quadrado da foto do mini */
+.skeleton-img-mini {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* O texto do mini */
+.skeleton-titulo-mini {
+    flex: 1;
+    height: 16px;
+    border-radius: 4px;
+}
+
+/* O fantasma do botão "Ver Outras" */
+.skeleton-btn-outras {
+    justify-self: center;
+    width: 200px;
+    height: 42px; /* Altura baseada no seu padding de 12px */
+    border-radius: 8px;
+    margin-top: 10px;
+}

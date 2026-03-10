@@ -4,7 +4,7 @@ import "./styles.css"; // Importe o arquivo onde estão as animações do skelet
 const SkeletonCardCirculo = () => {
     return (
         // Usamos as mesmas classes base do componente original
-        <div className="nav-link skeleton-wrapper">
+        <div className="nav-link skeleton-wrapper-circle">
             <div className="imagem-circulo skeleton-bg skeleton-circulo-img">
                 <img src="./logo-skeleton-loader.png" alt="" />
             </div>

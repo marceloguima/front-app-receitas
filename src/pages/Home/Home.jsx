@@ -8,7 +8,7 @@ import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
 
 // Skeletons de carregamento
 import LoaderSkeletonCard from "../../components/Loader-skeleton";
-import SkeletonCardCirculo from "../../components/loader-skeleton-card-circle";
+import SkeletonCardCirculo from "../../components/Loader-skeleton-card-circle";
 import SkeletonCardDestaque from "../../components/Skeleton-card-destaque";
 import SkeletonCardMini from "../../components/Skeleton-card-mini";
 
@@ -89,8 +89,10 @@ export default function Home() {
 
     console.log("cards mini", cardsMini);
     // -----------------------------------------------------------------------
+// para veerificar------------------
+const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
+// para veerificar------------------
 
-    const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
     const [chefOpen, setChefOpen] = useState(false);
     const [chefExpandido, setChefExpandido] = useState(false);
 

@@ -7,14 +7,23 @@ import { NavLink } from "react-router-dom";
 import Header from "../../components/Header";
 import Card from "../../components/card";
 import apiBuscaReceitas from "../../conectaAxios/apiBuscaReceitas";
+
 import LoaderSkeletonCard from "../../components/Loader-skeleton";
+import SkeletonCardCirculo from "../../components/loader-skeleton-card-circle"; 
+
 import Botao from "../../components/Botao";
 import OChefinho from "../../components/Chefinho";
 import Footer from "../../components/Footer";
 import FormularioCadastroUsuario from "../../components/formulario-cad-user";
 import FormularioLogin from "../../components/formulario-login";
 import CardCirculo from "../../components/card-circular";
+import SlideSecundary from "../../components/secao-prato-principal";
+import ReceitaInfo from "../../components/ReceitaInfo";
+
+// seções
 import SecaoEntradas from "../../components/secao-entradas";
+import SecaoSobremesas from "../../components/secao-sobremesas";
+import SecaoBebidas from "../../components/secao-bebidas";
 
 import "./home.css";
 
@@ -26,10 +35,7 @@ import { MdDinnerDining } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
-
 import { RiExpandDiagonalSFill } from "react-icons/ri";
-import Slideprimary from "../../components/slide1";
-import ReceitaInfo from "../../components/ReceitaInfo";
 
 export default function Home() {
     const [receitas, setReceitas] = useState([]);
@@ -81,6 +87,7 @@ export default function Home() {
     const [chefExpandido, setChefExpandido] = useState(false);
 
     const [busca, setBusca] = useState("");
+    // loader para cards (ele é um skeleton)
     const [loading, setLoading] = useState(true);
     const [mensagem, setMensagem] = useState("");
     const [mensagemIA, setMensagemIA] = useState(false);
@@ -89,6 +96,7 @@ export default function Home() {
     const [fezBusca, setFezBusca] = useState(false);
 
     const [showFormulario, setShowFormulario] = useState(false);
+    // loader spinner
     const [isLogin, setIsLogin] = useState(true);
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
@@ -103,7 +111,7 @@ export default function Home() {
                 setLoading(false);
                 console.log(dados);
             } catch (erro) {
-                setLoading(false);
+                setLoading(true);
                 setMensagem("Desculpe. Não consegui acessar o servidor.");
                 console.error("erro ao carregar receitas", erro);
                 console.log("deu erro");
@@ -181,15 +189,13 @@ export default function Home() {
         }
     };
 
-    // Armazena  em variável para usar no Swiper e garante que seja um array, mesmo
-    // que seja vazio, caso os dados não venham.
-    const sobremesas = Array.isArray(receitas)
-        ? receitas.filter((receita) => receita.categoria === "Sobremesa")
-        : [];
+    // const sobremesas = Array.isArray(receitas)
+    //     ? receitas.filter((receita) => receita.categoria === "Sobremesa")
+    //     : [];
 
-    const entradas = Array.isArray(receitas)
-        ? receitas.filter((receita) => receita.categoria === "Entrada")
-        : [];
+    // const entradas = Array.isArray(receitas)
+    //     ? receitas.filter((receita) => receita.categoria === "Entrada")
+    //     : [];
 
     // cadastro/login de usuario
     const controleEntrada = () => {
@@ -336,13 +342,12 @@ export default function Home() {
                     </section>
                 )}
 
-                {/* Entradas */}
-
                 <p className="mensagem-pratos-do-dia">{mensagem}</p>
+                {/* Início seção entradas */}
                 <SecaoEntradas>
                     {" "}
                     {loading
-                        ? Array.from({ length: 8 }).map((_, i) => (
+                        ? Array.from({ length: 4 }).map((_, i) => (
                               <LoaderSkeletonCard key={i} />
                           ))
                         : Array.isArray(receitas) &&
@@ -366,76 +371,72 @@ export default function Home() {
                                   />
                               ))}
                 </SecaoEntradas>
+                {/* Fim seção entradas */}
 
-                <section className="prato-principal" id="prato-principal">
-                    <h2 className="titulo-secao">Prato Principal</h2>
-
-                    <div className="cards-prato-principal">
-                        {cardDestaque && (
+                {/* Início seção pratos principal */}
+                <SlideSecundary>
+                    {cardDestaque && (
+                        <div className="card-destaque" key={cardDestaque._id}>
+                            <img
+                                src={cardDestaque.imagem}
+                                alt={cardDestaque.titulo}
+                            />
+                            <div className="info-destaque">
+                                <h3 className="titulo-card-destaque">
+                                    {cardDestaque.titulo}
+                                </h3>
+                                <div className="info">
+                                    <ReceitaInfo
+                                        variant="pilula-info"
+                                        texto={`${cardDestaque.tempoPreparo} min.`}
+                                    />
+                                    <ReceitaInfo
+                                        variant="pilula-info"
+                                        texto={cardDestaque.complexidade}
+                                    />
+                                    <ReceitaInfo
+                                        variant="pilula-info"
+                                        texto={`${cardDestaque.porcoes} porções`}
+                                    />
+                                </div>
+                                <Botao variant="btn-card-destaque">
+                                    Ver receita
+                                </Botao>
+                            </div>
+                        </div>
+                    )}
+                    <div className="coluna-pequenos">
+                        {cardsMini.map((receita) => (
                             <div
-                                className="card-destaque"
-                                key={cardDestaque._id}
+                                key={receita._id}
+                                className="card-mini"
+                                // chamando o State que guarda o clique!
+                                onClick={() => setCardClicado(receita)}
                             >
                                 <img
-                                    src={cardDestaque.imagem}
-                                    alt={cardDestaque.titulo}
+                                    src={receita.imagem}
+                                    alt={receita.titulo}
                                 />
-                                <div className="info-destaque">
-                                    <h3 className="titulo-card-destaque">
-                                        {cardDestaque.titulo}
-                                    </h3>
-                                    <div className="info">
-                                        <ReceitaInfo
-                                            variant="pilula-info"
-                                            texto={`${cardDestaque.tempoPreparo} min.`}
-                                        />
-                                        <ReceitaInfo
-                                            variant="pilula-info"
-                                            texto={cardDestaque.complexidade}
-                                        />
-                                        <ReceitaInfo
-                                            variant="pilula-info"
-                                            texto={`${cardDestaque.porcoes} porções`}
-                                        />
-                                    </div>
-                                    <Botao variant="btn-card-destaque">
-                                        Ver receita
-                                    </Botao>
-                                </div>
+                                <h4 className="titulo-card-mini">
+                                    {receita.titulo}
+                                </h4>
                             </div>
+                        ))}
+                        {receitas.length > itensPorPagina && (
+                            <button
+                                className="btn-ver-outras"
+                                onClick={irProximaPagina}
+                            >
+                                Ver outras opções
+                            </button>
                         )}
-                        <div className="coluna-pequenos">
-                            {cardsMini.map((receita) => (
-                                <div
-                                    key={receita._id}
-                                    className="card-mini"
-                                    // chamando o State que guarda o clique!
-                                    onClick={() => setCardClicado(receita)}
-                                >
-                                    <img
-                                        src={receita.imagem}
-                                        alt={receita.titulo}
-                                    />
-                                    <h4 className="titulo-card-mini">
-                                        {receita.titulo}
-                                    </h4>
-                                </div>
-                            ))}
-                            {receitas.length > itensPorPagina && (
-                                <button
-                                    className="btn-ver-outras"
-                                    onClick={irProximaPagina}
-                                >
-                                    Ver outras opções
-                                </button>
-                            )}
-                        </div>
                     </div>
-                </section>
+                </SlideSecundary>
+                {/* ----Fim  seção pratos principal------ */}
 
                 {/* seção sobremesas*/}
-                <Slideprimary
-                    cardReceitas={
+                <SecaoSobremesas
+                    cardReceita={
                         loading
                             ? Array.from({ length: 8 }).map((_, i) => (
                                   <LoaderSkeletonCard key={i} />
@@ -464,7 +465,27 @@ export default function Home() {
                 />
 
                 {/* bebidas */}
-                <section className="secao-bebidas" id="bebidas">
+                <SecaoBebidas>
+                    {loading ?  Array.from({ length: 8 }).map((_, i) => (
+                                  <SkeletonCardCirculo key={i} />
+                              )):(
+
+                     Array.isArray(receitas) &&
+                        receitas
+                            .filter(function (receita) {
+                                return receita.categoria === "Bebida";
+                            })
+                            .map((receita) => (
+                                <CardCirculo
+                                    key={receita._id}
+                                    imagem={receita.imagem}
+                                    titulo={receita.titulo}
+                                    alt={`imagem de ${receita.titulo}`}
+                                />
+                            ))
+                    ) }
+                </SecaoBebidas>
+                {/* <section className="secoes" id="bebidas">
                     <h2 className="titulo-secao">Bebidas</h2>
 
                     <div className="circulos">
@@ -482,7 +503,7 @@ export default function Home() {
                                     />
                                 ))}
                     </div>
-                </section>
+                </section> */}
 
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">

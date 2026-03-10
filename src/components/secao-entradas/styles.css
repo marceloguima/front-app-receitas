@@ -1,10 +1,4 @@
 
-.secao-entradas{
-  max-width: 1200px;
-      box-shadow: var(--sombra-card);
-    border-radius: 10px;
-    padding: 20px;
-}
 
 .titulo-secao {
     color: var(--cor-texto-secundario);
@@ -14,18 +8,18 @@
 
 .cards-entradas {
     width: 100%;
-    padding: 40px;
-  
+    padding: 20px;
     display: flex;
     justify-content: center;
+    background: transparent;
     flex-wrap: wrap;
     gap: 40px;
  
 }
-
+/* 
 @media (max-width: 768px) {
    .cards-entradas{
     gap: 10px;
     padding: 10px;
    }
-}
+} */

@@ -1,81 +1,61 @@
-.skeleton-card {
-    width: 100%;
-    max-width: 246px;
-    height: 100%;
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border-radius: 10px;
-      background-color: #e9e9e9;
+/* ==========================================================================
+   SKELETON LOADER (Herda o tamanho do .card e .card-interno)
+   ========================================================================== */
 
+/* Desliga a sombra preta herdada do card original */
+.skeleton-card .card-interno::before {
+    display: none;
 }
 
-.skeleton {
-    background: linear-gradient(90deg, #c5c5c5 25%, #cacaca 50%, #d3d3d3 75%);
+
+/* A animação de onda clássica */
+@keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+
+.skeleton-bg, 
+.skeleton-img-logo,
+.skeleton-pilula, 
+.skeleton-texto-titulo {
+    background: linear-gradient(90deg, #dfdfdf 25%, #f0f0f0 50%, #dfdfdf 75%);
     background-size: 400% 100%;
-    animation: shimmer 2s infinite;
-    border-radius: 8px;
+    animation: shimmer 3.5s infinite linear;
 }
 
-
-.skeleton-img {
+.img-card.skeleton-bg {
     width: 100%;
-    height: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent;
 }
-
 
 .skeleton-img-logo {
-    opacity: .4;
-    width: 100px;
+    width: 80px;
+    opacity: 0.30;
     border-radius: 50%;
-    margin-top: 10px;
 }
 
-.skeleton-title {
-    width: 70%;
+.skeleton-pilula {
+    height: 24px;
+    width: 80px; 
+    border-radius: 12px;
+}
+
+.skeleton-btn-fav {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.skeleton-texto-titulo {
     height: 20px;
-    margin-bottom: 8px;
-    left: 20px;
-    bottom: 60px;
-    z-index: 1;
-    background-color: #222121!important;
+    width: 70%; 
+    border-radius: 4px;
+    margin-bottom: 15px; 
 }
 
-
-.skeleton-info {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-    
-}
-
-.skeleton-temp, .skeleton-dif{
-  width: 50px;
-  height: 16px;
-  background-color: #0f0f0f;
-    border-radius: 10px;
-    z-index: 2;
-  
-}
-
-.skeleton-dif{
-  left: 150px;
-}
-
-
-
-@keyframes shimmer {
-    0% {
-        background-position: -400px 0;
-    }
-    100% {
-        background-position: 400px 0;
-    }
-}
+/* ==========================================================================
+   FIM DO SKELETON
+   ========================================================================== */

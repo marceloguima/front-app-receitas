@@ -79,7 +79,7 @@ body {
     /* Texto */
     --cor-texto-principal: var(--preto-800);
     --cor-texto-secundario: var(--preto-700);
-    --cor-texto-terciario:var(--preto-600);
+    --cor-texto-terciario: var(--preto-600);
     --cor-texto-inverso: var(--branco);
     --cor-texto-suave: var(--cinza-400);
 
@@ -110,7 +110,6 @@ a {
     text-decoration: none;
 }
 
-
 /* Remove o olho nativo de revelar senha (foco no Microsoft Edge/IE) */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
@@ -122,4 +121,14 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     visibility: hidden;
     display: none !important;
     pointer-events: none;
+}
+
+/* para seções que compartilham estilos */
+
+.secoes {
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: var(--sombra-card);
+    border-radius: 10px;
+    padding: 20px;
 }

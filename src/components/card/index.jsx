@@ -24,8 +24,8 @@ const Card = (props) => {
     }
 
     return (
-        <NavLink to={`/detalhes/${props._id}`} className="navlink">
-            <div className="card">
+        <NavLink to={`/detalhes/${props._id}`} className="card">
+            <div className="card-interno">
                 <div className="overlay-card"></div>
                 <div className="dif">
                     <ReceitaInfo

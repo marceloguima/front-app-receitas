@@ -4,11 +4,8 @@
 
 .slide-primary{
     width: 100%;
-    max-width: 1200px;
     position: relative;
-    padding: 30px 20px;
     background: transparent;
-    margin: 20px auto;
 }
 
 .titulo-secao {
@@ -16,15 +13,10 @@
 }
 
 .itens-slide-primary {
+    width: 100%;
     display: flex;
     gap: 30px;
-    
-    /* 1. SOLUÇÃO DA SOMBRA CORTADA: 
-       Aumentamos o padding superior e inferior (20px) para dar espaço 
-       para a sombra "respirar" sem ser cortada pelo overflow. */
     padding: 40px 10px; 
-    
-    /* Mágica do Scroll nativo */
     overflow-x: auto; 
     scroll-behavior: smooth; 
     scroll-snap-type: x mandatory; 

@@ -252,25 +252,7 @@
 /* ==========================================================================
    5. SEÇÃO: PRATO PRINCIPAL (LADO A LADO - DESKTOP E MOBILE)
    ========================================================================== */
-.prato-principal {
-    width: 100%;
-    max-width: 1200px;
-    box-shadow: var(--sombra-card);
-    border-radius: 10px;
-    padding: 40px;
-    margin: 10px;
-}
 
-.prato-principal h2 {
-    margin-bottom: 20px;
-}
-
-.cards-prato-principal {
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    align-items: stretch;
-}
 
 /* Card Grande (Máximo de 380px no Desktop) */
 .card-destaque {
@@ -396,17 +378,15 @@
    7. SEÇÃO BEBIDAS (Círculos)
    ========================================================================== */
 
-.secao-bebidas{
-    max-width: 1200px;
-    box-shadow: var(--sombra-card);
-    padding: 20px;
-}
 
 .circulos {
     width: 100%;
     display: flex;
     padding: 20px;
     gap: 40px;
+      overflow-x: auto; 
+    scroll-behavior: smooth; 
+    scroll-snap-type: x mandatory; 
 }
 
 /* ==========================================================================

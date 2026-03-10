@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 import "./styles.css";
 import { GrNext, GrPrevious } from "react-icons/gr";
 
-const Slideprimary = ({ cardReceitas }) => {
+const Slideprimary = ({ card }) => {
     const slides = useRef(null);
 
     // Mover para a Esquerda (Botão Prev)
@@ -20,12 +20,12 @@ const Slideprimary = ({ cardReceitas }) => {
     };
 
     return (
-        <section className="slide-primary">
+        <div className="slide-primary">
             <h2 className="titulo-secao">Sobremesas</h2>
-            
+
             {/* O Container que vai rolar */}
             <div className="itens-slide-primary" ref={slides}>
-                {cardReceitas}
+                {card}
             </div>
 
             {/* Os botões de controle */}
@@ -35,7 +35,7 @@ const Slideprimary = ({ cardReceitas }) => {
             <button className="btn-slide next" onClick={handleRight}>
                 <GrNext />
             </button>
-        </section>
+        </div>
     );
 };
 

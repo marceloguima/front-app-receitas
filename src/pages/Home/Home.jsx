@@ -14,6 +14,7 @@ import Footer from "../../components/Footer";
 import FormularioCadastroUsuario from "../../components/formulario-cad-user";
 import FormularioLogin from "../../components/formulario-login";
 import CardCirculo from "../../components/card-circular";
+import SecaoEntradas from "../../components/secao-entradas";
 
 import "./home.css";
 
@@ -69,10 +70,9 @@ export default function Home() {
     };
 
     const cardsMini = receitasDestaTela.filter(
-        (card) => cardDestaque && card._id !== cardDestaque._id
+        (card) => cardDestaque && card._id !== cardDestaque._id,
     );
 
- 
     console.log("cards mini", cardsMini);
     // -----------------------------------------------------------------------
 
@@ -338,100 +338,99 @@ export default function Home() {
 
                 {/* Entradas */}
 
-                <section className="pratos-do-dia" id="entradas">
-                    <p className="mensagem-pratos-do-dia">{mensagem}</p>
-                    <h2 className="titulo-secao">Entradas</h2>
-                    <div className="cards_card">
-                        {loading
-                            ? Array.from({ length: 8 }).map((_, i) => (
-                                  <LoaderSkeletonCard key={i} />
-                              ))
-                            : Array.isArray(receitas) &&
-                              receitas
-                                  .filter(function (receita) {
-                                      return receita.categoria === "Entrada";
-                                  })
-                                  .map((receita) => (
-                                      <Card
-                                          _id={receita._id}
-                                          key={receita._id}
-                                          src={receita.imagem}
-                                          alt={
-                                              "imagem da receita de " +
-                                              receita.titulo
-                                          }
-                                          titulo={receita.titulo}
-                                          tempoPreparo={`${receita.tempoPreparo} min`}
-                                          complexidade={`${receita.complexidade}`}
-                                          porcoes={`${receita.porcoes}`}
-                                      />
-                                  ))}
-                    </div>
-                </section>
+                <p className="mensagem-pratos-do-dia">{mensagem}</p>
+                <SecaoEntradas>
+                    {" "}
+                    {loading
+                        ? Array.from({ length: 8 }).map((_, i) => (
+                              <LoaderSkeletonCard key={i} />
+                          ))
+                        : Array.isArray(receitas) &&
+                          receitas
+                              .filter(function (receita) {
+                                  return receita.categoria === "Entrada";
+                              })
+                              .map((receita) => (
+                                  <Card
+                                      _id={receita._id}
+                                      key={receita._id}
+                                      src={receita.imagem}
+                                      alt={
+                                          "imagem da receita de " +
+                                          receita.titulo
+                                      }
+                                      titulo={receita.titulo}
+                                      tempoPreparo={`${receita.tempoPreparo} min`}
+                                      complexidade={`${receita.complexidade}`}
+                                      porcoes={`${receita.porcoes}`}
+                                  />
+                              ))}
+                </SecaoEntradas>
 
                 <section className="prato-principal" id="prato-principal">
                     <h2 className="titulo-secao">Prato Principal</h2>
-                   
-                        <div className="cards-prato-principal">
-                            {/* Troquei para cardDestaque, que é a variável segura que criamos */}
-                            {cardDestaque && (
-                                <div className="card-destaque"
-                                     key={cardDestaque._id}
-                                     >
-                                    <img
-                                        src={
-                                            cardDestaque.imagem
-                                        } /* 2. Avisando que quero a IMAGEM do objeto */
-                                        alt={
-                                            cardDestaque.titulo
-                                        } /* 2. Avisando que quero o TITULO do objeto */
-                                    />
-                                    <div className="info-destaque">
-                                        <h3 className="titulo-card-destaque">{cardDestaque.titulo}</h3>
-                                        <div className="info">
-                                            <ReceitaInfo variant="pilula-info"
-                                                texto={`${cardDestaque.tempoPreparo} min.`}
-                                            />
-                                            <ReceitaInfo variant="pilula-info"
-                                                texto={
-                                                    cardDestaque.complexidade
-                                                }
-                                            />
-                                            <ReceitaInfo variant="pilula-info"
-                                                texto={`${cardDestaque.porcoes} porções`}
-                                            />
-                                        </div>
-                                        <Botao variant="btn-card-destaque">
-                                            Ver receita
-                                        </Botao>
-                                    </div>
-                                </div>
-                            )}
-                            <div className="coluna-pequenos">
-                                {cardsMini.map((receita) => (
-                                    <div
-                                        key={receita._id}
-                                        className="card-mini"
-                                        // chamando o State que guarda o clique!
-                                        onClick={() => setCardClicado(receita)}
-                                    >
-                                        <img
-                                            src={receita.imagem}
-                                            alt={receita.titulo}
+
+                    <div className="cards-prato-principal">
+                        {cardDestaque && (
+                            <div
+                                className="card-destaque"
+                                key={cardDestaque._id}
+                            >
+                                <img
+                                    src={cardDestaque.imagem}
+                                    alt={cardDestaque.titulo}
+                                />
+                                <div className="info-destaque">
+                                    <h3 className="titulo-card-destaque">
+                                        {cardDestaque.titulo}
+                                    </h3>
+                                    <div className="info">
+                                        <ReceitaInfo
+                                            variant="pilula-info"
+                                            texto={`${cardDestaque.tempoPreparo} min.`}
                                         />
-                                        <h4 className="titulo-card-mini">{receita.titulo}</h4>
+                                        <ReceitaInfo
+                                            variant="pilula-info"
+                                            texto={cardDestaque.complexidade}
+                                        />
+                                        <ReceitaInfo
+                                            variant="pilula-info"
+                                            texto={`${cardDestaque.porcoes} porções`}
+                                        />
                                     </div>
-                                ))}
-                                {receitas.length > itensPorPagina && (
-                                    <button
-                                        className="btn-ver-outras"
-                                        onClick={irProximaPagina}
-                                    >
-                                        Ver outras opções
-                                    </button>
-                                )}
+                                    <Botao variant="btn-card-destaque">
+                                        Ver receita
+                                    </Botao>
+                                </div>
                             </div>
+                        )}
+                        <div className="coluna-pequenos">
+                            {cardsMini.map((receita) => (
+                                <div
+                                    key={receita._id}
+                                    className="card-mini"
+                                    // chamando o State que guarda o clique!
+                                    onClick={() => setCardClicado(receita)}
+                                >
+                                    <img
+                                        src={receita.imagem}
+                                        alt={receita.titulo}
+                                    />
+                                    <h4 className="titulo-card-mini">
+                                        {receita.titulo}
+                                    </h4>
+                                </div>
+                            ))}
+                            {receitas.length > itensPorPagina && (
+                                <button
+                                    className="btn-ver-outras"
+                                    onClick={irProximaPagina}
+                                >
+                                    Ver outras opções
+                                </button>
+                            )}
                         </div>
+                    </div>
                 </section>
 
                 {/* seção sobremesas*/}
@@ -465,7 +464,7 @@ export default function Home() {
                 />
 
                 {/* bebidas */}
-                <section className="pratos-do-dia" id="bebidas">
+                <section className="secao-bebidas" id="bebidas">
                     <h2 className="titulo-secao">Bebidas</h2>
 
                     <div className="circulos">

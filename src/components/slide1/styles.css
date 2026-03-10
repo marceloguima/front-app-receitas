@@ -2,12 +2,12 @@
    CARROSSEL CUSTOMIZADO (Sobremesas / Entradas)
    ========================================================================== */
 
-.secao-entradas {
+.slide-primary{
     width: 100%;
     max-width: 1200px;
     position: relative;
     padding: 30px 20px;
-    background: transparent; /* Removi o fundo se quiser deixar igual ao seu print */
+    background: transparent;
     margin: 20px auto;
 }
 
@@ -15,14 +15,14 @@
     padding-left: 10px;
 }
 
-.itens-secao-entradas-slides {
+.itens-slide-primary {
     display: flex;
     gap: 30px;
     
     /* 1. SOLUÇÃO DA SOMBRA CORTADA: 
        Aumentamos o padding superior e inferior (20px) para dar espaço 
        para a sombra "respirar" sem ser cortada pelo overflow. */
-    padding: 20px 10px; 
+    padding: 40px 10px; 
     
     /* Mágica do Scroll nativo */
     overflow-x: auto; 
@@ -31,16 +31,16 @@
 }
 
 /* Esconde a barra de rolagem nativa, mantendo a função */
-.itens-secao-entradas-slides::-webkit-scrollbar {
+.itens-slide-primary::-webkit-scrollbar {
     display: none;
 }
-.itens-secao-entradas-slides {
+.itens-slide-primary {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
 /* Tamanho Padrão (Desktop) */
-.itens-secao-entradas-slides > * {
+.itens-slide-primary > * {
     flex-shrink: 0;
     scroll-snap-align: start;
     
@@ -88,14 +88,10 @@
     }
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (A Mágica da Responsividade)
-   ========================================================================== */
 
-/* TABLETS (até 992px) - 3 Cards na tela */
 @media (max-width: 992px) {
-    .itens-secao-entradas-slides > * {
-        width: calc(33.333% - 20px); 
+    .itens-slide-primary > * {
+        width: 230px; 
     }
 }
 
@@ -105,29 +101,27 @@
         padding: 20px 0; /* Tira o padding lateral para aproveitar mais a tela */
     }
 
-    .itens-secao-entradas-slides {
-        gap: 15px; /* Reduz o buraco entre os cards */
-        padding: 20px 10px; /* Mantém o respiro da sombra */
+    .itens-slide-primary {
+        gap: 15px; 
+        padding: 20px 10px; 
     }
 
-    /* 3. SOLUÇÃO EXATOS 2 CARDS NA TELA PEQUENA */
-    .itens-secao-entradas-slides > * {
-        /* Matemática: 50% menos metade do gap (15px / 2 = 7.5px) */
-        width: calc(50% - 7.5px); 
+ 
+    .itens-slide-primary > * {
+     
+        width: 176px; 
     }
 
-    /* 4. SOLUÇÃO DE ESCONDER AS SETAS NO MOBILE */
+  
     .btn-slide {
         display: none; /* Como a pessoa usa o dedo, arranca os botões fora! */
     }
 }
 
-/* CELULARES MUITO PEQUENOS (Opcional - Abaixo de 480px) */
 @media (max-width: 480px) {
-    /* Se 2 cards ficarem muito espremidos num celular bem pequeno,
-       descomente o código abaixo para mostrar apenas 1 card por vez. */
+ 
        
-    /* .itens-secao-entradas-slides > * {
+    /* .itens-slide-primary > * {
         width: calc(100% - 20px); 
     } */
 }

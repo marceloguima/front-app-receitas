@@ -20,11 +20,11 @@ const Slideprimary = ({ cardReceitas }) => {
     };
 
     return (
-        <section className="secao-entradas">
+        <section className="slide-primary">
             <h2 className="titulo-secao">Sobremesas</h2>
             
             {/* O Container que vai rolar */}
-            <div className="itens-secao-entradas-slides" ref={slides}>
+            <div className="itens-slide-primary" ref={slides}>
                 {cardReceitas}
             </div>
 

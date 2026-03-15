@@ -1,27 +1,19 @@
 import React from "react";
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 // icones
 import { FaRegClock } from "react-icons/fa";
-import { MdFavoriteBorder } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
 import { IoRestaurantOutline } from "react-icons/io5";
-import { PiChefHatFill } from "react-icons/pi";
+
 import { PiChefHatBold } from "react-icons/pi";
 
 import "./style.css";
+
 // componentes
 import ReceitaInfo from "../ReceitaInfo";
+import BotaoFavoritar from "../Botao-favoritar";
 
 const Card = (props) => {
-    const [favorito, setFavorito] = useState(false);
-
-    function favoritar(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setFavorito(!favorito);
-        controleEntrada()
-    }
+   
 
     return (
         <NavLink to={`/detalhes/${props._id}`} className="card">
@@ -33,10 +25,8 @@ const Card = (props) => {
                         texto={props.complexidade}
                     ></ReceitaInfo>
                 </div>
-
-                <button type="button" className="btn-favorito" onClick={favoritar}>
-                    {favorito ? <MdFavorite /> : <MdFavoriteBorder />}
-                    </button>
+<BotaoFavoritar/>
+               
 
                 <img src={props.src} className="img-card" alt={props.alt} />
                 <div className="info-card">

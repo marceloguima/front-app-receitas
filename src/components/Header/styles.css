@@ -1,148 +1,77 @@
-.header li{
+
+.header {
+    width: 97%;
+    border-radius: 50px;
+    height: 100px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+   
+    box-shadow: 0 4px 10px var(--preto-700);
+    z-index: 6;
+
+    background: rgba(255, 255, 255, 0.25);
+    
+    /* 2. O desfoque mágico (O verdadeiro segredo!) */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Essencial para funcionar no iPhone/Safari */
+    
+    /* 3. A bordinha sutil simulando o corte do vidro */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    
+   
+}
+
+.nav-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.menu li{
     list-style: none;
 }
 
-.header {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    border-bottom: solid 2px var(--cor-primaria);
-    background: #ffffff;
-    box-shadow: 0 4px 10px var(--preto-700);
-    z-index: 6;
-}
-.nav-links-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.menu li a{
+    color: #ffff;
 }
 
-.link-home-link-ia{
-    width: 30%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 10px;
+.btn-login-header{
+    width: 160px;
+    padding: 10px;
 }
 
-.links_home {
-    background: transparent;
-    border: none;
-    color: #353534; 
-  font-weight: 500; 
-  font-size: 1em; 
-  text-decoration: none; 
-  transition: color 0.3s ease;
-}
-
-.btn-links-header {
-    font-size: .9em;
-    background: var(--cor-bg-destaque);
-    color: var(--cor-texto-secundario);
-    border: solid 1px var(--cor-primaria);
-    min-width: 120px;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    font-weight: 600;
-    gap: 5px;
+.btn-menu{
+    font-size: 3rem;
+    width: 40px;
+    height: 40px;
 }
 
 
+@media(max-width: 980px){
 
-.btn-links-header:hover {
-    background: var(--cor-secundaria);
-    transition:
-        0.3s ease-in-out,
-        color 0.3s ease-in-out;
-}
-
-.btn-links-header svg{
-    margin-right: 2px;
-    font-size: 1.2rem;
-}
-
-.links-header {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2%;
-}
-
-.logo-header {
-    width: 100px;
-}
-
-.logo-header img {
-    width: 100%;
-}
-
-@media (max-width: 1080px) {
-    .div-btn_search-menu {
-        justify-content: end;
-        gap: 20px;
+    .header{
     }
 
-    .formulario-link-ia {
-        width: 80%;
-    }
-}
-@media (max-width: 980px) {
-    .btn-links-header {
-        padding: 8px 16px;
+    .nav-header{
+        /* flex-direction: column; */
     }
 
-    
-}
-
-
-  
-
-@media (max-width: 768px) {
-   .logo-header{
-width: 60px;
-   }
-
-
-
-.link-home-link-ia{
-width: 50%;
-}
-
- 
-}
-
-@media (max-width: 580px) {
-.header {
-    /* height: 80px; */
-}
-
-
-.link-home-link-ia{
-font-size: 0.8rem;
-}
-
-
-}
-
-@media (max-width: 420px) {
-    .logo-home {
-        width: 80px;
-    }
-
-    .btn-links-header {
-        font-size: 0.8rem;
-    }
-
-    .link-home-link-ia{
-        width: 60%;
+    .menu{
+        display: none;
     }
 }

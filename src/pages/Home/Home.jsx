@@ -16,6 +16,7 @@ import SkeletonCardMini from "../../components/Skeleton-card-mini";
 import Header from "../../components/Header";
 import Card from "../../components/card";
 import Botao from "../../components/Botao";
+import BotaoFavoritar from "../../components/Botao-favoritar";
 import OChefinho from "../../components/Chefinho";
 import Footer from "../../components/Footer";
 import FormularioCadastroUsuario from "../../components/formulario-cad-user";
@@ -41,37 +42,41 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiExpandDiagonalSFill } from "react-icons/ri";
+import { PiChefHatBold } from "react-icons/pi";
+import { FaRegClock } from "react-icons/fa";
+import { IoRestaurantOutline } from "react-icons/io5";
 
 export default function Home() {
     const [receitas, setReceitas] = useState([]);
 
     // ---------------------------------------------------------
-    
+
     useEffect(() => {
         const checarTamanhoDaTela = () => {
             setIsMobile(window.innerWidth < 768);
         };
         // roda no primeiro caregamento para saber o tamanho da tela
         checarTamanhoDaTela();
-        
+
         window.addEventListener("resize", checarTamanhoDaTela);
-        
+
         return () => window.removeEventListener("resize", checarTamanhoDaTela);
     }, []);
-    
+
     // paginação seção pratos principal
     const [cardClicado, setCardClicado] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     const [paginaAtual, setPaginaAtual] = useState(0);
     const itensPorPagina = isMobile ? 4 : 7;
-    
+
     const indiceInicio = paginaAtual * itensPorPagina;
-    const indiceFim = indiceInicio + itensPorPagina ;
+    const indiceFim = indiceInicio + itensPorPagina;
     const receitasDestaTela = receitas.slice(indiceInicio, indiceFim);
-    
+
     const cardDestaque =
-    cardClicado || (receitasDestaTela.length > 0 ? receitasDestaTela[0] : null);
+        cardClicado ||
+        (receitasDestaTela.length > 0 ? receitasDestaTela[0] : null);
 
     const cardsMini = receitasDestaTela.filter(
         (card) => cardDestaque && card._id !== cardDestaque._id,
@@ -81,17 +86,16 @@ export default function Home() {
         if (indiceFim >= receitas.length) {
             setPaginaAtual(0); // Volta pro começo se acabou a lista
         } else {
-            setPaginaAtual(paginaAtual +1 ); // Vai pro próximo lote
+            setPaginaAtual(paginaAtual + 1); // Vai pro próximo lote
         }
         setCardClicado(null); // Zera o clique para o novo lote assumir o topo
     };
 
-
     console.log("cards mini", cardsMini);
     // -----------------------------------------------------------------------
-// para veerificar------------------
-const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
-// para veerificar------------------
+    // para veerificar------------------
+    const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
+    // para veerificar------------------
 
     const [chefOpen, setChefOpen] = useState(false);
     const [chefExpandido, setChefExpandido] = useState(false);
@@ -219,11 +223,23 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
             <Header
                 login={controleEntrada}
                 usuario={
-                    usuarioLogado
-                        ? `Olá, ${usuarioLogado.nome}`
-                        : "Faça login"
+                    usuarioLogado ? `Olá, ${usuarioLogado.nome}` : "Faça login"
                 }
-            />
+            >
+                {" "}
+                <form className="form-buscar" onSubmit={handleBuscar}>
+                    <input
+                        type="text"
+                        placeholder="Buscar"
+                        className="input-barra-busca"
+                        value={busca}
+                        onChange={(e) => setBusca(e.target.value)}
+                    />
+                    <button type="submit" className="btn-buscar">
+                        <FaSearch />
+                    </button>
+                </form>{" "}
+            </Header>
             <OChefinho
                 variant={
                     chefOpen
@@ -249,21 +265,6 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                     <div className="content-hero">
                         <div className="title-serach-bar">
                             <h1>As melhores receitas você encontra aqui!</h1>
-                            <form
-                                className="form-buscar"
-                                onSubmit={handleBuscar}
-                            >
-                                <input
-                                    type="text"
-                                    placeholder="Buscar"
-                                    className="input-barra-busca"
-                                    value={busca}
-                                    onChange={(e) => setBusca(e.target.value)}
-                                />
-                                <button type="submit" className="btn-buscar">
-                                    <FaSearch />
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </section>
@@ -349,7 +350,7 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                 <SecaoEntradas>
                     {" "}
                     {loading
-                        ? Array.from({length: 4}).map((_, i) => (
+                        ? Array.from({ length: 4 }).map((_, i) => (
                               <LoaderSkeletonCard key={i} />
                           ))
                         : Array.isArray(receitas) &&
@@ -385,6 +386,14 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                                 className="card-destaque"
                                 key={cardDestaque._id}
                             >
+                                <div className="info-top">
+                                    <ReceitaInfo
+                                        icone={<PiChefHatBold />}
+                                        variant="pilula-info"
+                                        texto={cardDestaque.complexidade}
+                                    />
+                                    <BotaoFavoritar />
+                                </div>
                                 <img
                                     src={cardDestaque.imagem}
                                     alt={cardDestaque.titulo}
@@ -395,14 +404,13 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                                     </h3>
                                     <div className="info">
                                         <ReceitaInfo
+                                            icone={<FaRegClock />}
                                             variant="pilula-info"
                                             texto={`${cardDestaque.tempoPreparo} min.`}
                                         />
+
                                         <ReceitaInfo
-                                            variant="pilula-info"
-                                            texto={cardDestaque.complexidade}
-                                        />
-                                        <ReceitaInfo
+                                            icone={<IoRestaurantOutline />}
                                             variant="pilula-info"
                                             texto={`${cardDestaque.porcoes} porções`}
                                         />
@@ -416,10 +424,10 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                     )}
                     <div className="coluna-pequenos">
                         {loading
-                        // A variável (intensPorPagina) usada abaixo, tem o resultado que varia  a quantidade de cards em diferentes tamanhos de tela
-                            ? Array.from({length: isMobile ? 4 : 8}).map((_, i) => (
-                                  <SkeletonCardMini key={i} />
-                              ))
+                            ? // A variável (intensPorPagina) usada abaixo, tem o resultado que varia  a quantidade de cards em diferentes tamanhos de tela
+                              Array.from({ length: isMobile ? 4 : 8 }).map(
+                                  (_, i) => <SkeletonCardMini key={i} />,
+                              )
                             : cardsMini.map((receita) => (
                                   <div
                                       key={receita._id}
@@ -441,7 +449,7 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                                 className="btn-ver-outras"
                                 onClick={irProximaPagina}
                             >
-                                Ver outras opções
+                                Ver mais
                             </button>
                         )}
                     </div>
@@ -560,9 +568,6 @@ const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
                 </div>
             )}
 
-            {/* ++++++++++++++++++++++++ usar depois +++++++++++++++++++++++++++++++ */}
-            {/**/}
-            {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
             {/*-------------------------------------- Fim Formulario de cadastro/Login ------------------------------ */}
         </>
     );

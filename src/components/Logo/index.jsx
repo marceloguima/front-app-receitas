@@ -1,9 +1,10 @@
 import React from "react";
-import imagemLogo from "/logo2.png"
+import imagemLogo from "/logo.png"
+import "./styles.css"
 
-function Logo({className}) {
+function Logo() {
     return (
-        <div className={className}>
+        <div className="logo">
             <img src={imagemLogo} alt="logo" />
         </div>
     );

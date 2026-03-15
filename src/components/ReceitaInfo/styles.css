@@ -21,7 +21,6 @@
 @media (max-width: 768px) {
     .info_rapida {
         font-size: 0.8rem;
-        min-width: 60px;
         max-width: 110px;
         padding: 3px 4px;
     }
@@ -47,9 +46,8 @@
 @media (max-width: 360px) {
     .info_rapida {
         font-size: 0.6rem;
-        min-width: 50px;
         max-width: 80px;
-        padding: 1px 4px;
+        padding: 1px 2px;
         gap: 2px;
     }
 

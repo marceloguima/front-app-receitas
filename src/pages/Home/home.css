@@ -1,11 +1,4 @@
-/* ==========================================================================
-   ARQUIVO GLOBAL (home.css)
-   Organizado por Módulos para facilitar a criação de componentes no futuro
-   ========================================================================== */
-
-/* ==========================================================================
-   1. FORMULÁRIO DE CADASTRO / LOGIN
-   ========================================================================== */
+/*  FORMULÁRIO DE CADASTRO / LOGIN */
 .formulario-cadastro-overlay {
     position: absolute;
     display: flex;
@@ -73,10 +66,9 @@
 .alternar-formulario button:hover {
     text-decoration: underline;
 }
+/*  FIM FORMULÁRIO DE CADASTRO / LOGIN */
 
-/* ==========================================================================
-   2. LAYOUT BASE E BARRA DE ROLAGEM GERAL
-   ========================================================================== */
+/*  LAYOUT BASE E BARRA DE ROLAGEM GERAL */
 .sections {
     width: 100%;
     display: flex;
@@ -86,7 +78,7 @@
     gap: 50px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 .sections::-webkit-scrollbar {
@@ -102,9 +94,7 @@
     background-clip: padding-box;
 }
 
-/* ==========================================================================
-   3. SEÇÃO HERO E BARRA DE BUSCA
-   ========================================================================== */
+/*  SEÇÃO HERO E BARRA DE BUSCA */
 .hero {
     display: flex;
     padding: 10px;
@@ -155,32 +145,13 @@
     align-items: center;
 }
 
-/* Início estilos da IA chefinho */
-.aberto {
-    width: 30%;
-    z-index: 5;
-    transition: linear 0.5s;
-}
-.expandido {
-    width: 40%;
-    z-index: 5;
-    transition: linear 0.5s;
-}
-.fechado {
-    width: 0;
-    padding: 0 !important;
-    border: none;
-    transition: linear 0.5s;
-}
-/* Fim estilos da IA chefinho */
-
 .form-buscar {
     display: flex;
     align-items: center;
     background: #fff;
     border-radius: 30px;
     width: 100%;
-    max-width: 420px;
+    max-width: 320px;
     height: var(--altura-btn_input);
     border: solid 1px var(--cor-primaria);
     box-shadow: 1px 4px 6px #0000004d;
@@ -222,9 +193,28 @@
     background: var(--cor-secundaria-hover);
 }
 
-/* ==========================================================================
-   4. MENU DE NAVEGAÇÃO DE CATEGORIAS
-   ========================================================================== */
+/*  FIM SEÇÃO HERO E BARRA DE BUSCA */
+
+/* Início estilos da IA chefinho */
+.aberto {
+    width: 30%;
+    z-index: 5;
+    transition: linear 0.5s;
+}
+.expandido {
+    width: 40%;
+    z-index: 5;
+    transition: linear 0.5s;
+}
+.fechado {
+    width: 0;
+    padding: 0 !important;
+    border: none;
+    transition: linear 0.5s;
+}
+/* Fim estilos da IA chefinho */
+
+/*  MENU DE NAVEGAÇÃO DE CATEGORIAS */
 .nav-menu {
     width: 100%;
     max-width: 1200px;
@@ -251,31 +241,39 @@
     font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   5. SEÇÃO: PRATO PRINCIPAL (LADO A LADO - DESKTOP E MOBILE)
-   ========================================================================== */
+/*  FIM MENU DE NAVEGAÇÃO DE CATEGORIAS */
 
-
-/* Card Grande (Máximo de 380px no Desktop) */
-#prato-principal{
+/* SEÇÃO PRINCIPAL */
+#prato-principal {
     padding: 10px;
 }
 
 .card-destaque {
-    flex: 1; /* Ocupa metade do espaço se houver espaço */
-    max-width: 380px; /* Trava de segurança no desktop */
+    position: relative;
+    flex: 1;
+    max-width: 380px;
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     background: #fff;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    padding-bottom: 10px;
 }
 
 .card-destaque img {
     width: 100%;
     height: 250px;
     object-fit: cover;
+}
+
+.info-top {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    width: 100%;
+    height: 40px;
+    position: absolute;
 }
 
 .info-destaque {
@@ -315,7 +313,7 @@
 .coluna-pequenos {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colunas no desktop (6 minis) */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
     align-content: start;
 }
@@ -348,11 +346,10 @@
     flex: 1;
 }
 
-/* Botão "Ver Outras" */
 .btn-ver-outras {
-    /* grid-column: 1 / -1; Ocupa toda a largura do Grid */
+    grid-column: 1 / -1;
     justify-self: center;
-    width: 200px;
+    background: #555;
     height: 45px;
     background: transparent;
     border: none;
@@ -367,10 +364,9 @@
 .btn-ver-outras:hover {
     background: #e4e4e4;
 }
+/* FIM SEÇÃO PRINCIPAL */
 
-/* ==========================================================================
-   6. CARDS GENÉRICOS (Resultados da Busca, Entradas, Sobremesas)
-   ========================================================================== */
+/*  MENSAGEM PARA ERRO */
 .mensagem-pratos-do-dia {
     max-width: 400px;
     text-align: center;
@@ -379,23 +375,18 @@
     color: var(--cor-primaria);
 }
 
-
-/* ==========================================================================
-   7. SEÇÃO BEBIDAS (Círculos)
-   ========================================================================== */
-
-
+/*  SEÇÃO BEBIDAS (Círculos) */
 .circulos {
     width: 100%;
     display: flex;
     padding: 20px;
     gap: 40px;
 
-/*================== cuida de eliminar a barra de rolagem lateral============== */
-      overflow-x: auto; 
-      scrollbar-width: none;
-    scroll-behavior: smooth; 
-    scroll-snap-type: x mandatory; 
+    /*================== cuida de eliminar a barra de rolagem lateral============== */
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
     -ms-overflow-style: none;
 }
 
@@ -404,10 +395,7 @@
 }
 /* ============================================= */
 
-
-/* ==========================================================================
-   8. COMPONENTE IA E BALÃO DE MENSAGEM
-   ========================================================================== */
+/* COMPONENTE IA E BALÃO DE MENSAGEM */
 .hiden-modal {
     position: absolute;
     right: 200px;
@@ -474,6 +462,7 @@
     color: var(--cor-texto-secundario);
     font-size: 1rem;
 }
+/* FIM COMPONENTE IA E BALÃO DE MENSAGEM */
 
 @media (min-width: 780px) {
     .campo-chama-chefinho button:hover + .fala-do-chef {
@@ -523,29 +512,25 @@ footer {
     }
 }
 
-/* === CELULARES MÉDIOS E TABLETS (780px) === */
 @media (max-width: 780px) {
-   
-
-    /* ------- PRATO PRINCIPAL LADO A LADO ------- */
+ 
     .prato-principal {
         padding: 15px;
     }
 
     .cards-prato-principal {
-        /* flex-direction: row; MANTÉM LADO A LADO no mobile! */
         gap: 10px;
     }
 
-    /* Destaque fica com 50% da tela */
+   
     .card-destaque {
-        flex: 1;
         max-width: 50%;
     }
 
     .card-destaque img {
         height: 120px;
-    } /* Ajusta a foto para não tomar a tela inteira */
+    } 
+
     .info-destaque {
         padding: 10px;
     }
@@ -553,9 +538,9 @@ footer {
         font-size: 0.9rem;
     }
 
-    /* Empilha as "pílulas" de informação para caber na metadinha da tela */
+   
     .info {
-        padding: 5px 0;
+        padding: 5px;
         gap: 5px;
     }
     .btn-card-destaque {
@@ -563,12 +548,7 @@ footer {
         font-size: 0.8rem;
     }
 
-    /* A coluna da direita também fica com 50% e empilha os 3 minis */
-    .coluna-pequenos {
-        gap: 12px;
-       grid-template-columns: 1fr;
-
-    }
+  
 
     .card-mini {
         padding: 5px;
@@ -598,6 +578,14 @@ footer {
     }
 }
 
+@media (max-width:768px){
+      /* A coluna da direita também fica com 50% e empilha os 3 minis */
+    .coluna-pequenos {
+        gap: 12px;
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 680px) {
     .nav-itens-menu button {
         min-width: 70px;
@@ -611,7 +599,6 @@ footer {
     }
 }
 
-/* === CELULARES PEQUENOS (Forçando 2 Cards em Sobremesas e Entradas) === */
 @media (max-width: 620px) {
     .cards_card {
         grid-template-columns: 1fr 1fr; /* MÁGICA: Força 2 cards menores lado a lado */
@@ -633,18 +620,15 @@ footer {
         object-fit: cover;
     }
 
-    .card-destaque{
-        min-width: 215px !important;
+    .card-destaque {
+        min-width: 160px !important;
     }
 
-    .info{
-        padding: 5px;
-    }
 
-    .pilula-info{
-        font-size: .7rem;
-        padding: 1px 2px;
-        width: 50px !important;
+
+    .pilula-info {
+        font-size: 0.7rem;
+        padding: 2px 4px;
     }
 }
 
@@ -663,19 +647,28 @@ footer {
         padding: 0 10px;
     }
 
-    /* Reforça os 2 cards para as telas mais finas de todas */
     .cards_card {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         padding: 10px;
     }
 
-    .titulo-card-mini{
-        font-size: .6rem;
+    .titulo-card-mini {
+        font-size: 0.6rem;
     }
 
-    .prato-principal{
+    .prato-principal {
         padding: 8px;
+    }
+
+    .info-destaque{
+        padding: 5px ;
+    }
+
+    .coluna-pequenos {
+        display: flex;
+        flex-direction: column;
+        width: 43%;
     }
 }
 
@@ -686,5 +679,14 @@ footer {
         height: 50px;
         border-radius: 15px;
         padding: 2px;
+    }
+
+    .info {
+        padding: 0;
+        gap: 2px;
+    }
+
+    .info-destaque {
+        padding: 5px;
     }
 }

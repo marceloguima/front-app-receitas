@@ -1,26 +1,34 @@
 import React from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo";
-import Botao from "../Botao";
+import BarraDeBusca from "../Barra-busca";
 
 import "./styles.css";
 // icones
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 
-// import { IoHome } from "react-icons/io5";
+const Header = ({ login, usuario, onSubmit, value, onChange }) => {
+const [isMobile, setIsMobile] = useState(false)
 
-const Header = ({ children, login, usuario }) => {
+const showMenu = ()=>{
+setIsMobile(!isMobile)
+}
+
     return (
         <header className="header">
             <nav className="nav-header">
                 <Logo />
-                {children}
-                <div className="btn-menu">
-                    <IoMenu />
-                </div>
+                <BarraDeBusca
+                    variant="barra-busca"
+                    onSubmit={onSubmit}
+                    value={value}
+                    onChange={onChange}
+                />
+             
 
-                <ul className="menu">
+                <ul className={`menu ${isMobile ? "show-menu-mobile" : "hidden-menu" }`}>
                     <li>
                         <NavLink to="/" className="link">
                             Início
@@ -32,17 +40,20 @@ const Header = ({ children, login, usuario }) => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="links">
+                        <NavLink to="/" className="link">
                             Meu caderno
                         </NavLink>
                     </li>
                 </ul>
-            </nav>
+                   <button className="btn-login" onClick={login}>
+                    <FaRegCircleUser />
+                    {usuario}
+                </button>
 
-            <Botao variant="btn-login-header" onClick={login}>
-                <FaRegCircleUser />
-                {usuario}
-            </Botao>
+                <button className="btn-menu" onClick={showMenu}>
+                    <IoMenu />
+                </button>
+            </nav>
         </header>
     );
 };

@@ -38,7 +38,6 @@ import { RiDrinks2Fill } from "react-icons/ri";
 import { GiCakeSlice } from "react-icons/gi";
 import { BiSolidBowlHot } from "react-icons/bi";
 import { MdDinnerDining } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiExpandDiagonalSFill } from "react-icons/ri";
@@ -84,15 +83,15 @@ export default function Home() {
 
     const irProximaPagina = () => {
         if (indiceFim >= receitas.length) {
-            setPaginaAtual(0); // Volta pro começo se acabou a lista
+            setPaginaAtual(0);
         } else {
-            setPaginaAtual(paginaAtual + 1); // Vai pro próximo lote
+            setPaginaAtual(paginaAtual + 1); 
         }
-        setCardClicado(null); // Zera o clique para o novo lote assumir o topo
+        setCardClicado(null); 
     };
 
-    console.log("cards mini", cardsMini);
     // -----------------------------------------------------------------------
+
     // para veerificar------------------
     const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
     // para veerificar------------------
@@ -225,21 +224,13 @@ export default function Home() {
                 usuario={
                     usuarioLogado ? `Olá, ${usuarioLogado.nome}` : "Faça login"
                 }
-            >
-                {" "}
-                <form className="form-buscar" onSubmit={handleBuscar}>
-                    <input
-                        type="text"
-                        placeholder="Buscar"
-                        className="input-barra-busca"
-                        value={busca}
-                        onChange={(e) => setBusca(e.target.value)}
-                    />
-                    <button type="submit" className="btn-buscar">
-                        <FaSearch />
-                    </button>
-                </form>{" "}
-            </Header>
+                onSubmit={handleBuscar}
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+            />
+
+          
+
             <OChefinho
                 variant={
                     chefOpen

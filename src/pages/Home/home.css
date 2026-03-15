@@ -145,55 +145,6 @@
     align-items: center;
 }
 
-.form-buscar {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 30px;
-    width: 100%;
-    max-width: 320px;
-    height: var(--altura-btn_input);
-    border: solid 1px var(--cor-primaria);
-    box-shadow: 1px 4px 6px #0000004d;
-    z-index: 2;
-}
-
-.input-barra-busca {
-    flex: 1;
-    width: 80%;
-    height: var(--altura-btn_input);
-    border: none;
-    background: transparent;
-    border-radius: 30px 0 0 30px;
-    padding: 0 15px;
-    font-size: 1rem;
-}
-
-.input-barra-busca:focus-visible {
-    outline: var(--cor-primaria);
-    border: solid 2px var(--cor-primaria);
-    font-size: 1.1rem;
-}
-
-.btn-buscar {
-    width: 60px;
-    height: 100%;
-    background: var(--laranja-50);
-    color: var(--preto-700);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    border-radius: 0 30px 30px 0;
-}
-
-.btn-buscar:hover {
-    background: var(--cor-secundaria-hover);
-}
-
-/*  FIM SEÇÃO HERO E BARRA DE BUSCA */
 
 /* Início estilos da IA chefinho */
 .aberto {

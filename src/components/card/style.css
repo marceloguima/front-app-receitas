@@ -116,3 +116,9 @@
     padding: 1px 6px;
 } */
 }
+
+@media (max-width: 420px) {
+    .card{
+        width: 80%;
+    }
+}

@@ -85,9 +85,9 @@ export default function Home() {
         if (indiceFim >= receitas.length) {
             setPaginaAtual(0);
         } else {
-            setPaginaAtual(paginaAtual + 1); 
+            setPaginaAtual(paginaAtual + 1);
         }
-        setCardClicado(null); 
+        setCardClicado(null);
     };
 
     // -----------------------------------------------------------------------
@@ -187,8 +187,8 @@ export default function Home() {
     // Mede o fim da página
     const lidarComScroll = (evento) => {
         evento.preventDefault();
-        const elemento = evento.target;
 
+        const elemento = evento.target;
         const totalRolado = elemento.scrollTop;
         const tamanhoDaTela = elemento.clientHeight;
         const tamanhoTotal = elemento.scrollHeight;
@@ -215,8 +215,6 @@ export default function Home() {
         setIsLogin(!isLogin);
     };
 
-    // lista só com as receitas que NÃO são o destaque atual
-
     return (
         <>
             <Header
@@ -228,8 +226,6 @@ export default function Home() {
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
             />
-
-          
 
             <OChefinho
                 variant={
@@ -254,7 +250,7 @@ export default function Home() {
             <div className="sections" onScroll={lidarComScroll}>
                 <section className="hero">
                     <div className="content-hero">
-                        <div className="title-serach-bar">
+                        <div className="title-hero">
                             <h1>As melhores receitas você encontra aqui!</h1>
                         </div>
                     </div>
@@ -298,10 +294,11 @@ export default function Home() {
                 </nav>
 
                 {/* SEÇÃO DE RESULTADOS DA BUSCA */}
-                {fezBusca && (
+                {` ${resultadosBusca.length} resultados para "${busca}"`}
+
+                {/* {fezBusca && (
                     <section className="pratos-do-dia resultados-busca">
                         <h2 className="titulo-secao">
-                            {` ${resultadosBusca.length} resultados para "${busca}"`}
                         </h2>
                         <p className="mensagem-pratos-do-dia">{mensagem}</p>
 
@@ -334,7 +331,41 @@ export default function Home() {
                             )}
                         </div>
                     </section>
-                )}
+                )} */}
+
+                {fezBusca && (
+    <div className="resultados-busca-container">
+        {/* Mantive o título e a mensagem soltos acima da grade para manter a lógica */}
+        <h2 className="titulo-secao"></h2>
+        <p className="mensagem-pratos-do-dia">{mensagem}</p>
+
+        {/* Aqui entra a mágica: usando o mesmo wrapper das Entradas */}
+        <SecaoEntradas>
+            {loading ? (
+                Array.from({ length: 4 }).map((_, i) => (
+                    <LoaderSkeletonCard key={i} />
+                ))
+            ) : resultadosBusca.length > 0 ? (
+                resultadosBusca.map((receita) => (
+                    <Card
+                        _id={receita._id}
+                        key={receita._id}
+                        src={receita.imagem}
+                        alt={"imagem da receita de " + receita.titulo}
+                        titulo={receita.titulo}
+                        tempoPreparo={`${receita.tempoPreparo} min`}
+                        complexidade={`${receita.complexidade}`}
+                        porcoes={`${receita.porcoes}`}
+                    />
+                ))
+            ) : (
+                <p>
+                    Nenhuma receita encontrada. Que tal perguntar para O Chefinho?
+                </p>
+            )}
+        </SecaoEntradas>
+    </div>
+)}
 
                 <p className="mensagem-pratos-do-dia">{mensagem}</p>
                 {/* Início seção entradas */}

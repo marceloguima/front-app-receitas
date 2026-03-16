@@ -1,7 +1,6 @@
 .header {
-    width: 97%;
-    border-radius: 70px;
-    padding: 5px 20px;
+    width: 100%;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,17 +8,18 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 20px;
+    background: #ffffff;
 
     box-shadow: 0 4px 10px var(--preto-700);
+    border-bottom: solid 2px var(--cor-primaria);
     z-index: 6;
 
-    background: rgba(253, 53, 3, 0.116);
+    /* background: rgba(253, 53, 3, 0.116);
 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4); */
 }
 
 .nav-header {
@@ -30,23 +30,19 @@
     gap: 20px;
 }
 
-.menu {
+.menu-descktop {
     width: 40%;
     display: flex;
     justify-content: space-between;
 }
 
-.menu li {
-    list-style: none;
-}
-
-.hidden-menu {
+.hidden-menu-mobile {
     position: absolute;
     right: -700px;
     bottom: 300px;
     transition: ease .9s;
     opacity: .1;
-   
+    
 }
 
 .show-menu-mobile {
@@ -64,17 +60,20 @@
     transition: ease .9s;
 }
 
+.show-menu-mobile li, .hidden-menu-mobile li, .menu-descktop li {
+    list-style: none;
+}
+
 .link {
-    color: var(--cor-texto-inverso);
+    color: var(--cor-texto-terciario);
     width: 110px;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    transition:
-        color 0.4s ease,
-        transform 0.4s ease;
+    transition: ease .5s
+    
 }
 
 .btn-login {
@@ -104,15 +103,17 @@
 
 .btn-login,
 .btn-menu {
-    color: var(--cor-texto-inverso);
+    color: var(--cor-texto-terciario);
     transition:
         color 0.3s ease,
         transform 0.2s ease;
 }
 
+
 @media (hover: hover) {
-    .menu li:hover .link {
+    .menu-descktop li:hover .link {
         background: var(--cor-primaria);
+        color: var(--cor-texto-inverso);
         font-weight: 500;
     }
 
@@ -141,10 +142,7 @@
 }
 
 @media (max-width: 680px) {
-    .header {
-        border-radius: 20px;
-        padding: 10px;
-    }
+    
     .nav-header {
         grid-template-columns: 1fr 2fr 1fr;
         gap: 5px;

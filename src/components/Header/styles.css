@@ -48,7 +48,7 @@
 .show-menu-mobile {
     position: absolute;
     bottom: -230px;
-    right: 0;
+    right: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +56,8 @@
     width: 200px;
     padding: 30px;
     border-radius: 10px;
-    background: var(--cor-primaria);
+    background: #fff;
+    border: solid 1px var(--cor-primaria);
     transition: ease .9s;
 }
 

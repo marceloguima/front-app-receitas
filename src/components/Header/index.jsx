@@ -8,12 +8,20 @@ import "./styles.css";
 // icones
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
+
 
 const Header = ({ login, usuario, onSubmit, value, onChange }) => {
     const [isMobile, setIsMobile] = useState(false);
+    const [menuAberto, setMenuAberto] = useState(false)
+
+    const mudarIcon = ()=>{
+        setMenuAberto(!menuAberto)
+    }
 
     const showMenu = () => {
         setIsMobile(!isMobile);
+        mudarIcon()
     };
 
     return (
@@ -78,7 +86,10 @@ const Header = ({ login, usuario, onSubmit, value, onChange }) => {
                 </button>
 
                 <button className="btn-menu" onClick={showMenu}>
-                    <IoMenu />
+                    {menuAberto ? <IoClose /> : <IoMenu />}
+                    
+                  
+
                 </button>
             </nav>
         </header>

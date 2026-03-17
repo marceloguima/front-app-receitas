@@ -42,8 +42,9 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
                 console.log("Resposta do servidor:", resposta.data);
 
-
-                setMensagemSucesso(`Seja bem vindo ! ${resposta.data.usuario.nome}`);
+                setMensagemSucesso(
+                    `Seja bem vindo ! ${resposta.data.usuario.nome}`,
+                );
                 localStorage.setItem(
                     "crachaDoUsuario",
                     JSON.stringify(resposta.data.usuario),
@@ -100,7 +101,6 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                 <p className="p-sucess">{mensagemSucesso}</p>
                 <p className="p-erro">{mensagemErro}</p>
             </div>
-
             <CampoInput
                 id="email"
                 textLabel="E-mail"
@@ -108,11 +108,9 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
-
             <div className="mensagens">
                 <span className="span-erro">{mensagemEmail}</span>
-            </div> 
-
+            </div>
             <CampoInput
                 id="senha"
                 tipo="password"

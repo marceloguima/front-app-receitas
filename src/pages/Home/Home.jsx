@@ -201,7 +201,33 @@ export default function Home() {
     };
 
     // cadastro/login de usuario
-    const controleEntrada = () => {
+useEffect(() => {
+        // 1. Vai na gaveta do navegador e procura o crachá
+        const crachaGuardado = localStorage.getItem("crachaDoUsuario");
+
+        // 2. Se achou o crachá...
+        if (crachaGuardado) {
+            // 3. Transforma o texto (JSON) de volta em objeto JavaScript
+            const dadosDoUsuario = JSON.parse(crachaGuardado);
+            
+            // 4. Salva no estado do React, logando o usuário automaticamente!
+            setUsuarioLogado(dadosDoUsuario);
+        }
+    }, []); // <-- Esse array vazio é vital. Significa "rode só na montagem da tela".
+
+    // Função que você já passa pro FormularioLogin
+    const liberaEntrada = (usuario) => {
+        setUsuarioLogado(usuario);
+    };
+
+    // Bônus: Função para o botão de "Sair"
+    const fazerLogout = () => {
+        localStorage.removeItem("crachaDoUsuario"); // Joga o crachá fora
+        setUsuarioLogado(null); // Tira da memória do React
+    };
+// ---------------------------------------------------------------------
+    const controleEntrada = (usuario) => {
+        setUsuarioLogado(usuario)
         setShowFormulario(true);
     };
 

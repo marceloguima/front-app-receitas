@@ -197,15 +197,13 @@
 .menu-secoes li {
     width: 22%;
     max-width: 120px;
-    min-width: 80px;
+    min-width: 90px;
     display: flex;
     justify-content: center;
     list-style: none;
     flex-shrink: 0;
 }
-.menu-secoes button {
-    font-size: 0.9rem;
-}
+
 
 /*  FIM MENU DE NAVEGAÇÃO DE CATEGORIAS */
 
@@ -554,15 +552,6 @@ footer {
         right: -33px;
     }
 
-/* ATENÇÂO verificar */
-.menu-secoes{
-    /* gap: 10px; */
-}
-/* ATENÇÂO verificar */
-/*     
-.menu-secoes li {
-    width: 100px;
-} */
 
 }
 
@@ -624,11 +613,6 @@ footer {
         gap: 20px;
     }
     
-    .menu-secoes li a{
-        font-size: .7rem;
-
-    }
-  
 
     .titulo-card-mini {
         font-size: 0.6rem;

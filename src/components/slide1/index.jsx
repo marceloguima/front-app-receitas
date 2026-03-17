@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import "./styles.css";
 import { GrNext, GrPrevious } from "react-icons/gr";
 
-const Slideprimary = ({ card }) => {
+const Slideprimary = ({ children}) => {
     const slides = useRef(null);
 
     // Mover para a Esquerda (Botão Prev)
@@ -21,11 +21,10 @@ const Slideprimary = ({ card }) => {
 
     return (
         <div className="slide-primary">
-            <h2 className="titulo-secao">Sobremesas</h2>
 
             {/* O Container que vai rolar */}
             <div className="itens-slide-primary" ref={slides}>
-                {card}
+                {children}
             </div>
 
             {/* Os botões de controle */}

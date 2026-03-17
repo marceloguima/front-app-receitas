@@ -4,6 +4,7 @@
     height: 280px;
     flex: none;
     border-radius: 10px;
+    transition: ease-in .5s;
 }
 .card-interno {
     width: 100%;

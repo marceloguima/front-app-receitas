@@ -40,7 +40,7 @@ body {
     --laranja-300: #ffb066;
     --laranja-400: #fb8123;
     --laranja-450: #ee630767;
-    --laranja-500: #ee6307;
+    --laranja-500: #ee4807;
     --laranja-600: #d65506;
     --laranja-700: #b34505;
     --laranja-800: #8a3604;
@@ -131,7 +131,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     max-width: 1200px;
     box-shadow: var(--sombra-card);
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 50px;
 }
 
 @media(max-width: 620px){

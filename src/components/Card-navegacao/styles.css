@@ -1,0 +1,32 @@
+.card-nav{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.card-nav:hover img{
+transform: scale(1.03);
+
+}
+
+.card-nav img{
+    width: 80%;
+    border-radius: 50%;
+}
+
+.card-nav h4{
+    color: var(--cor-primaria);
+}
+
+@media(max-width: 780px){
+    .card-nav{
+        font-size: .8rem;
+    }
+
+   
+
+}
+

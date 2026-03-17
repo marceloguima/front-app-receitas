@@ -18,7 +18,7 @@
 }
 
 .btn:hover {
-    background: var(--cor-secundaria-hover);
+    background: var(--cor-primaria-hover);
     transition: ease-in-out 0.3s;
 }
 

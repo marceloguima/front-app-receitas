@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     width: 100vw;
     height: 100vh;
@@ -14,23 +15,6 @@ body {
     background: var(--quarta-cor);
     overflow: hidden;
 }
-
-/* 
- 
-:root {
-    --cor-primaria: #ee6307;
-    --cor-secundaria: #fae0d2;
-    --cor-terciaria: #f7eeea;
-    --quarta-cor: #f3f3f3;
-    --quinta-cor:#ecdfd8;
-    --cor-texto1: #333333;
-    --cor-texto2: #f7f7f7;
-    --borda1: #ccc;
-    --preto:#252525;
-    --altura-btn_input: 45px;
-    --padding-btn: 10px 20px
-    --sombra1: 1px 4px 6px #0000004d;
-}    */
 
 :root {
     /* Tons de Laranja */
@@ -132,11 +116,11 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     box-shadow: var(--sombra-card);
     border-radius: 10px;
     padding: 20px 50px;
+    scroll-margin-top: 25vh;
 }
 
-@media(max-width: 620px){
-    .secoes{
+@media (max-width: 620px) {
+    .secoes {
         padding: 20px 0;
     }
 }
-

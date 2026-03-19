@@ -9,6 +9,9 @@ import TelaAdmin from "./pages/Admin";
 
 import "./index.css";
 
+// 1.  CONTEXTO
+import AuthProvider from "./context/Context";
+
 import {
     createBrowserRouter,
     RouterContextProvider,
@@ -28,7 +31,6 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
 
-          
             {
                 path: "/detalhes/:id",
                 element: <DetalhesReceita />,
@@ -43,6 +45,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
     </StrictMode>,
 );

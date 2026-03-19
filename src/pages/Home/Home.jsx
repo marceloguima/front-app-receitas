@@ -26,7 +26,9 @@ import ReceitaInfo from "../../components/ReceitaInfo";
 import Slideprimary from "../../components/slide1";
 import CardNavegacao from "../../components/Card-navegacao";
 
-// seções
+import { useContext } from "react";
+import { AuthContext } from "../../context/Context";
+
 
 // css
 import "./home.css";
@@ -36,6 +38,7 @@ import { RiDrinks2Fill } from "react-icons/ri";
 import { GiCakeSlice } from "react-icons/gi";
 import { BiSolidBowlHot } from "react-icons/bi";
 import { MdDinnerDining } from "react-icons/md";
+
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiExpandDiagonalSFill } from "react-icons/ri";
@@ -44,6 +47,15 @@ import { FaRegClock } from "react-icons/fa";
 import { IoRestaurantOutline } from "react-icons/io5";
 
 export default function Home() {
+    const {
+        usuarioLogado,
+        setUsuarioLogado,
+        showFormulario,
+        setShowFormulario,
+        isLogin,
+        setIsLogin,
+    } = useContext(AuthContext);
+
     const [receitas, setReceitas] = useState([]);
 
     // ---------------------------------------------------------
@@ -90,9 +102,7 @@ export default function Home() {
 
     // -----------------------------------------------------------------------
 
-    // para veerificar------------------
-    const [categoriaAtiva, setCategoriaAtiva] = useState("todas");
-    // para veerificar------------------
+   
 
     const [chefOpen, setChefOpen] = useState(false);
     const [chefExpandido, setChefExpandido] = useState(false);
@@ -105,12 +115,6 @@ export default function Home() {
 
     const [resultadosBusca, setResultadosBusca] = useState([]);
     const [fezBusca, setFezBusca] = useState(false);
-
-    const [showFormulario, setShowFormulario] = useState(false);
-    // loader spinner
-    const [isLogin, setIsLogin] = useState(false);
-
-    const [usuarioLogado, setUsuarioLogado] = useState(null);
 
     // Carrega os dados no início quando a página carrega
     useEffect(() => {
@@ -167,8 +171,7 @@ export default function Home() {
     // Chamando após o login, feca o formulário de login e abre a IA
     const criarReceitaComIA = (dadosDoUsuario) => {
         setUsuarioLogado(dadosDoUsuario);
-        closeFormulario();
-        setChefOpen(true);
+        setShowFormulario(false)
     };
 
     // expandir ou encolher
@@ -200,52 +203,69 @@ export default function Home() {
         }
     };
 
-    // cadastro/login de usuario
-useEffect(() => {
-        // 1. Vai na gaveta do navegador e procura o crachá
-        const crachaGuardado = localStorage.getItem("crachaDoUsuario");
-
-        // 2. Se achou o crachá...
-        if (crachaGuardado) {
-            // 3. Transforma o texto (JSON) de volta em objeto JavaScript
-            const dadosDoUsuario = JSON.parse(crachaGuardado);
-            
-            // 4. Salva no estado do React, logando o usuário automaticamente!
-            setUsuarioLogado(dadosDoUsuario);
+    const controleEntrada = () => {
+        // Ao cllicar no avatar se não tiver logado abre o form para logar
+        if(!usuarioLogado){
+            setShowFormulario(true)
+        }else{
+            setChefOpen(true)
         }
-    }, []); // <-- Esse array vazio é vital. Significa "rode só na montagem da tela".
-
-    // Função que você já passa pro FormularioLogin
-    const liberaEntrada = (usuario) => {
-        setUsuarioLogado(usuario);
+        
     };
 
-    // Bônus: Função para o botão de "Sair"
-    const fazerLogout = () => {
-        localStorage.removeItem("crachaDoUsuario"); // Joga o crachá fora
-        setUsuarioLogado(null); // Tira da memória do React
-    };
-// ---------------------------------------------------------------------
-    const controleEntrada = (usuario) => {
-        setUsuarioLogado(usuario)
-        setShowFormulario(true);
-    };
+    // para botão de fechar formulário
+    const closeFormulario =()=>{
+        setShowFormulario(false)
+    }
 
-    const closeFormulario = () => {
-        setShowFormulario(false);
-    };
-
+   
+// para alternar quando o usuario entrar no formulário errado (se tem conta e ta no cadastro ou se não tem conata e ta em login)
     const alternaFormulario = () => {
         setIsLogin(!isLogin);
     };
 
     return (
         <>
+            {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
+            {showFormulario && (
+                <div className="formulario-cadastro-overlay">
+                    <div className="corpo-formulario">
+                        <button
+                            className="btn-fecha-form"
+                            type="button"
+                            onClick={closeFormulario}
+                        >
+                            {" "}
+                            <IoCloseCircleOutline />
+                        </button>{" "}
+                        <span className="texto-btn-fechar">Fechar</span>
+                        {/* O Chat com a ia será apenas para usuários logados */}
+                        {isLogin ? (
+                            <FormularioLogin
+                                liberaEntrada={criarReceitaComIA}
+                            />
+                        ) : (
+                            <FormularioCadastroUsuario
+                                alternaCadastroParaLogin={alternaFormulario}
+                            />
+                        )}
+                        <div className="alternar-formulario">
+                            <p>
+                                {isLogin
+                                    ? "Não tem uma conta?"
+                                    : "Já tem uma conta?"}
+                            </p>
+                            <button type="button" onClick={alternaFormulario}>
+                                {isLogin ? "Crie agora" : "Entrar"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/*-------------------------------------- Fim Formulario de cadastro/Login ------------------------------ */}
+
             <Header
-                login={controleEntrada}
-                usuario={
-                    usuarioLogado ? `Olá, ${usuarioLogado.nome}` : "Faça login"
-                }
                 onSubmit={handleBuscar}
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
@@ -284,29 +304,33 @@ useEffect(() => {
                     <ul className="menu-secoes">
                         <li>
                             <CardNavegacao
+                                href="#entradas"
                                 src="./img-entrada.png"
                                 titulo="Entradas"
                             />
                         </li>
                         <li>
                             <CardNavegacao
+                                href="#prato-principal"
                                 src="./img-prato-principal.png"
                                 titulo="Prato Principal"
                             />
                         </li>
                         <li>
                             <CardNavegacao
+                                href="#sobremesas"
                                 src="./img-sobremesa.png"
                                 titulo="Sobremesas"
                             />
                         </li>
                         <li>
                             <CardNavegacao
+                                href="#bebidas"
                                 src="./img-bebida.png"
                                 titulo="Bebidas"
                             />
                         </li>
-                          <li>
+                        <li>
                             <CardNavegacao
                                 src="./img-receita-favorita.png"
                                 titulo="Favoritas"
@@ -355,12 +379,10 @@ useEffect(() => {
                     </div>
                 )}
 
-                {mensagem && (
-                    <p>{mensagem}</p>
-                )}
+                {mensagem && <p>{mensagem}</p>}
 
                 {/* Início seção entradas */}
-                <section className="secoes secao-entradas">
+                <section className="secoes secao-entradas" id="entradas">
                     <h2 className="titulo-secao">Entradas</h2>
                     <Slideprimary>
                         {loading
@@ -392,7 +414,10 @@ useEffect(() => {
                 {/* Fim seção entradas */}
 
                 {/* Início seção pratos principal */}
-                <section className="secoes secao-prato-principal">
+                <section
+                    className="secoes secao-prato-principal"
+                    id="prato-principal"
+                >
                     <h2 className="titulo-secao">Pratos principal</h2>
 
                     <div className="cards-prato-principal">
@@ -479,7 +504,7 @@ useEffect(() => {
                 {/* ----Fim  seção pratos principal------ */}
 
                 {/* Início seção sobremesas*/}
-                <section className="secoes secao-sobremesas">
+                <section className="secoes secao-sobremesas" id="sobremesas">
                     <h2 className="titulo-secao">Sobremesas</h2>
 
                     <Slideprimary>
@@ -513,7 +538,7 @@ useEffect(() => {
                 {/* FIm seção sobremesas*/}
 
                 {/* bebidas */}
-                <section className="secoes secao-bebidas">
+                <section className="secoes secao-bebidas" id="bebidas">
                     <h2 className="titulo-secao">Bebidas</h2>
 
                     <div className="circulos">
@@ -559,45 +584,6 @@ useEffect(() => {
                 <Footer />
             </div>
             {/* Fim área do botão com avatar do chefinho */}
-
-            {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
-            {showFormulario && (
-                <div className="formulario-cadastro-overlay">
-                    <div className="corpo-formulario">
-                        <button
-                            className="btn-fecha-form"
-                            type="button"
-                            onClick={closeFormulario}
-                        >
-                            {" "}
-                            <IoCloseCircleOutline />
-                        </button>{" "}
-                        <span className="texto-btn-fechar">Fechar</span>
-                        {/* O Chat com a ia será apenas para usuários logados */}
-                        {isLogin ? (
-                            <FormularioLogin
-                                liberaEntrada={criarReceitaComIA}
-                            />
-                        ) : (
-                            <FormularioCadastroUsuario
-                                alternaCadastroParaLogin={alternaFormulario}
-                            />
-                        )}
-                        <div className="alternar-formulario">
-                            <p>
-                                {isLogin
-                                    ? "Não tem uma conta?"
-                                    : "Já tem uma conta?"}
-                            </p>
-                            <button type="button" onClick={alternaFormulario}>
-                                {isLogin ? "Crie agora" : "Entrar"}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/*-------------------------------------- Fim Formulario de cadastro/Login ------------------------------ */}
         </>
     );
 }

@@ -1,19 +1,22 @@
 /* classe padrão do botão */
 .btn {
+    width: 100%;
     border: none;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding: 0 20px;
     height: var(--altura-btn_input);
     cursor: pointer;
-    background: var(--cor-bg-destaque);
-    border: solid 1px var(--cor-primaria);
-    color: var(--cor-texto-secundario);
-    border-radius: 30px;
+    background: var(--cor-primaria);
+    color: #ffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
     box-shadow: var(--sombra-card);
 }
 

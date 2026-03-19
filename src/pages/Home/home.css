@@ -79,6 +79,10 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 20px;
+    /* para uma rolagem suave ao clicar nas categorias */
+        scroll-behavior: smooth; 
+
+
 }
 
 .sections::-webkit-scrollbar {
@@ -276,15 +280,6 @@
     padding: 15px 0;
 }
 
-.btn-card-destaque {
-    width: 100%;
-    height: 45px;
-    background: var(--cor-primaria);
-    color: #ffff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
 
 /* Coluna de Cards Pequenos */
 .coluna-pequenos {

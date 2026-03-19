@@ -1,13 +1,12 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import "./styles.css"
 
-const CardNavegacao = ({src, titulo}) => {
+const CardNavegacao = ({src, titulo, href}) => {
   return (
-    <NavLink className='card-nav'>
+    <a className='card-nav' href={href}>
       <img src={src} alt="" />
       <h4>{titulo}</h4>
-    </NavLink>
+    </a>
   )
 }
 

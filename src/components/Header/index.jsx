@@ -94,6 +94,10 @@ const { usuarioLogado, dropPerfil, setDropPerfil, setShowformulario } = useConte
                 </ul>
                 {/* Fim menu descktop */}
 
+                    <button className="btn-menu" onClick={showMenu}>
+                    {menuAberto ? <IoClose /> : <IoMenu />}
+                </button>
+
                 <button className="btn-login" onClick={abreDropdowPerifl}>
                     <FaRegCircleUser />
 
@@ -103,12 +107,7 @@ const { usuarioLogado, dropPerfil, setDropPerfil, setShowformulario } = useConte
                 </button>
                 
 
-                <button className="btn-menu" onClick={showMenu}>
-                    {menuAberto ? <IoClose /> : <IoMenu />}
-                    
-                  
-
-                </button>
+            
             </nav>
 
           

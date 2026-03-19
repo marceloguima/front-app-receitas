@@ -8,6 +8,7 @@
     position: absolute;
     top: 80px;
     right: 10px;
+    z-index: 999;
 }
 
 .seta{
@@ -17,9 +18,10 @@ background-color: var(--branco);
 border-left: solid 1px var(--cor-primaria);
 border-top: solid 1px var(--cor-primaria);
 position: absolute;
-left: 135px;
+right: 50px;
 top: -10px;
 transform: rotate(45deg);
+
 }
 
 .menu-deslogado{
@@ -55,11 +57,12 @@ margin-bottom: 10px;
 .botoes-drop{
     width: 100%;
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .btn-criar-conta{
-    background: #ffebe4 !important;
+    background: #ffddd1 !important;
     color: var(--cor-primaria) !important;
     border: solid 1px var(--cor-primaria) !important;
 }

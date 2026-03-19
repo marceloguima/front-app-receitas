@@ -4,7 +4,8 @@
     align-items: center;
     background: #ffffff;
     border-radius: 30px;
-    width: 100%;
+    width: 100% ;
+    min-width: 300px;
     max-width: 500px;
     height: var(--altura-btn_input);
     border: solid 1px var(--cor-primaria);

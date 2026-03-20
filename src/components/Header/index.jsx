@@ -52,7 +52,7 @@ const { usuarioLogado, dropPerfil, setDropPerfil, setShowformulario } = useConte
                 {/* Início menu mobile */}
                 <ul
                     className={
-                        isMobile ? "show-menu-mobile" : "hidden-menu-mobile"
+                        isMobile ? "show-menu menu-mobile" : "menu-mobile"
                     }
                 >
                     <li>
@@ -60,14 +60,16 @@ const { usuarioLogado, dropPerfil, setDropPerfil, setShowformulario } = useConte
                             Início
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/" className="link">
-                            Favoritas
-                        </NavLink>
-                    </li>
+                   
                     <li>
                         <NavLink to="/" className="link">
                             Meu caderno
+                        </NavLink>
+                    </li>
+
+                     <li>
+                        <NavLink to="/" className="link">
+                            Sobre
                         </NavLink>
                     </li>
                 </ul>
@@ -83,12 +85,13 @@ const { usuarioLogado, dropPerfil, setDropPerfil, setShowformulario } = useConte
                     </li>
                     <li>
                         <NavLink to="/" className="link">
-                            Favoritas
+                            Meu caderno
                         </NavLink>
                     </li>
+
                     <li>
                         <NavLink to="/" className="link">
-                            Meu caderno
+                            Sobre
                         </NavLink>
                     </li>
                 </ul>

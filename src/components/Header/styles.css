@@ -36,19 +36,12 @@
     justify-content: space-between;
 }
 
-.hidden-menu-mobile {
-    position: absolute;
-    right: -700px;
-    bottom: 300px;
-    transition: ease .9s;
-    opacity: .1;
-    
-}
 
-.show-menu-mobile {
+
+.menu-mobile {
     position: absolute;
     bottom: -230px;
-    right: 10px;
+    right: -700px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,10 +51,20 @@
     border-radius: 10px;
     background: #fff;
     border: solid 1px var(--cor-primaria);
-    transition: ease .9s;
+    box-shadow: var(--sombra-card);
+    transition: ease-in-out .5s;
 }
 
-.show-menu-mobile li, .hidden-menu-mobile li, .menu-descktop li {
+
+.menu-mobile.show-menu{
+    right: 10px;
+    bottom: -230px;
+    
+}
+
+
+
+.menu-mobile li, .menu-descktop li {
     list-style: none;
 }
 

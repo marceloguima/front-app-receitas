@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
-import Botao from "../Botao";
+
+import { MdLogout } from "react-icons/md";
 
 import { FaRegCircleUser } from "react-icons/fa6";
 
@@ -47,9 +48,20 @@ const DropdownPerfil = () => {
                 <div className="menu-logado">
                     <div className="nome-perfil-drop">
                         <FaRegCircleUser />
-                        <span className="nome-user">{usuarioLogado.nome}</span>
+                        <div className="nome-email-user">
+                            <span className="nome-user">
+                                {usuarioLogado.nome}
+                            </span>
+                            <span className="email-user">
+                                {usuarioLogado.email}
+                            </span>
+                        </div>
                     </div>
-                    <Botao onClick={fazerLogout}>Sair</Botao>
+                    <hr />
+                    <button className="btn-sair" onClick={fazerLogout}>
+                        <MdLogout />
+                        Sair
+                    </button>
                 </div>
             ) : (
                 <div className="menu-deslogado">
@@ -57,10 +69,14 @@ const DropdownPerfil = () => {
 
                     <div className="botoes-drop">
                         {/* Botão de login do dropdown */}
-                        <Botao onClick={abrirFormLogin}>Entrar</Botao>
+                        <button className="btn-entrar" onClick={abrirFormLogin}>Entrar</button>
 
                         {/* Botão de criar conta do dropdown */}
-                        <Botao variant="btn-criar-conta" onClick={abrirFormCadastro}>Criar conta</Botao>
+                        <button className="btn-cria-conta"
+                            onClick={abrirFormCadastro}
+                        >
+                            Criar conta
+                        </button>
                     </div>
                 </div>
             )}

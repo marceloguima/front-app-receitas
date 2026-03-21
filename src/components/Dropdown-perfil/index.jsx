@@ -8,10 +8,9 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { useContext } from "react";
 import { AuthContext } from "../../context/Context";
 
-const DropdownPerfil = () => {
+const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
     const {
         usuarioLogado,
-        fazerLogout,
         setShowFormulario,
         setIsLogin,
         setDropPerfil,
@@ -40,6 +39,8 @@ const DropdownPerfil = () => {
         setDropPerfil(false);
     };
 
+  
+
     return (
         <div className="dropdown">
             {/* a setinha do dropdown */}
@@ -50,18 +51,27 @@ const DropdownPerfil = () => {
                         <FaRegCircleUser />
                         <div className="nome-email-user">
                             <span className="nome-user">
-                                {usuarioLogado.nome}
+                                {texto}
                             </span>
                             <span className="email-user">
-                                {usuarioLogado.email}
+                                {texto2}
                             </span>
                         </div>
                     </div>
                     <hr />
-                    <button className="btn-sair" onClick={fazerLogout}>
-                        <MdLogout />
-                        Sair
-                    </button>
+                
+
+                    <div className="botoes-drop">
+                        {/* Botão de log out */}
+                        <button className="btn-sair" onClick={onClick}>
+                            {" "}
+                            <MdLogout />
+                            {textoBotao}
+                        </button>
+
+                        {/* Botão cancelar saida do usuário */}
+                        {children}
+                    </div>
                 </div>
             ) : (
                 <div className="menu-deslogado">
@@ -69,10 +79,13 @@ const DropdownPerfil = () => {
 
                     <div className="botoes-drop">
                         {/* Botão de login do dropdown */}
-                        <button className="btn-entrar" onClick={abrirFormLogin}>Entrar</button>
+                        <button className="btn-entrar" onClick={abrirFormLogin}>
+                            Entrar
+                        </button>
 
                         {/* Botão de criar conta do dropdown */}
-                        <button className="btn-cria-conta"
+                        <button
+                            className="btn-cria-conta"
                             onClick={abrirFormCadastro}
                         >
                             Criar conta

@@ -5,6 +5,7 @@
     align-items: center;
     gap: 10px;
     border-radius: 10px;
+    padding: 5px 0;
 }
 
 .card-nav:hover img{

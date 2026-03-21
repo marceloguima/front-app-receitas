@@ -115,3 +115,7 @@ background: #f0f0f0;
 .btn-sair svg{
     font-size: 1.3rem;
 }
+
+.btn-cancela-saida{
+    background: #dadada !important;
+}

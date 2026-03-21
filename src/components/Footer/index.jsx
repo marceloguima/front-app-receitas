@@ -25,7 +25,7 @@ function Footer() {
             </ul>
         </div>
 
-        <div className="footer-links">
+        {/* <div className="footer-links">
             <h4>Ajuda & Contato</h4>
             <ul>
                 <li><a href="#como-funciona">Como usar o Chefinho</a></li>
@@ -33,7 +33,7 @@ function Footer() {
                 <li><a href="#privacidade">Política de Privacidade</a></li>
                 <li><a href="#termos">Termos de Uso</a></li>
             </ul>
-        </div>
+        </div> */}
     </div>
 
     <div className="footer-bottom">

@@ -1,12 +1,16 @@
 import React from "react";
 import imagemLogo from "/logo.png"
+
+import { NavLink } from "react-router-dom";
+
 import "./styles.css"
 
 function Logo() {
+    
     return (
-        <div className="logo">
+        <NavLink className="logo" to="/">
             <img src={imagemLogo} alt="logo" />
-        </div>
+        </NavLink>
     );
 }
 

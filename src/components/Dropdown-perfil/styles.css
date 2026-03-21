@@ -5,7 +5,6 @@
     box-shadow: var(--sombra-card);
     border-radius: 10px;
  border: solid 1px #dadada;
-
     position: absolute;
     top: 80px;
     right: 14px;
@@ -94,15 +93,20 @@ hr{
     cursor: pointer;
     transition: ease .2s;
 }
-
+/* 
 .dropdown button:hover{
 background: #f0f0f0;
-}
+} */
 
 .btn-entrar{
-background: #f0f0f0 !important;
+    background: #f0f0f0 !important;
 }
 
+
+.btn-entrar:hover, .btn-cria-conta:hover{
+    background: #e4e4e4 !important;
+
+}
 
 .btn-sair{
     background: #fde7e7c7 !important;

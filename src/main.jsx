@@ -6,6 +6,7 @@ import ErrorPage from "./pages/Error-page/PaginaErro";
 import Home from "./pages/Home/Home";
 import DetalhesReceita from "./pages/detalhes-receita";
 import TelaAdmin from "./pages/Admin";
+import TelaSobreNos from "./pages/SobreNos"
 
 import "./index.css";
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: "/detalhes/:id",
                 element: <DetalhesReceita />,
+            },
+            {
+                path: "/sobre",
+                element: <TelaSobreNos />,
             },
             {
                 path: "admin",

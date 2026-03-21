@@ -150,7 +150,7 @@
 }
 
 
-/* Início estilos da IA chefinho */
+/* ========================= Início estilos controle de entrada da IA chefinho ============================= */
 .aberto {
     width: 30%;
     z-index: 5;
@@ -167,7 +167,74 @@
     border: none;
     transition: linear 0.5s;
 }
-/* Fim estilos da IA chefinho */
+
+
+.hiden-modal {
+    position: absolute;
+    right: 200px;
+    transition: ease-in-out 0.5s;
+}
+
+.campo-chama-chefinho {
+    position: fixed;
+    right: 90px;
+    bottom: 50px;
+    padding: 10px;
+    z-index: 10;
+}
+
+.campo-chama-chefinho button {
+    width: 80px;
+    background: transparent;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: -80px;
+    bottom: 0;
+    animation: pulsar 1.8s infinite;
+}
+
+.campo-chama-chefinho button img {
+    width: 100%;
+    filter: drop-shadow(2px 6px 10px #525252);
+    object-fit: cover;
+}
+
+
+
+.campo-chama-chefinho button svg{
+color: var(--cor-primaria);
+font-size: 2rem;
+}
+
+
+/* balão de hover  do botão*/
+.fala-do-chef {
+    max-width: 290px;
+    min-width: 240px;
+    background: var(--cor-bg-destaque);
+    padding: 10px;
+    border-radius: 30px 30px 0 30px;
+    box-shadow: var(--sombra-card);
+    border: solid 1px var(--cor-primaria);
+    visibility: hidden;
+    position: absolute;
+    bottom: 90px;
+    right: -10px;
+}
+
+.fala-do-chef.ativa {
+    visibility: visible;
+}
+
+.fala-do-chef p {
+    color: var(--cor-texto-secundario);
+    font-size: 1rem;
+}
+/* Fim  balão de hover  do botão */
+
+/* ================================ Fim estilos da IA chefinho ================================== */
 
 /*  MENU DE NAVEGAÇÃO DE CATEGORIAS */
 .nav-menu {
@@ -367,32 +434,6 @@
 }
 /* ============================================= */
 
-/* COMPONENTE IA E BALÃO DE MENSAGEM */
-.hiden-modal {
-    position: absolute;
-    right: 200px;
-    transition: ease-in-out 0.5s;
-}
-
-.campo-chama-chefinho {
-    position: fixed;
-    right: 90px;
-    bottom: 50px;
-    padding: 10px;
-    z-index: 10;
-}
-
-.campo-chama-chefinho button {
-    width: 100px;
-    background: transparent;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    right: -80px;
-    bottom: 0;
-    animation: pulsar 1.8s infinite;
-}
 
 @keyframes pulsar {
     0% {
@@ -406,35 +447,6 @@
     }
 }
 
-.campo-chama-chefinho button img {
-    width: 100%;
-    filter: drop-shadow(2px 6px 10px #525252);
-    object-fit: cover;
-}
-
-.fala-do-chef {
-    max-width: 290px;
-    min-width: 240px;
-    background: var(--cor-bg-destaque);
-    padding: 10px;
-    border-radius: 30px 30px 0 30px;
-    box-shadow: var(--sombra-card);
-    border: solid 1px var(--cor-primaria);
-    visibility: hidden;
-    position: absolute;
-    bottom: 90px;
-    right: -10px;
-}
-
-.fala-do-chef.ativa {
-    visibility: visible;
-}
-
-.fala-do-chef p {
-    color: var(--cor-texto-secundario);
-    font-size: 1rem;
-}
-/* FIM COMPONENTE IA E BALÃO DE MENSAGEM */
 
 @media (min-width: 780px) {
     .campo-chama-chefinho button:hover + .fala-do-chef {

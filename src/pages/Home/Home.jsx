@@ -45,6 +45,7 @@ import { RiExpandDiagonalSFill } from "react-icons/ri";
 import { PiChefHatBold } from "react-icons/pi";
 import { FaRegClock } from "react-icons/fa";
 import { IoRestaurantOutline } from "react-icons/io5";
+import { HiSparkles } from "react-icons/hi2"
 
 import AvatarIa from "/avatar-ia.png"
 
@@ -567,8 +568,9 @@ export default function Home() {
 
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">
-                    {/* por enquanto estaou chamando o login toda vez que o usuario tentar usar a IA. */}
+                    {/* O chefinho so é liberado para usuários logados. */}
                     <button onClick={controleEntrada}>
+                        {/* <HiSparkles/> */}
                             <img src={AvatarIa} alt="Avatar do Chefinho" />
                        
                     </button>

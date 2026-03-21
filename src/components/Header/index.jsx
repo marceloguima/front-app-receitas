@@ -77,7 +77,7 @@ const Header = ({ onSubmit, value, onChange }) => {
                     </li>
 
                     <li>
-                        <NavLink to="/" className="link">
+                        <NavLink to="/sobre" className="link">
                             Sobre
                         </NavLink>
                     </li>
@@ -98,7 +98,7 @@ const Header = ({ onSubmit, value, onChange }) => {
                     </li>
 
                     <li>
-                        <NavLink to="/" className="link">
+                        <NavLink to="/sobre" className="link">
                             Sobre
                         </NavLink>
                     </li>

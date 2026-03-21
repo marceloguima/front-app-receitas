@@ -1,11 +1,11 @@
 main.minha-IA {
-    height: 90vh;
+    height: 100vh;
     background: var(--cinza-50);
     box-shadow: var(--sombra-card);
     display: flex;
     flex-direction: column;
     padding: 0 0 40px 0;
-    margin-top: 110px;
+    /* margin-top: 110px; */
     position: relative;
     z-index: 100;
 }
@@ -18,7 +18,7 @@ main.minha-IA {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 16px;
     border-radius: 10px 10px 0 0;
     box-shadow: 0 4px 10px var(--preto-700);
     z-index: 11;

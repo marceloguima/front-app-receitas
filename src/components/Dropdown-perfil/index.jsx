@@ -82,7 +82,7 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
                         <button className="btn-entrar" onClick={abrirFormLogin}>
                             Entrar
                         </button>
-
+{/* <hr /> */}
                         {/* Botão de criar conta do dropdown */}
                         <button
                             className="btn-cria-conta"
@@ -90,6 +90,7 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
                         >
                             Criar conta
                         </button>
+                        {/* <hr /> */}
                     </div>
                 </div>
             )}

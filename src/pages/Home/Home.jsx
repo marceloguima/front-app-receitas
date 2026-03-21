@@ -197,7 +197,7 @@ export default function Home() {
         const tamanhoDaTela = elemento.clientHeight;
         const tamanhoTotal = elemento.scrollHeight;
 
-        if (totalRolado + tamanhoDaTela >= tamanhoTotal - 300) {
+        if (totalRolado + tamanhoDaTela >= tamanhoTotal - 210) {
             // Ao chegar no fim da página aparece um balão com mensagem da IA e some depois de 5 segundos
             setMensagemIA(true);
             setTimeout(() => {

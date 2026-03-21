@@ -121,8 +121,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
 
     // validação de senha, a senha deve ter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas, números e símbolos.
     const regexSenha =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\-_=+^<>~|/\\{}[\]()])[A-Za-z\d@$!%*?&#\-_=+^<>~|/\\{}[\]()]{8,}$/
     const validaFormatoSenha = () => {
         let isValid = true;
 

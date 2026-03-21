@@ -46,6 +46,9 @@ import { PiChefHatBold } from "react-icons/pi";
 import { FaRegClock } from "react-icons/fa";
 import { IoRestaurantOutline } from "react-icons/io5";
 
+import AvatarIa from "/avatar-ia.png"
+
+
 export default function Home() {
     const {
         usuarioLogado,
@@ -566,7 +569,8 @@ export default function Home() {
                 <div className="campo-chama-chefinho">
                     {/* por enquanto estaou chamando o login toda vez que o usuario tentar usar a IA. */}
                     <button onClick={controleEntrada}>
-                        <img src="./avatar-ia.png" alt="" />
+                            <img src={AvatarIa} alt="Avatar do Chefinho" />
+                       
                     </button>
 
                     <div

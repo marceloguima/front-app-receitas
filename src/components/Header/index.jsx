@@ -13,6 +13,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import DropdownPerfil from "../Dropdown-perfil";
+import { FaCheck } from "react-icons/fa6";
 
 const Header = ({ onSubmit, value, onChange }) => {
     const { usuarioLogado, dropPerfil, setDropPerfil, fazerLogout } =
@@ -119,7 +120,9 @@ const Header = ({ onSubmit, value, onChange }) => {
                                 ? "status-indicator-logado"
                                 : "status-indicator-logout"
                         }
-                    ></span>
+                    >
+                        {usuarioLogado ? <FaCheck className="icone-status-indicator"/> : <IoClose className="icone-status-indicator"/>}
+                    </span>
                     {usuarioLogado
                         ? `Olá, ${usuarioLogado.nome}!`
                         : "Crie uma conta"}
@@ -140,7 +143,9 @@ const Header = ({ onSubmit, value, onChange }) => {
                 <DropdownPerfil
                     textoBotao="sim, quero sair"
                     onClick={() => {
-                        fazerLogout(); setDropdownConfirma(false); setDropPerfil(false)
+                        fazerLogout();
+                        setDropdownConfirma(false);
+                        setDropPerfil(false);
                     }}
                     texto={`${usuarioLogado?.nome}, deseja mesmo sair?`}
                 >

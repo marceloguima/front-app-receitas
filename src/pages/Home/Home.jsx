@@ -29,7 +29,6 @@ import CardNavegacao from "../../components/Card-navegacao";
 import { useContext } from "react";
 import { AuthContext } from "../../context/Context";
 
-
 // css
 import "./home.css";
 
@@ -45,10 +44,9 @@ import { RiExpandDiagonalSFill } from "react-icons/ri";
 import { PiChefHatBold } from "react-icons/pi";
 import { FaRegClock } from "react-icons/fa";
 import { IoRestaurantOutline } from "react-icons/io5";
-import { HiSparkles } from "react-icons/hi2"
+import { HiSparkles } from "react-icons/hi2";
 
-import AvatarIa from "/avatar-ia.png"
-
+import AvatarIa from "/avatar-ia.png";
 
 export default function Home() {
     const {
@@ -82,10 +80,13 @@ export default function Home() {
 
     const [paginaAtual, setPaginaAtual] = useState(0);
     const itensPorPagina = isMobile ? 4 : 7;
+    const pratosPrincipais = receitas.filter(
+        (receita) => receita.categoria === "Prato Principal"
+    );
 
     const indiceInicio = paginaAtual * itensPorPagina;
     const indiceFim = indiceInicio + itensPorPagina;
-    const receitasDestaTela = receitas.slice(indiceInicio, indiceFim);
+    const receitasDestaTela = pratosPrincipais.slice(indiceInicio, indiceFim);
 
     const cardDestaque =
         cardClicado ||
@@ -105,8 +106,6 @@ export default function Home() {
     };
 
     // -----------------------------------------------------------------------
-
-   
 
     const [chefOpen, setChefOpen] = useState(false);
     const [chefExpandido, setChefExpandido] = useState(false);
@@ -175,7 +174,7 @@ export default function Home() {
     // Chamando após o login, feca o formulário de login e abre a IA
     const criarReceitaComIA = (dadosDoUsuario) => {
         setUsuarioLogado(dadosDoUsuario);
-        setShowFormulario(false)
+        setShowFormulario(false);
     };
 
     // expandir ou encolher
@@ -186,7 +185,6 @@ export default function Home() {
     const fecharChatIA = () => {
         setChefOpen(false);
         setChefExpandido(false);
-        console.log("fechar chat");
     };
 
     // Mede o fim da página
@@ -209,21 +207,19 @@ export default function Home() {
 
     const controleEntrada = () => {
         // Ao cllicar no avatar se não tiver logado abre o form para logar
-        if(!usuarioLogado){
-            setShowFormulario(true)
-        }else{
-            setChefOpen(true)
+        if (!usuarioLogado) {
+            setShowFormulario(true);
+        } else {
+            setChefOpen(true);
         }
-        
     };
 
     // para botão de fechar formulário
-    const closeFormulario =()=>{
-        setShowFormulario(false)
-    }
+    const closeFormulario = () => {
+        setShowFormulario(false);
+    };
 
-   
-// para alternar quando o usuario entrar no formulário errado (se tem conta e ta no cadastro ou se não tem conata e ta em login)
+    // para alternar quando o usuario entrar no formulário errado (se tem conta e ta no cadastro ou se não tem conata e ta em login)
     const alternaFormulario = () => {
         setIsLogin(!isLogin);
     };
@@ -299,7 +295,7 @@ export default function Home() {
                 <section className="hero">
                     <div className="content-hero">
                         <div className="title-hero">
-                            <h1>As melhores receitas você encontra aqui!</h1>
+                            <h1>As melhores <span>receitas</span> você encontra aqui!</h1>
                         </div>
                     </div>
                 </section>
@@ -446,9 +442,11 @@ export default function Home() {
                                         alt={cardDestaque.titulo}
                                     />
                                     <div className="info-destaque">
-                                        <h3 className="titulo-card-destaque">
-                                            {cardDestaque.titulo}
-                                        </h3>
+                                        <div className="caixa-titulo">
+                                            <h3 className="titulo-card-destaque">
+                                                {cardDestaque.titulo}
+                                            </h3>
+                                        </div>
                                         <div className="info">
                                             <ReceitaInfo
                                                 icone={<FaRegClock />}
@@ -463,9 +461,11 @@ export default function Home() {
                                             />
                                         </div>
                                         <Botao variant="btn-card-destaque">
-                                        <NavLink to={`/detalhes/${cardDestaque._id}`}>
-                                        Ver receita
-                                        </NavLink>
+                                            <NavLink
+                                                to={`/detalhes/${cardDestaque._id}`}
+                                            >
+                                                Ver receita
+                                            </NavLink>
                                         </Botao>
                                     </div>
                                 </div>
@@ -495,7 +495,7 @@ export default function Home() {
                                           </h4>
                                       </div>
                                   ))}
-                            {receitas.length > itensPorPagina && (
+                            {pratosPrincipais.length > itensPorPagina && (
                                 <button
                                     className="btn-ver-outras"
                                     onClick={irProximaPagina}
@@ -571,10 +571,10 @@ export default function Home() {
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">
                     {/* O chefinho so é liberado para usuários logados. */}
-                    <button onClick={controleEntrada}>
-                        {/* <HiSparkles/> */}
-                            <img src={AvatarIa} alt="Avatar do Chefinho" />
-                       
+                    <button onClick={controleEntrada} className="btn-chama-chefinho">
+                        <span className="texto-btn-chefinho">Oi, posso criar uma receita pra você</span>
+                        <HiSparkles className="icone-btn-chefinho"/>
+                        <img src={AvatarIa} alt="Avatar do Chefinho" className="img-btn-chefinho" />
                     </button>
 
                     <div
@@ -582,11 +582,11 @@ export default function Home() {
                             mensagemIA ? "fala-do-chef ativa" : "fala-do-chef"
                         }
                     >
-                        <p>
+                        {/* <p>
                             {mensagemIA
                                 ? `Não achou o que queria? Fique tranquilo ${usuarioLogado ? usuarioLogado.nome : ""}! Me diga o que tem na geladeira e eu crio uma receita exclusiva pra você.`
                                 : `Oi ${usuarioLogado ? usuarioLogado.nome : " eu sou o Chefinho!"}, Que tal criarmos uma receita juntos?`}
-                        </p>
+                        </p> */}
                     </div>
                 </div>
                 <Footer />

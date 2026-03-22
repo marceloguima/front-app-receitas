@@ -80,9 +80,7 @@
     overflow-x: hidden;
     padding: 0 20px;
     /* para uma rolagem suave ao clicar nas categorias */
-        scroll-behavior: smooth; 
-
-
+    scroll-behavior: smooth;
 }
 
 .sections::-webkit-scrollbar {
@@ -114,7 +112,7 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-
+/* 
 .hero::before {
     content: "";
     position: absolute;
@@ -124,22 +122,13 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.467);
     z-index: 1;
-}
+} */
 
 .content-hero {
     z-index: 2;
     display: flex;
     align-items: center;
     gap: 30px;
-}
-
-.hero h1 {
-    width: 70%;
-    min-width: 300px;
-    color: var(--cinza-200);
-    filter: drop-shadow(2px 5px 10px #1f1f1f);
-    text-align: center;
-    font-size: 2.5rem;
 }
 
 .title-hero {
@@ -149,6 +138,18 @@
     align-items: center;
 }
 
+.title-hero h1 {
+    width: 70%;
+    min-width: 300px;
+    color: var(--cinza-200);
+    filter: drop-shadow(2px 5px 10px #1f1f1f);
+    text-align: center;
+    font-size: 2.5rem;
+}
+/* 
+.title-hero span{
+    color: var(--cor-primaria);
+} */
 
 /* ========================= Início estilos controle de entrada da IA chefinho ============================= */
 .aberto {
@@ -168,7 +169,6 @@
     transition: linear 0.5s;
 }
 
-
 .hiden-modal {
     position: absolute;
     right: 200px;
@@ -183,34 +183,48 @@
     z-index: 10;
 }
 
-.campo-chama-chefinho button {
-    width: 80px;
-    background: transparent;
-    border-radius: 50%;
+/*  O botão da ia inicialmente é apenas uma bolinha com icone,
+ quando passar o mouse ele expande com a propriedade hover, trocando o ícone pela imagem 
+ de avatare adicionando um texto */
+.btn-chama-chefinho {
+    width: 52px;
+    height: 52px;
+    /* background: var(--cor-primaria); */
+    background: #fa5523;
+background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 1) 62%, rgba(242, 40, 0, 1) 92%);
+    box-shadow: var(--sombra-card);
+    border-radius: 50px;
     border: none;
     cursor: pointer;
     position: absolute;
     right: -80px;
-    bottom: 0;
-    animation: pulsar 1.8s infinite;
+    bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: ease-in-out .3s;
 }
 
-.campo-chama-chefinho button img {
-    width: 100%;
+.texto-btn-chefinho {
+    font-size: 1rem;
+    display: none;
+   
+}
+
+.icone-btn-chefinho {
+    font-size: 1.6rem;
+}
+
+.img-btn-chefinho {
+    width: 45px;
     filter: drop-shadow(2px 6px 10px #525252);
     object-fit: cover;
+    display: none;
 }
-
-
-
-.campo-chama-chefinho button svg{
-color: var(--cor-primaria);
-font-size: 2rem;
-}
-
 
 /* balão de hover  do botão*/
-.fala-do-chef {
+/* .fala-do-chef {
     max-width: 290px;
     min-width: 240px;
     background: var(--cor-bg-destaque);
@@ -230,9 +244,35 @@ font-size: 2rem;
 
 .fala-do-chef p {
     color: var(--cor-texto-secundario);
-    font-size: 1rem;
+    font-size: .8rem;
+} */
+
+@media (hover: hover) {
+    .btn-chama-chefinho:hover {
+        width: 330px;
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    /* .btn-chama-chefinho:hover + .fala-do-chef {
+        visibility: visible;
+    } */
+
+   .btn-chama-chefinho:hover .texto-btn-chefinho {
+        display: block;
+        visibility: visible;
+    }
+
+    .btn-chama-chefinho:hover .img-btn-chefinho {
+        display: block;
+    }
+
+   .btn-chama-chefinho:hover .icone-btn-chefinho {
+        display: none;
+    }
 }
-/* Fim  balão de hover  do botão */
+
+/* Fim  botão IA */
 
 /* ================================ Fim estilos da IA chefinho ================================== */
 
@@ -261,8 +301,8 @@ font-size: 2rem;
     display: none; /* Esconde visualmente no Chrome/Safari */
 }
 .menu-secoes {
-    -ms-overflow-style: none;  /* Esconde no IE/Edge */
-    scrollbar-width: none;  /* Esconde no Firefox */
+    -ms-overflow-style: none; /* Esconde no IE/Edge */
+    scrollbar-width: none; /* Esconde no Firefox */
 }
 
 .menu-secoes li {
@@ -275,14 +315,12 @@ font-size: 2rem;
     flex-shrink: 0;
 }
 
-
 /*  FIM MENU DE NAVEGAÇÃO DE CATEGORIAS */
 
 /* SEÇÃO PRINCIPAL */
 #prato-principal {
     padding: 10px;
 }
-
 
 .prato-principal h2 {
     margin-bottom: 20px;
@@ -293,7 +331,6 @@ font-size: 2rem;
     display: flex;
     gap: 20px;
     padding: 20px 5px;
-   
 }
 
 .card-destaque {
@@ -309,8 +346,7 @@ font-size: 2rem;
     padding-bottom: 10px;
 }
 
-
-.btn-card-destaque a{
+.btn-card-destaque a {
     color: var(--branco);
     width: 100%;
     padding: 15px;
@@ -336,7 +372,13 @@ font-size: 2rem;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
+    gap: 5px;
     flex: 1;
+}
+
+.caixa-titulo {
+    width: 100%;
+    height: 50px;
 }
 
 .titulo-card-destaque {
@@ -353,7 +395,6 @@ font-size: 2rem;
     justify-content: space-between;
     padding: 15px 0;
 }
-
 
 /* Coluna de Cards Pequenos */
 .coluna-pequenos {
@@ -404,7 +445,6 @@ font-size: 2rem;
     transition: 0.3s;
 }
 
-
 /* FIM SEÇÃO PRINCIPAL */
 
 /*  MENSAGEM PARA ERRO */
@@ -436,7 +476,6 @@ font-size: 2rem;
 }
 /* ============================================= */
 
-
 @keyframes pulsar {
     0% {
         box-shadow: 0 0 0 0 rgba(243, 82, 33, 0.7);
@@ -449,13 +488,8 @@ font-size: 2rem;
     }
 }
 
-
 @media (hover: hover) {
-    .campo-chama-chefinho button:hover + .fala-do-chef {
-        visibility: visible;
-    }
-
-      .btn-ver-outras:hover {
+    .btn-ver-outras:hover {
         background: #e4e4e494;
         color: var(--cor-primaria);
         font-weight: 700;
@@ -476,9 +510,6 @@ footer {
    10. MEDIA QUERIES (A MÁGICA DA RESPONSIVIDADE)
    ========================================================================== */
 @media (max-width: 1380px) {
-    .campo-chama-chefinho button {
-        width: 80px;
-    }
 }
 
 @media (max-width: 880px) {
@@ -488,7 +519,7 @@ footer {
     .hero h1 {
         font-size: 2rem;
     }
- 
+
     .aberto {
         width: 100%;
     }
@@ -503,7 +534,6 @@ footer {
 }
 
 @media (max-width: 780px) {
- 
     .prato-principal {
         padding: 15px;
     }
@@ -512,14 +542,13 @@ footer {
         gap: 10px;
     }
 
-   
     .card-destaque {
         max-width: 50%;
     }
 
     .card-destaque img {
         height: 120px;
-    } 
+    }
 
     .info-destaque {
         padding: 10px;
@@ -528,7 +557,6 @@ footer {
         font-size: 0.9rem;
     }
 
-   
     .info {
         padding: 5px;
         gap: 5px;
@@ -537,8 +565,6 @@ footer {
         height: 35px;
         font-size: 0.8rem;
     }
-
-  
 
     .card-mini {
         padding: 5px;
@@ -559,19 +585,15 @@ footer {
     }
     /* --------------------------------------------- */
 
-    .campo-chama-chefinho button {
-        width: 60px;
-    }
+  
     .fala-do-chef {
         bottom: 65px;
         right: -33px;
     }
-
-
 }
 
-@media (max-width:768px){
-      /* A coluna da direita também fica com 50% e empilha os 3 minis */
+@media (max-width: 768px) {
+    /* A coluna da direita também fica com 50% e empilha os 3 minis */
     .coluna-pequenos {
         gap: 12px;
         grid-template-columns: 1fr;
@@ -579,13 +601,10 @@ footer {
 }
 
 @media (max-width: 680px) {
-   
-
-    .hero h1{
+    .hero h1 {
         margin-top: 150px;
     }
 }
-
 
 @media (max-width: 580px) {
     .card-slide {
@@ -604,19 +623,13 @@ footer {
         min-width: 160px !important;
     }
 
-
-
     .pilula-info {
         font-size: 0.7rem;
         padding: 2px 4px;
     }
-
-   
 }
 
 @media (max-width: 480px) {
-   
-   
     .hero h1 {
         font-size: 1.7rem;
     }
@@ -624,10 +637,9 @@ footer {
         padding: 0 10px;
     }
 
-    .menu-secoes{
+    .menu-secoes {
         gap: 20px;
     }
-    
 
     .titulo-card-mini {
         font-size: 0.6rem;
@@ -637,8 +649,8 @@ footer {
         padding: 8px;
     }
 
-    .info-destaque{
-        padding: 5px ;
+    .info-destaque {
+        padding: 5px;
     }
 
     .coluna-pequenos {

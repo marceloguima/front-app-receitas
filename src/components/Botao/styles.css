@@ -11,15 +11,16 @@
     padding: 0 20px;
     height: var(--altura-btn_input);
     cursor: pointer;
-    background: #f13f09;
+    background: #fa5523;
     background: linear-gradient(
-        179deg,
-        rgb(248, 103, 58) 6%,
-        rgba(245, 57, 10, 1) 70%
+        182deg,
+        rgba(250, 85, 35, 1) 14%,
+        rgba(245, 57, 10, 1) 62%,
+        rgba(242, 40, 0, 1) 92%
     );
     color: #ffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
     box-shadow: var(--sombra-card);
 }

@@ -123,12 +123,24 @@
 }
 
 .status-indicator-logado {
-    background-color: #09d303;
+    background-color: #06bb00;
 }
 
 .status-indicator-logout {
     background-color: #f80303;
 }
+
+
+/* verificar ------------------------------------*/
+.icone-status-indicator{
+width: 90%;
+color: #ffffff;
+position: absolute;
+bottom: -7px;
+right: 0;
+
+}
+/* ---------------------------------------------- */
 
 @media (hover: hover) {
     .menu-descktop li:hover .link {

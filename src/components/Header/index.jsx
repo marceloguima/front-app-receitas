@@ -15,6 +15,9 @@ import { IoClose } from "react-icons/io5";
 import DropdownPerfil from "../Dropdown-perfil";
 import { FaCheck } from "react-icons/fa6";
 
+import { FaCheckCircle } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
+
 const Header = ({ onSubmit, value, onChange }) => {
     const { usuarioLogado, dropPerfil, setDropPerfil, fazerLogout } =
         useContext(AuthContext);
@@ -114,15 +117,16 @@ const Header = ({ onSubmit, value, onChange }) => {
                     <FaRegCircleUser />
 
                     {/* bolinha verde/vermelha, o status do usuario */}
-                    <span
-                        className={
-                            usuarioLogado
-                                ? "status-indicator-logado"
-                                : "status-indicator-logout"
-                        }
-                    >
-                        {usuarioLogado ? <FaCheck className="icone-status-indicator"/> : <IoClose className="icone-status-indicator"/>}
+                    <span className="status-indicator">
+                        {usuarioLogado ? (
+                            <FaCheckCircle className="status-indicator-logado" />
+                        ) : (
+                            <IoMdCloseCircle className="status-indicator-logout" />
+                        )}
                     </span>
+                    {/* <FaCheckCircle /> */}
+                    {/* <IoMdCloseCircle /> */}
+
                     {usuarioLogado
                         ? `Olá, ${usuarioLogado.nome}!`
                         : "Crie uma conta"}

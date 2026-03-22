@@ -78,14 +78,25 @@ export default function Home() {
     const [cardClicado, setCardClicado] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+    
+
     const [paginaAtual, setPaginaAtual] = useState(0);
     const itensPorPagina = isMobile ? 4 : 7;
+    
+    // 1. Filtra os pratos
     const pratosPrincipais = receitas.filter(
         (receita) => receita.categoria === "Prato Principal"
     );
 
-    const indiceInicio = paginaAtual * itensPorPagina;
-    const indiceFim = indiceInicio + itensPorPagina;
+    let indiceInicio = paginaAtual * itensPorPagina;
+    let indiceFim = indiceInicio + itensPorPagina;
+
+    
+    if (indiceFim > pratosPrincipais.length && pratosPrincipais.length > itensPorPagina) {
+        indiceInicio = pratosPrincipais.length - itensPorPagina;
+        indiceFim = pratosPrincipais.length;
+    }
+
     const receitasDestaTela = pratosPrincipais.slice(indiceInicio, indiceFim);
 
     const cardDestaque =
@@ -96,8 +107,10 @@ export default function Home() {
         (card) => cardDestaque && card._id !== cardDestaque._id,
     );
 
+  
     const irProximaPagina = () => {
-        if (indiceFim >= receitas.length) {
+        // Se a próxima página for estourar o limite de pratos que existem, volta pro zero
+        if ((paginaAtual + 1) * itensPorPagina >= pratosPrincipais.length) {
             setPaginaAtual(0);
         } else {
             setPaginaAtual(paginaAtual + 1);

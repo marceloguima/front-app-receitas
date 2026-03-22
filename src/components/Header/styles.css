@@ -13,8 +13,6 @@
     box-shadow: 0 4px 10px var(--preto-700);
     border-bottom: solid 2px var(--cor-primaria);
     z-index: 6;
-
- 
 }
 
 .nav-header {
@@ -31,8 +29,6 @@
     justify-content: space-between;
 }
 
-
-
 .menu-mobile {
     position: absolute;
     bottom: -230px;
@@ -47,32 +43,38 @@
     background: #fff;
     border: solid 1px var(--cor-primaria);
     box-shadow: var(--sombra-card);
-    transition: ease-in-out .5s;
+    transition: ease-in-out 0.5s;
 }
 
-
-.menu-mobile.show-menu{
+.menu-mobile.show-menu {
     right: 10px;
     bottom: -230px;
-    
 }
 
-
-
-.menu-mobile li, .menu-descktop li {
+.menu-mobile li,
+.menu-descktop li {
     list-style: none;
 }
 
 .link {
     color: var(--cor-texto-terciario);
-    width: 110px;
+    border-bottom: solid 3px transparent;
+    max-width: 120px;
     height: 45px;
+    padding: 0 5px;
+    font-size: 1rem;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 30px;
-    transition: ease .5s
-    
+    transition: ease 0.5s;
+}
+
+.link.active {
+    font-weight: 600;
+    color: var(--cor-primaria);
+    border-bottom: solid 3px var(--cor-primaria);
+    font-size: 1.1rem;
 }
 
 .btn-login {
@@ -110,8 +112,8 @@
         transform 0.2s ease;
 }
 
-.status-indicator-logado, 
-.status-indicator-logout{
+.status-indicator-logado,
+.status-indicator-logout {
     width: 12px;
     height: 12px;
     border-radius: 20px;
@@ -120,22 +122,19 @@
     right: 35px;
 }
 
-
-.status-indicator-logado{
+.status-indicator-logado {
     background-color: #09d303;
 }
 
-.status-indicator-logout{
+.status-indicator-logout {
     background-color: #f80303;
-
 }
-
 
 @media (hover: hover) {
     .menu-descktop li:hover .link {
-        background: var(--cor-primaria);
-        color: var(--cor-texto-inverso);
-        font-weight: 500;
+        font-weight: 600;
+        color: var(--cor-primaria);
+        border-bottom: solid 3px var(--cor-primaria);
     }
 }
 
@@ -157,12 +156,12 @@
         gap: 5px;
     }
 
-       .btn-login {
+    .btn-login {
         grid-row: 1 / 2;
         grid-column: 4 / -1;
         justify-self: end;
     }
-    
+
     .btn-menu {
         justify-self: center;
         grid-column: 3 / 4;
@@ -175,25 +174,21 @@
 }
 
 @media (max-width: 680px) {
-    
     .nav-header {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 5px;
     }
 
-     .btn-menu {
+    .btn-menu {
         justify-self: center;
         grid-column: 2 / 3;
         grid-row: 1 / 2;
         justify-self: end;
     }
 
-         .btn-login {
+    .btn-login {
         grid-row: 1 / 2;
         grid-column: 3 / -1;
         justify-self: end;
     }
-    
-   
- 
 }

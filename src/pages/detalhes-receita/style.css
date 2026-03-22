@@ -2,13 +2,8 @@
    CONTAINER PRINCIPAL (Prepara para os Anúncios)
 ========================================== */
 .container-detalhes {
-    /* Limita a largura a 800px. Em monitores grandes, vai sobrar um 
-       espação em branco nas laterais, perfeito para futuros banners! */
     max-width: 800px; 
-    
-    /* Isso é o que centraliza a caixa inteira na tela */
-    margin: 140px auto; 
-    
+        margin: 140px auto; 
     padding: 0 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
@@ -16,7 +11,7 @@
 
 .container-detalhes h1 {
     font-size: 2.5rem;
-    color: #ff956b; /* Uma cor quente combinando com comida */
+    color: #ff956b;
     text-align: center;
     margin-bottom: 10px;
 }

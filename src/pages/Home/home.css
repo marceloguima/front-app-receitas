@@ -309,6 +309,13 @@ font-size: 2rem;
     padding-bottom: 10px;
 }
 
+
+.btn-card-destaque a{
+    color: var(--branco);
+    width: 100%;
+    padding: 15px;
+}
+
 .card-destaque img {
     width: 100%;
     height: 250px;
@@ -386,7 +393,6 @@ font-size: 2rem;
 }
 
 .btn-ver-outras {
-    /* justify-self: center; */
     height: 45px;
     background: transparent;
     border: none;
@@ -398,11 +404,7 @@ font-size: 2rem;
     transition: 0.3s;
 }
 
-.btn-ver-outras:hover {
-    background: #e4e4e494;
-    color: var(--cor-primaria);
-    font-weight: 700;
-}
+
 /* FIM SEÇÃO PRINCIPAL */
 
 /*  MENSAGEM PARA ERRO */
@@ -448,9 +450,15 @@ font-size: 2rem;
 }
 
 
-@media (min-width: 780px) {
+@media (hover: hover) {
     .campo-chama-chefinho button:hover + .fala-do-chef {
         visibility: visible;
+    }
+
+      .btn-ver-outras:hover {
+        background: #e4e4e494;
+        color: var(--cor-primaria);
+        font-weight: 700;
     }
 }
 

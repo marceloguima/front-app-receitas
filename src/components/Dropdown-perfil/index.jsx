@@ -75,14 +75,13 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
                 </div>
             ) : (
                 <div className="menu-deslogado">
-                    {/* <span>Faça login e aproveite cada detalhe.</span> */}
-
+                    <span>Crie uma conta ou faça login.</span>
+                        
                     <div className="botoes-drop">
                         {/* Botão de login do dropdown */}
                         <button className="btn-entrar" onClick={abrirFormLogin}>
                             Entrar
                         </button>
-{/* <hr /> */}
                         {/* Botão de criar conta do dropdown */}
                         <button
                             className="btn-cria-conta"
@@ -90,7 +89,7 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
                         >
                             Criar conta
                         </button>
-                        {/* <hr /> */}
+                      
                     </div>
                 </div>
             )}

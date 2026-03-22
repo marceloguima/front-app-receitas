@@ -5,7 +5,6 @@ import Loader from "../../components/Loader";
 import "./style.css";
 import Header from "../../components/Header";
 
-
 const API_URL = import.meta.env.VITE_API_URL;
 // icones
 import { FaRegClock } from "react-icons/fa";
@@ -25,7 +24,7 @@ const DetalhesReceita = () => {
         const buscarReceita = async () => {
             setLoading(true);
             try {
-               const resposta = await axios.get(`${API_URL}/receitas/${id}`);
+                const resposta = await axios.get(`${API_URL}/receitas/${id}`);
                 // `http://localhost:3001/api/receitas/${id}` || `https://receitas-backend.onrender.com/api/receitas/${id}`,
                 setReceita(resposta.data);
                 setLoading(false);
@@ -55,8 +54,6 @@ const DetalhesReceita = () => {
         <>
             <Header />
             <div className="container-detalhes">
-                <h1 className="aviso">Ops! Página em construção. O desenvolcedor foi buscar café e já volta para terminar o código. </h1>
-                <hr />
                 <h1>{receita.titulo}</h1>
                 <p className="descricao">{receita.descricao}</p>
 

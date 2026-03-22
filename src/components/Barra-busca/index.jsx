@@ -11,7 +11,7 @@ const classesBarraBusca = `form-buscar ${variant}`
     <form className={classesBarraBusca} onSubmit={onSubmit}>
                        <input
                            type="text"
-                           placeholder="Buscar"
+                           placeholder="Buscar..."
                            className="input-barra-busca"
                            value={value}
                            onChange={onChange}

@@ -21,13 +21,16 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-
     box-shadow: var(--sombra-card);
 }
 
 .btn:hover {
-     background: #f26033;
-background: linear-gradient(2deg, rgba(252, 76, 22, 0.973) 30%, rgba(245, 57, 10, 1) 70%);
+    background: #f26033;
+    background: linear-gradient(
+        2deg,
+        rgba(252, 76, 22, 0.973) 30%,
+        rgba(245, 57, 10, 1) 70%
+    );
     transition: ease-in-out 0.3s;
 }
 

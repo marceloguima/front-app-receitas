@@ -463,7 +463,9 @@ export default function Home() {
                                             />
                                         </div>
                                         <Botao variant="btn-card-destaque">
-                                            Ver receita
+                                        <NavLink to={`/detalhes/${cardDestaque._id}`}>
+                                        Ver receita
+                                        </NavLink>
                                         </Botao>
                                     </div>
                                 </div>

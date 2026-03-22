@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import DetalhesReceita from "./pages/detalhes-receita";
 import TelaAdmin from "./pages/Admin";
 import TelaSobreNos from "./pages/SobreNos"
+import TelaMeuCaderno from "./pages/Meu-caderno";
 
 import "./index.css";
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: "/sobre",
                 element: <TelaSobreNos />,
+            },
+            {
+                path: "/meu-caderno",
+                element: <TelaMeuCaderno />,
             },
             {
                 path: "admin",

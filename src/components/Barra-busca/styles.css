@@ -2,14 +2,15 @@
 .form-buscar {
     display: flex;
     align-items: center;
-    background: #ffffff;
+    background: var(--laranja-50);
     border-radius: 30px;
     width: 100% ;
     min-width: 300px;
     max-width: 500px;
     height: var(--altura-btn_input);
-    border: solid 1px var(--cor-primaria);
+    border: solid 1px var(--laranja-100);
     box-shadow: 1px 4px 6px #0000004d;
+    position: relative;
     z-index: 2;
 }
 
@@ -19,22 +20,22 @@
     height: var(--altura-btn_input);
     border: none;
     background: transparent;
-    border-radius: 30px 0 0 30px;
+    border-radius: 30px;
     padding: 0 15px;
     font-size: 1rem;
 }
 
 .input-barra-busca:focus-visible {
-    outline: var(--cor-primaria);
-    border: solid 2px var(--cor-primaria);
+    outline: none;
+    border: solid 1px var(--cor-primaria);
     font-size: 1.1rem;
 }
 
 .btn-buscar {
     width: 60px;
-    height: 100%;
-    background: var(--laranja-50);
-    color: var(--preto-700);
+    height: 80%;
+    background: transparent;
+    color: var(--cor-texto-terciario);
     border: none;
     cursor: pointer;
     display: flex;
@@ -42,9 +43,15 @@
     align-items: center;
     font-size: 1.2rem;
     border-radius: 0 30px 30px 0;
+    position: absolute;
+    border-left: 1px solid var(--laranja-100);
+    right: 0;
 }
 
+@media(hover: hover){
 .btn-buscar:hover {
-    background: var(--cor-secundaria-hover);
+    font-size: 1.3rem;
 }
+}
+
 

@@ -78,21 +78,21 @@ export default function Home() {
     const [cardClicado, setCardClicado] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-    
-
     const [paginaAtual, setPaginaAtual] = useState(0);
     const itensPorPagina = isMobile ? 4 : 7;
-    
+
     // 1. Filtra os pratos
     const pratosPrincipais = receitas.filter(
-        (receita) => receita.categoria === "Prato Principal"
+        (receita) => receita.categoria === "Prato Principal",
     );
 
     let indiceInicio = paginaAtual * itensPorPagina;
     let indiceFim = indiceInicio + itensPorPagina;
 
-    
-    if (indiceFim > pratosPrincipais.length && pratosPrincipais.length > itensPorPagina) {
+    if (
+        indiceFim > pratosPrincipais.length &&
+        pratosPrincipais.length > itensPorPagina
+    ) {
         indiceInicio = pratosPrincipais.length - itensPorPagina;
         indiceFim = pratosPrincipais.length;
     }
@@ -107,7 +107,6 @@ export default function Home() {
         (card) => cardDestaque && card._id !== cardDestaque._id,
     );
 
-  
     const irProximaPagina = () => {
         // Se a próxima página for estourar o limite de pratos que existem, volta pro zero
         if ((paginaAtual + 1) * itensPorPagina >= pratosPrincipais.length) {
@@ -308,7 +307,10 @@ export default function Home() {
                 <section className="hero">
                     <div className="content-hero">
                         <div className="title-hero">
-                            <h1>As melhores <span>receitas</span> você encontra aqui!</h1>
+                            <h1>
+                                As melhores <span>receitas</span> você encontra
+                                aqui!
+                            </h1>
                         </div>
                     </div>
                 </section>
@@ -361,7 +363,7 @@ export default function Home() {
                         </h2>
                         <p className="mensagem-pratos-do-dia">{mensagem}</p>
 
-                        {/* <SecaoEntradas>
+                        <div className="buscados">
                             {loading ? (
                                 Array.from({ length: 4 }).map((_, i) => (
                                     <LoaderSkeletonCard key={i} />
@@ -388,7 +390,7 @@ export default function Home() {
                                     perguntar para O Chefinho?
                                 </p>
                             )}
-                        </SecaoEntradas> */}
+                        </div>
                     </div>
                 )}
 
@@ -560,7 +562,34 @@ export default function Home() {
                 <section className="secoes secao-bebidas" id="bebidas">
                     <h2 className="titulo-secao">Bebidas</h2>
 
-                    <div className="circulos">
+                    <Slideprimary>
+                        {loading
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <LoaderSkeletonCard key={i} />
+                              ))
+                            : Array.isArray(receitas) &&
+                              receitas
+                                  .filter(function (receita) {
+                                      return receita.categoria === "Bebida";
+                                  })
+                                  .map((receita) => (
+                                      <Card
+                                          _id={receita._id}
+                                          key={receita._id}
+                                          src={receita.imagem}
+                                          alt={
+                                              "imagem da receita de " +
+                                              receita.titulo
+                                          }
+                                          titulo={receita.titulo}
+                                          tempoPreparo={`${receita.tempoPreparo} min`}
+                                          complexidade={`${receita.complexidade}`}
+                                          porcoes={`${receita.porcoes}`}
+                                      />
+                                  ))}
+                    </Slideprimary>
+
+                    {/* <div className="circulos">
                         {loading
                             ? Array.from({ length: 8 }).map((_, i) => (
                                   <SkeletonCardCirculo key={i} />
@@ -578,16 +607,25 @@ export default function Home() {
                                           alt={`imagem de ${receita.titulo}`}
                                       />
                                   ))}
-                    </div>
+                    </div> */}
                 </section>
 
                 {/* Área do botão com avatar do chefinho */}
                 <div className="campo-chama-chefinho">
                     {/* O chefinho so é liberado para usuários logados. */}
-                    <button onClick={controleEntrada} className="btn-chama-chefinho">
-                        <span className="texto-btn-chefinho">Oi, posso criar uma receita pra você</span>
-                        <HiSparkles className="icone-btn-chefinho"/>
-                        <img src={AvatarIa} alt="Avatar do Chefinho" className="img-btn-chefinho" />
+                    <button
+                        onClick={controleEntrada}
+                        className="btn-chama-chefinho"
+                    >
+                        <span className="texto-btn-chefinho">
+                            Oi, posso criar uma receita pra você
+                        </span>
+                        <HiSparkles className="icone-btn-chefinho" />
+                        <img
+                            src={AvatarIa}
+                            alt="Avatar do Chefinho"
+                            className="img-btn-chefinho"
+                        />
                     </button>
 
                     <div

@@ -88,8 +88,6 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 setMensagemErro(mensagemDoBanco);
                 setLoading(false);
             }
-        } else {
-            console.log("Formulário tem erros. Corrija antes de enviar.");
         }
     };
 

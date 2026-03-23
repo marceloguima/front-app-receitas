@@ -143,13 +143,97 @@
     min-width: 300px;
     color: var(--cinza-200);
     filter: drop-shadow(2px 5px 10px #1f1f1f);
-    text-align: center;
+    /* text-align: center; */
     font-size: 2.5rem;
 }
 /* 
 .title-hero span{
     color: var(--cor-primaria);
 } */
+
+
+/* ============================= Área de resultado de busca======================================== */
+
+/* 1. O Container Principal da Busca */
+.resultados-busca-container {
+    padding: 2rem;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura em telas gigantes */
+    
+    /* Efeito Glassmorphism sutil para destacar a área */
+    background: rgba(255, 255, 255, 0.6); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    
+    /* Animação suave ao aparecer na tela */
+    animation: fadeBusca 0.4s ease-in-out;
+}
+
+/* 2. Os Textos do Topo */
+.resultados-busca-container .titulo-secao {
+    font-size: 1.8rem;
+    color: #222222;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.resultados-busca-container .mensagem-pratos-do-dia {
+    font-size: 1rem;
+    color: #666666;
+    margin-bottom: 2rem;
+}
+
+
+.buscados {
+    display: grid;
+  
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem; /* Espaço entre os cartões */
+    width: 100%;
+}
+
+/* 4. O Estado Vazio (Quando não acha nada) */
+.buscados > p {
+    grid-column: 1 / -1; 
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555555;
+    padding: 3rem 1rem;
+    /* Um fundo laranjinha bem claro com borda tracejada pra ficar amigável */
+    background-color: rgba(255, 107, 0, 0.05); 
+    border: 1px dashed var(--cor-primaria); 
+    border-radius: 12px;
+}
+
+/* Animação para a área não "pular" bruscamente na tela */
+@keyframes fadeBusca {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 5. Mobile First: Ajustes finos para telas pequenas */
+@media (max-width: 768px) {
+    .resultados-busca-container {
+        padding: 1.5rem 1rem;
+        margin: 1rem;
+    }
+    
+    .resultados-busca-container .titulo-secao {
+        font-size: 1.4rem;
+    }
+}
+/* ============================= Fim área de resultado de busca======================================== */
+
 
 /* ========================= Início estilos controle de entrada da IA chefinho ============================= */
 .aberto {
@@ -247,7 +331,7 @@ background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 
     font-size: .8rem;
 } */
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
     .btn-chama-chefinho:hover {
         width: 330px;
         padding: 10px;
@@ -488,7 +572,7 @@ background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 
     }
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine){
     .btn-ver-outras:hover {
         background: #e4e4e494;
         color: var(--cor-primaria);

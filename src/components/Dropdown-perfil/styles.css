@@ -1,11 +1,10 @@
 .dropdown{
-    width: 260px;
+    width: 200px;
     padding: 20px 10px;
     background: var(--branco);
     box-shadow: var(--sombra-card);
     border-radius: 10px;
  border: solid 1px #dadada;
- /* border-left: solid 5px var(--cor-primaria); */
     position: absolute;
     top: 80px;
     right: 14px;
@@ -115,9 +114,12 @@ background: #f0f0f0;
     transition: ease .2s;
 }
 
-.btn-sair:hover{
-    background: #fdd2d2cc !important;
 
+@media (hover: hover) and (pointer: fine) {
+    .btn-sair:hover{
+        background: #fdd2d2cc !important;
+    }
+        
 }
 
 .btn-sair svg{

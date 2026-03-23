@@ -433,7 +433,7 @@ export default function Home() {
                     className="secoes secao-prato-principal"
                     id="prato-principal"
                 >
-                    <h2 className="titulo-secao">Pratos principal</h2>
+                    <h2 className="titulo-secao">Pratos principais</h2>
 
                     <div className="cards-prato-principal">
                         {loading ? (

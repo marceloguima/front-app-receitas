@@ -13,6 +13,7 @@ import { PiChefHatBold } from "react-icons/pi";
 
 // componentes
 import ReceitaInfo from "../../components/ReceitaInfo";
+import Footer from "../../components/Footer";
 
 const DetalhesReceita = () => {
     const { id } = useParams();
@@ -51,7 +52,9 @@ const DetalhesReceita = () => {
     }
 
     return (
-        <>
+        <div className="pagina-detalhes">
+
+       
             <Header />
             <div className="container-detalhes">
                 <h1>{receita.titulo}</h1>
@@ -100,7 +103,9 @@ const DetalhesReceita = () => {
                     <p>{receita.modoPreparo}</p>
                 </div>
             </div>
-        </>
+
+            <Footer/>
+         </div>
     );
 };
 

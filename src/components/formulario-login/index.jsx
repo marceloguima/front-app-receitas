@@ -22,11 +22,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
         // Se TUDO for true, aí sim envio pro servidor!
         if (campoEmailValido && campoSenhaValido) {
-            console.log(
-                "Formulário perfeito! Preparando para enviar ao banco:",
-                { email, senha },
-            );
-
+        
             setLoading(true);
             const usuario = {
                 email,
@@ -40,7 +36,6 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                     usuario,
                 );
 
-                console.log("Resposta do servidor:", resposta.data);
 
                 setMensagemSucesso(
                     `Seja bem vindo ! ${resposta.data.usuario.nome}`,
@@ -56,7 +51,6 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                     liberaEntrada(resposta.data.usuario);
                 }, 2000);
 
-                console.log(usuario);
             } catch (erro) {
                 setLoading(false);
                 console.error(
@@ -68,9 +62,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                     setMensagemErro("");
                 }, 3000);
             }
-        } else {
-            console.log("Formulário tem erros. Corrija antes de enviar.");
-        }
+        } 
     };
 
     // verifica email se ta vazio, se tem formato de email e se tá no banco

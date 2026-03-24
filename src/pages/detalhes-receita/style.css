@@ -1,8 +1,12 @@
 /* ==========================================
    CONTAINER PRINCIPAL (Prepara para os Anúncios)
 ========================================== */
+.pagina-detalhes{
+    width: 100%;
+}
+
 .container-detalhes {
-    max-width: 800px; 
+    max-width: 1200px; 
         margin: 250px auto; 
     padding: 0 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

@@ -1,86 +1,94 @@
-.footer-moderno {
-    background-color: #1a1a1a; 
-    padding: 10px; 
-    font-family: sans-serif;
-    margin-top: 120px; 
-    height: 280px;
+/* esta página será estilizada mobile first */
+
+.disabled {
+    color: #7a7a7a !important;
+}
+
+.footer {
+    width: 100%;
+    height: auto;
+    padding: 40px 10px;
+    background: #242424;
+    color: #eeeeee;
 }
 
 .footer-conteudo {
-    
-    display: flex;
-    justify-content: space-around;
-    /* flex-wrap: wrap; */
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 2rem;
-    padding-bottom: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
 }
 
 .footer-marca {
-    min-width: 160px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
-.footer-marca .logo img {
-  width: 100px;
+.footer-marca .logo {
+    /* width: 50px; */
 }
 
-.footer-marca p {
-    max-width: 300px;
-    line-height: 1.5;
-    color: #bbbbbb;
-}
-
-.footer-links h4, .footer-tech h4 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
-}
-
-.footer-links ul {
+.footer-links ul li {
     list-style: none;
-    padding: 0;
 }
 
-.footer-links li {
-    margin-bottom: 0.5rem;
+.footer-links ul li a {
+    color: #eeeeee;
+
 }
 
-.footer-links a {
-    color: #bbbbbb;
-    text-decoration: none;
-    transition: color 0.3s ease;
+
+
+.footer-links {
+    margin-top: 30px;
 }
 
-.footer-links a:hover {
-    color: #e38b06; 
+.footer-links h4{
+    margin-bottom: 20px;
 }
 
-.footer-tech p {
-    color: #bbbbbb;
-    font-weight: bold;
-    letter-spacing: 1px;
+.footer-bottom{
+    margin-top: 40px;
 }
 
-.footer-bottom {
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    color: #888888;
-}
-
-@media(max-width: 600px){
-    .footer-conteudo{
-        font-size: .8rem;
-        gap: 1rem;
+@media (min-width: 380px) {
+    .footer-marca {
+        grid-column: 1 / -1;
     }
 
-    
-.footer-marca .logo img {
-  width: 80px;
+    .footer-conteudo {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-links-ajuda {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .footer-links-categorias {
+        grid-column: 2 / -1;
+    }
 }
+
+
+@media(min-width: 680px){
+     .footer-conteudo {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .footer-marca{
+        grid-column: 1 / 2;
+    }
+
+    .footer-links-ajuda {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .footer-links-categorias {
+        grid-column: 3 / -1;
+    }
 }

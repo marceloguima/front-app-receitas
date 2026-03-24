@@ -48,7 +48,7 @@ const CampoInput = ({
                         placeholder={placeholder}
                         {...rest}
                     />
-                    <button className="olho-input" onClick={verSenha}>
+                    <button type="button" className="olho-input" onClick={verSenha}>
                         {isSenha ? <IoEyeOutline /> : <IoEyeOffOutline />}
                     </button>
                 </div>

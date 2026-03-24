@@ -42,7 +42,7 @@
 ========================================== */
 .imagem-container {
     position: relative; /* Transforma a caixa num "ponto de referência" */
-    width: 100%;
+    width: 60%;
     border-radius: 16px;
     overflow: hidden; /* Corta as pontas quadradas da imagem */
     box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra elegante */

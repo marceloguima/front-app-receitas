@@ -138,6 +138,11 @@
 
 
 
+
+.btn-cancela-saida {
+    background: #dadada !important;
+}
+
 /* ---------------------------------------------- */
 
 @media (hover: hover) {
@@ -146,6 +151,11 @@
         color: var(--cor-primaria);
         border-bottom: solid 3px var(--cor-primaria);
     }
+
+    
+.btn-cancela-saida:hover {
+    background: #cccccc !important;
+}
 }
 
 @media (max-width: 980px) {

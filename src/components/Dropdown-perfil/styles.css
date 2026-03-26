@@ -1,10 +1,10 @@
-.dropdown{
-    width: 200px;
+.dropdown {
+    width: 300px;
     padding: 20px 10px;
     background: var(--branco);
     box-shadow: var(--sombra-card);
     border-radius: 10px;
- border: solid 1px #dadada;
+    border: solid 1px #dadada;
     position: absolute;
     top: 80px;
     right: 14px;
@@ -12,20 +12,20 @@
 }
 
 /* setinha do dropdown */
-.seta{
+.seta {
     width: 20px;
-height: 20px;
-background-color: var(--branco);
-border-left: solid 1px #dadada;
-border-top: solid 1px #dadada;
-position: absolute;
-right: 50px;
-top: -10px;
-transform: rotate(45deg);
-
+    height: 20px;
+    background-color: var(--branco);
+    border-left: solid 1px #dadada;
+    border-top: solid 1px #dadada;
+    border-radius: 5px;
+    position: absolute;
+    right: 50px;
+    top: -10px;
+    transform: rotate(45deg);
 }
 
-.menu-deslogado{
+.menu-deslogado {
     width: 100%;
     height: 100%;
     display: flex;
@@ -35,49 +35,48 @@ transform: rotate(45deg);
     justify-content: space-around;
 }
 
-.nome-perfil-drop{
+.nome-perfil-drop {
     width: 100%;
     display: flex;
-align-items: center;
-gap: 20px;
-height: 60px;
-margin-bottom: 10px;
+    align-items: center;
+    gap: 5px;
+    height: 60px;
+    margin-bottom: 10px;
 }
 
-.nome-perfil-drop svg{
+.nome-perfil-drop svg {
     font-size: 2rem;
     color: var(--cor-texto-terciario);
 }
 
-.nome-email-user{
+.nome-email-user {
     display: flex;
     flex-direction: column;
 }
 
-.nome-user{
+.nome-user {
     font-size: 1.1rem;
     font-weight: 500;
     color: var(--cor-texto-terciario);
 }
 
-.email-user{
+.email-user {
     color: #919191;
 }
 
-hr{
+hr {
     margin-bottom: 20px;
     border: solid 1px;
 }
 
-.botoes-drop{
+.botoes-drop {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-
-.dropdown button{
+.dropdown button {
     width: 100%;
     height: 40px;
     display: flex;
@@ -86,46 +85,40 @@ hr{
     gap: 10px;
     border: none;
     border-radius: 5px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--cor-texto-terciario);
     background: transparent;
     cursor: pointer;
-    transition: ease .2s;
+    transition: ease 0.2s;
 }
 /* 
 .dropdown button:hover{
 background: #f0f0f0;
 } */
 
-.btn-entrar{
+.btn-entrar {
     background: #f0f0f0 !important;
 }
 
-
-.btn-entrar:hover, .btn-cria-conta:hover{
+.btn-entrar:hover,
+.btn-cria-conta:hover {
     background: #e4e4e4 !important;
-
 }
 
-.btn-sair{
+.btn-sair {
     background: #fde7e7c7 !important;
     color: #fd3e3e !important;
-    transition: ease .2s;
+    transition: ease 0.2s;
 }
-
 
 @media (hover: hover) and (pointer: fine) {
-    .btn-sair:hover{
+    .btn-sair:hover {
         background: #fdd2d2cc !important;
     }
-        
 }
 
-.btn-sair svg{
+.btn-sair svg {
     font-size: 1.3rem;
 }
 
-.btn-cancela-saida{
-    background: #dadada !important;
-}

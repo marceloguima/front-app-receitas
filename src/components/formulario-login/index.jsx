@@ -88,6 +88,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
     return (
         <form className="formulario-login" onSubmit={logarUsuario}>
+          
             <h1>Login</h1>
             <div className="mensagens">
                 <p className="p-sucess">{mensagemSucesso}</p>
@@ -137,6 +138,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                     )}
                 </Botao>
             </div>
+
         </form>
     );
 };

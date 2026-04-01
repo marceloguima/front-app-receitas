@@ -29,6 +29,8 @@ import CardNavegacao from "../../components/Card-navegacao";
 import { useContext } from "react";
 import { AuthContext } from "../../context/Context";
 
+import ModalRedefinirSenha from "../../components/ModalRedefinirSenha";
+
 // css
 import "./home.css";
 
@@ -130,6 +132,7 @@ export default function Home() {
 
     const [resultadosBusca, setResultadosBusca] = useState([]);
     const [fezBusca, setFezBusca] = useState(false);
+    const [modalRedefinir, setModalRedefinir] = useState(false);
 
     // Carrega os dados no início quando a página carrega
     useEffect(() => {
@@ -241,7 +244,8 @@ export default function Home() {
             {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
             {showFormulario && (
                 <div className="formulario-cadastro-overlay">
-                    <div className="corpo-formulario">
+                    {/* form para redefinir para login */}
+                    {modalRedefinir ? <ModalRedefinirSenha onClick={() => setModalRedefinir(false)}/> :   <div className="corpo-formulario">
                         <button
                             className="btn-fecha-form"
                             type="button"
@@ -255,6 +259,7 @@ export default function Home() {
                         {isLogin ? (
                             <FormularioLogin
                                 liberaEntrada={criarReceitaComIA}
+                                onclickRedefinir={() => setModalRedefinir(true)}
                             />
                         ) : (
                             <FormularioCadastroUsuario
@@ -271,7 +276,9 @@ export default function Home() {
                                 {isLogin ? "Crie agora" : "Entrar"}
                             </button>
                         </div>
-                    </div>
+                    </div> }
+                    {/* ---------------------------------------------------- */}
+                   
                 </div>
             )}
 

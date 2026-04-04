@@ -49,7 +49,7 @@ const router = createBrowserRouter([
                 element: <TelaMeuCaderno />,
             },
             {
-                path: "/redefinir-senha/:token",
+                path: "/recuperar-conta/:token",
                 element: <TelaRedefinirSenha />,
             },
             {

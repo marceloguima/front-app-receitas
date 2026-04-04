@@ -140,7 +140,7 @@
 
 
 .btn-cancela-saida {
-    background: #dadada !important;
+    background: transparent !important;
 }
 
 /* ---------------------------------------------- */
@@ -154,7 +154,7 @@
 
     
 .btn-cancela-saida:hover {
-    background: #cccccc !important;
+    background: #f0f0f0 !important;
 }
 }
 

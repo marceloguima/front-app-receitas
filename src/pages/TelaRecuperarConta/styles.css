@@ -1,0 +1,36 @@
+.container-redefinir{
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(/imagem-hero.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+}
+
+.form-redefinir {
+    background: #fff;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-card);
+}
+
+
+.form-redefinir h2{
+    margin-bottom: 20px;
+    color: var(--cor-texto-terciario);
+}
+
+.btn-salva-nova-senha {
+    border-radius: 10px;
+    margin: 20px;
+   
+}

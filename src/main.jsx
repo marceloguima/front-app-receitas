@@ -8,6 +8,9 @@ import DetalhesReceita from "./pages/detalhes-receita";
 import TelaAdmin from "./pages/Admin";
 import TelaSobreNos from "./pages/SobreNos"
 import TelaMeuCaderno from "./pages/Meu-caderno";
+import TelaRedefinirSenha from "./pages/TelaRecuperarConta";
+
+
 
 import "./index.css";
 
@@ -46,12 +49,17 @@ const router = createBrowserRouter([
                 element: <TelaMeuCaderno />,
             },
             {
+                path: "/redefinir-senha/:token",
+                element: <TelaRedefinirSenha />,
+            },
+            {
                 path: "admin",
                 element: <TelaAdmin />,
             },
         ],
     },
 ]);
+
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>

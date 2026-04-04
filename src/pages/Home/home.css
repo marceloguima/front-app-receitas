@@ -78,7 +78,6 @@
     gap: 50px;
     overflow-y: auto;
     overflow-x: hidden;
-    /* padding: 0 20px; */
     /* para uma rolagem suave ao clicar nas categorias */
     scroll-behavior: smooth;
 }
@@ -146,11 +145,6 @@
     /* text-align: center; */
     font-size: 2.5rem;
 }
-/* 
-.title-hero span{
-    color: var(--cor-primaria);
-} */
-
 
 /* ============================= Área de resultado de busca======================================== */
 
@@ -160,15 +154,15 @@
     margin: 2rem auto;
     width: 100%;
     max-width: 1200px; /* Limita a largura em telas gigantes */
-    
+
     /* Efeito Glassmorphism sutil para destacar a área */
-    background: rgba(255, 255, 255, 0.6); 
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    
+
     /* Animação suave ao aparecer na tela */
     animation: fadeBusca 0.4s ease-in-out;
 }
@@ -187,10 +181,9 @@
     margin-bottom: 2rem;
 }
 
-
 .buscados {
     display: grid;
-  
+
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 2rem; /* Espaço entre os cartões */
     width: 100%;
@@ -198,14 +191,14 @@
 
 /* 4. O Estado Vazio (Quando não acha nada) */
 .buscados > p {
-    grid-column: 1 / -1; 
+    grid-column: 1 / -1;
     text-align: center;
     font-size: 1.2rem;
     color: #555555;
     padding: 3rem 1rem;
     /* Um fundo laranjinha bem claro com borda tracejada pra ficar amigável */
-    background-color: rgba(255, 107, 0, 0.05); 
-    border: 1px dashed var(--cor-primaria); 
+    background-color: rgba(255, 107, 0, 0.05);
+    border: 1px dashed var(--cor-primaria);
     border-radius: 12px;
 }
 
@@ -227,37 +220,36 @@
         padding: 1.5rem 1rem;
         margin: 1rem;
     }
-    
+
     .resultados-busca-container .titulo-secao {
         font-size: 1.4rem;
     }
 }
 /* ============================= Fim área de resultado de busca======================================== */
 
-
 /* ========================= Início estilos controle de entrada da IA chefinho ============================= */
 .aberto {
     width: 30%;
     z-index: 5;
-    transition: linear 0.5s;
+    transition: linear 0.4s;
 }
 .expandido {
     width: 40%;
     z-index: 5;
-    transition: linear 0.5s;
+    transition: linear 0.4s;
 }
 .fechado {
     width: 0;
     padding: 0 !important;
-    border: none;
-    transition: linear 0.5s;
+    opacity: 0;
+    transition: linear 0.4s;
 }
-
+/* 
 .hiden-modal {
     position: absolute;
     right: 200px;
     transition: ease-in-out 0.5s;
-}
+} */
 
 .campo-chama-chefinho {
     position: fixed;
@@ -273,9 +265,13 @@
 .btn-chama-chefinho {
     width: 52px;
     height: 52px;
-    /* background: var(--cor-primaria); */
     background: #fa5523;
-background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 1) 62%, rgba(242, 40, 0, 1) 92%);
+    background: linear-gradient(
+        182deg,
+        rgba(250, 85, 35, 1) 14%,
+        rgba(245, 57, 10, 1) 62%,
+        rgba(242, 40, 0, 1) 92%
+    );
     box-shadow: var(--sombra-card);
     border-radius: 50px;
     border: none;
@@ -287,13 +283,12 @@ background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 
     align-items: center;
     justify-content: center;
     color: #fff;
-    transition: ease-in-out .3s;
+    transition: ease-in-out 0.3s;
 }
 
 .texto-btn-chefinho {
     font-size: 1rem;
     display: none;
-   
 }
 
 .icone-btn-chefinho {
@@ -342,7 +337,7 @@ background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 
         visibility: visible;
     } */
 
-   .btn-chama-chefinho:hover .texto-btn-chefinho {
+    .btn-chama-chefinho:hover .texto-btn-chefinho {
         display: block;
         visibility: visible;
     }
@@ -351,7 +346,7 @@ background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 
         display: block;
     }
 
-   .btn-chama-chefinho:hover .icone-btn-chefinho {
+    .btn-chama-chefinho:hover .icone-btn-chefinho {
         display: none;
     }
 }
@@ -573,7 +568,7 @@ background: linear-gradient(182deg, rgba(250, 85, 35, 1) 14%, rgba(245, 57, 10, 
     }
 }
 
-@media (hover: hover) and (pointer: fine){
+@media (hover: hover) and (pointer: fine) {
     .btn-ver-outras:hover {
         background: #e4e4e494;
         color: var(--cor-primaria);
@@ -670,7 +665,6 @@ footer {
     }
     /* --------------------------------------------- */
 
-  
     .fala-do-chef {
         bottom: 65px;
         right: -33px;

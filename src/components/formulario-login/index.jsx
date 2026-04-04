@@ -4,6 +4,7 @@ import "./styles.css";
 import CampoInput from "../Campo-entrada";
 import Botao from "../Botao";
 import Loader from "../Loader";
+import CaixaErroForm from "../CaixaErroForm";
 
 const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
     const [email, setEmail] = useState("");
@@ -22,7 +23,6 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
         // Se TUDO for true, aí sim envio pro servidor!
         if (campoEmailValido && campoSenhaValido) {
-        
             setLoading(true);
             const usuario = {
                 email,
@@ -31,11 +31,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
             const urlDaApi = import.meta.env.VITE_API_URL;
             try {
-                const resposta = await axios.post(
-                    `${urlDaApi}/usuarios/login`,
-                    usuario,
-                );
-
+              const resposta = await axios.post(`${urlDaApi}/usuarios/login`, usuario);
 
                 setMensagemSucesso(
                     `Seja bem vindo ! ${resposta.data.usuario.nome}`,
@@ -50,19 +46,18 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                     // garda os dados do usuário para usar na home fora do formulário.
                     liberaEntrada(resposta.data.usuario);
                 }, 2000);
-
             } catch (erro) {
                 setLoading(false);
                 console.error(
                     "Erro detalhado:",
-                    erro.response ? erro.response.data : erro.message,
+                    erro.resposta ? erro.resposta.data : erro.message,
                 );
-                setMensagemErro(erro.response.data.mensagem);
+                setMensagemErro(erro.resposta.data.mensagem);
                 setTimeout(() => {
                     setMensagemErro("");
                 }, 3000);
             }
-        } 
+        }
     };
 
     // verifica email se ta vazio, se tem formato de email e se tá no banco
@@ -88,7 +83,6 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
 
     return (
         <form className="formulario-login" onSubmit={logarUsuario}>
-          
             <h1>Login</h1>
             <div className="mensagens">
                 <p className="p-sucess">{mensagemSucesso}</p>
@@ -101,9 +95,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <div className="mensagens">
-                <span className="span-erro">{mensagemEmail}</span>
-            </div>
+            <CaixaErroForm mensagem={mensagemEmail} />
             <CampoInput
                 id="senha"
                 tipo="password"
@@ -112,9 +104,7 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
             />{" "}
-            <div className="mensagens">
-                <span className="span-erro">{mensagemSenha}</span>
-            </div>
+            <CaixaErroForm mensagem={mensagemSenha} />
             {/* Área para redefinir e escolher a opção  de salvar a senha. */}
             <div className="suporte-login">
                 <div className="lembrar-usuario">
@@ -138,7 +128,6 @@ const FormularioLogin = ({ liberaEntrada, onclickRedefinir }) => {
                     )}
                 </Botao>
             </div>
-
         </form>
     );
 };

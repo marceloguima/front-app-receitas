@@ -124,8 +124,6 @@ const Header = ({ onSubmit, value, onChange }) => {
                             <IoMdCloseCircle className="status-indicator-logout" />
                         )}
                     </span>
-                    {/* <FaCheckCircle /> */}
-                    {/* <IoMdCloseCircle /> */}
 
                     {usuarioLogado
                         ? `Olá, ${usuarioLogado.nome}!`
@@ -145,13 +143,13 @@ const Header = ({ onSubmit, value, onChange }) => {
             {/* confirmação de saída */}
             {dropdownConfirma && (
                 <DropdownPerfil
+                    texto={`${usuarioLogado?.nome}, deseja mesmo sair?`}
                     textoBotao="sim, quero sair"
                     onClick={() => {
                         fazerLogout();
                         setDropdownConfirma(false);
                         setDropPerfil(false);
                     }}
-                    texto={`${usuarioLogado?.nome}, deseja mesmo sair?`}
                 >
                     <button
                         className="btn-cancela-saida"

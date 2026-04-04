@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 
 import { MdLogout } from "react-icons/md";
+import { LuSettings } from "react-icons/lu";
 
 import { FaRegCircleUser } from "react-icons/fa6";
 
@@ -9,12 +10,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/Context";
 
 const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
-    const {
-        usuarioLogado,
-        setShowFormulario,
-        setIsLogin,
-        setDropPerfil,
-    } = useContext(AuthContext);
+    const { usuarioLogado, setShowFormulario, setIsLogin, setDropPerfil } =
+        useContext(AuthContext);
 
     // para botão de login
     const abrirFormLogin = () => {
@@ -39,8 +36,6 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
         setDropPerfil(false);
     };
 
-  
-
     return (
         <div className="dropdown">
             {/* a setinha do dropdown */}
@@ -49,20 +44,19 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
                 <div className="menu-logado">
                     <div className="nome-perfil-drop">
                         <FaRegCircleUser />
-                        <div className="nome-email-user">
-                            <span className="nome-user">
-                                {texto}
-                            </span>
-                            <span className="email-user">
-                                {texto2}
-                            </span>
-                        </div>
+                        <span className="nome-user">{texto}</span>
                     </div>
+                        <div className="email-user">
+                            <span className="email-user">{texto2}</span>
+                        </div>
                     <hr />
-                
 
                     <div className="botoes-drop">
                         {/* Botão de log out */}
+                        <button className="btn-config">
+                            <LuSettings className="icon-config" />
+                            Configurações
+                        </button>
                         <button className="btn-sair" onClick={onClick}>
                             {" "}
                             <MdLogout />
@@ -76,7 +70,7 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
             ) : (
                 <div className="menu-deslogado">
                     <span>Crie uma conta ou faça login.</span>
-                        
+
                     <div className="botoes-drop">
                         {/* Botão de login do dropdown */}
                         <button className="btn-entrar" onClick={abrirFormLogin}>
@@ -89,7 +83,6 @@ const DropdownPerfil = ({ children, textoBotao, texto, texto2, onClick }) => {
                         >
                             Criar conta
                         </button>
-                      
                     </div>
                 </div>
             )}

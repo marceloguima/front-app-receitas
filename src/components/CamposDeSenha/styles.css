@@ -1,0 +1,27 @@
+
+/* Campo com instruções de senha segura */
+.aviso-senha-segura {
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0 20px 0;
+    border-radius: 5px;
+    border: solid 1px #b3b3b3;
+    box-shadow: var(--sombra-card);
+}
+
+.span-senha-segura {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.aviso-senha-segura.ativo{
+    background: #ff323228;
+    color: #ff0000;
+    border: solid 1px #ff0000;
+}
+
+/* Fim campo com instruções de senha segura */

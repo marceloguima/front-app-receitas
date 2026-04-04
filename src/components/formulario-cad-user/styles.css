@@ -1,17 +1,12 @@
-/* para login e cadastro */
-.mensagens {
-    width: 100%;
-    min-height: 20px;
-    margin-left: 10px;
-}
 
-.aviso-senha-segura {
+/* Campo com instruções de senha segura */
+/* .aviso-senha-segura {
     background: #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-  padding: 5px;
+    padding: 5px;
     margin: 10px 0 20px 0;
     border-radius: 5px;
     border: solid 1px #b3b3b3;
@@ -27,12 +22,9 @@
     background: #ff323228;
     color: #ff0000;
     border: solid 1px #ff0000;
-}
+} */
 
-.span-erro {
-    color: #ff0000;
-    font-size: 0.8rem;
-}
+/* Fim campo com instruções de senha segura */
 
 .p-sucess {
     color: #02911a;

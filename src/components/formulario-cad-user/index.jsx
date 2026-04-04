@@ -4,16 +4,13 @@ import CampoInput from "../Campo-entrada";
 import Botao from "../Botao";
 import Loader from "../Loader";
 import axios from "axios";
+import CaixaErroForm from "../CaixaErroForm";
+import CamposDeSenha from "../CamposDeSenha";
 
 const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
     // mensagem sucesso
     const [mensagemSucesso, setMensagemSucesso] = useState("");
     const [mensagemErro, setMensagemErro] = useState("");
-
-    // Mensagem rodapé input
-    const [mensagemValidaSenha, setMensagemValidaSenha] = useState("");
-    const [mensagemValidaConfirmaSenha, setMensagemValidaConfirmaSenha] =
-        useState("");
     const [mensagemValidaNome, setMensagemValidaNome] = useState("");
     const [mensagemValidaEmail, setMensagemValidaEmail] = useState("");
     const [loading, setLoading] = useState(false);
@@ -24,7 +21,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
     const [senha, setSenha] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
 
-  
+
 
     const enviarDadosUsuario = async (e) => {
         e.preventDefault();
@@ -32,14 +29,17 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
         // Guarda o resultado de cada validação (true ou false)
         const isNomeValido = validaFormatoNome();
         const isEmailValido = validaEmail();
-        const isSenhaValida = validaFormatoSenha();
 
+         const regexSenha =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\-_=+^<>~|/\\{}[\]()])[A-Za-z\d@$!%*?&#\-_=+^<>~|/\\{}[\]()]{8,}$/;
+        const isSenhaValida = regexSenha.test(senha) && senha === confirmaSenha; 
+            if (!isSenhaValida) {
+            setTimeout(() => setMensagemErro(""), 3000);
+            return;
+            }
         // Se TUDO for true, aí sim envio pro servidor!
-        if (isNomeValido && isEmailValido && isSenhaValida) {
-            console.log(
-                "Formulário perfeito! Preparando para enviar ao banco:",
-                { nome, email, senha },
-            );
+        if (isNomeValido && isEmailValido) {
+          
 
             const novoUsuario = {
                 nome,
@@ -117,36 +117,6 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
         return true;
     };
 
-    // validação de senha, a senha deve ter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas, números e símbolos.
-    const regexSenha =
-/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#\-_=+^<>~|/\\{}[\]()])[A-Za-z\d@$!%*?&#\-_=+^<>~|/\\{}[\]()]{8,}$/
-    const validaFormatoSenha = () => {
-        let isValid = true;
-
-        if (senha.trim() === "") {
-            setMensagemValidaSenha("* Senha é obrigatório *");
-            isValid = false;
-        } else if (!regexSenha.test(senha)) {
-            setMensagemValidaSenha("* Crie uma senha mais segura *");
-            isValid = false;
-        } else {
-            setMensagemValidaSenha("");
-        }
-
-        // 2. Valida a Confirmação separadamente (para não apagar o erro de cima)
-        if (confirmaSenha.trim() === "") {
-            setMensagemValidaConfirmaSenha("* Confirme sua senha. *");
-            isValid = false;
-        } else if (confirmaSenha !== senha) {
-            setMensagemValidaConfirmaSenha("As senhas não coincidem");
-            isValid = false;
-        } else {
-            setMensagemValidaConfirmaSenha("");
-        }
-
-        return isValid;
-    };
-
     return (
         <form className="formulario-cadastro" onSubmit={enviarDadosUsuario}>
             <h1>Cadastro</h1>
@@ -162,9 +132,7 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
             />
-            <div className="mensagens">
-                <span className="span-erro">{mensagemValidaNome}</span>
-            </div>
+            <CaixaErroForm mensagem={mensagemValidaNome} />
             <CampoInput
                 id="email"
                 type="text"
@@ -173,43 +141,14 @@ const FormularioCadastroUsuario = ({ alternaCadastroParaLogin }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />{" "}
-            <div className="mensagens">
-                <span className="span-erro">{mensagemValidaEmail}</span>
-            </div>
-            <CampoInput
-                id="password"
-                tipo="password"
-                textLabel="Senha"
-                placeholder="Crie uma senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-            />{" "}
-            <div className="mensagens">
-                <span className="span-erro">{mensagemValidaSenha}</span>
-            </div>
-            <CampoInput
-                id="confirma-senha"
-                tipo="password"
-                textLabel="Confirme a senha"
-                placeholder="Confirme a senha "
-                value={confirmaSenha}
-                onChange={(e) => setConfirmaSenha(e.target.value)}
-            />
-            <div className="mensagens">
-                <span className="span-erro">{mensagemValidaConfirmaSenha}</span>
-            </div>
-            <div
-                className={
-                    senha !== "" && senha.length > 4 && !regexSenha.test(senha)
-                        ? "aviso-senha-segura ativo"
-                        : "aviso-senha-segura"
-                }
-            >
-                <span className="span-senha-segura">
-                    A senha deve ter pelo menos 8 caracteres, incluindo
-                    maiúsculas, minúsculas, números e símbolos.
-                </span>
-            </div>
+            <CaixaErroForm mensagem={mensagemValidaEmail} />
+
+            {/* Campo senha é um componente que já traz os 2 inputs "senha e confirme sena"  ja com validações */}
+            <CamposDeSenha senha={senha}
+                setSenha={setSenha}
+                confirmaSenha={confirmaSenha}
+                setConfirmaSenha={setConfirmaSenha}/>
+           
             <div className="area-botao-cadastro">
                 <Botao variant="btn-acao-formulario-cadastro">
                     {loading ? (

@@ -144,7 +144,7 @@ export default function Home() {
                 setLoading(false);
                 console.log(dados);
             } catch (erro) {
-                setLoading(true);
+                setLoading(false);
                 setMensagem("Desculpe. Não consegui acessar o servidor.");
                 console.error("erro ao carregar receitas", erro);
                 console.log("deu erro");
@@ -244,41 +244,51 @@ export default function Home() {
             {/*------------------------------- Formulario de cadastro/Login ---------------------------------*/}
             {showFormulario && (
                 <div className="formulario-cadastro-overlay">
-                    {/* form para redefinir para login */}
-                    {modalRedefinir ? <ModalRedefinirSenha onClick={() => setModalRedefinir(false)}/> :   <div className="corpo-formulario">
-                        <button
-                            className="btn-fecha-form"
-                            type="button"
-                            onClick={closeFormulario}
-                        >
-                            {" "}
-                            <IoCloseCircleOutline />
-                        </button>{" "}
-                        <span className="texto-btn-fechar">Fechar</span>
-                        {/* O Chat com a ia será apenas para usuários logados */}
-                        {isLogin ? (
-                            <FormularioLogin
-                                liberaEntrada={criarReceitaComIA}
-                                onclickRedefinir={() => setModalRedefinir(true)}
-                            />
-                        ) : (
-                            <FormularioCadastroUsuario
-                                alternaCadastroParaLogin={alternaFormulario}
-                            />
-                        )}
-                        <div className="alternar-formulario">
-                            <p>
-                                {isLogin
-                                    ? "Não tem uma conta?"
-                                    : "Já tem uma conta?"}
-                            </p>
-                            <button type="button" onClick={alternaFormulario}>
-                                {isLogin ? "Crie agora" : "Entrar"}
-                            </button>
+                    {/* form para redefinir ou  para login */}
+                    {modalRedefinir ? (
+                        <ModalRedefinirSenha
+                            onClick={() => setModalRedefinir(false)}
+                        />
+                    ) : (
+                        <div className="corpo-formulario">
+                            <button
+                                className="btn-fecha-form"
+                                type="button"
+                                onClick={closeFormulario}
+                            >
+                                {" "}
+                                <IoCloseCircleOutline />
+                            </button>{" "}
+                            <span className="texto-btn-fechar">Fechar</span>
+                            {/* O Chat com a ia será apenas para usuários logados */}
+                            {isLogin ? (
+                                <FormularioLogin
+                                    liberaEntrada={criarReceitaComIA}
+                                    onclickRedefinir={() =>
+                                        setModalRedefinir(true)
+                                    }
+                                />
+                            ) : (
+                                <FormularioCadastroUsuario
+                                    alternaCadastroParaLogin={alternaFormulario}
+                                />
+                            )}
+                            <div className="alternar-formulario">
+                                <p>
+                                    {isLogin
+                                        ? "Não tem uma conta?"
+                                        : "Já tem uma conta?"}
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={alternaFormulario}
+                                >
+                                    {isLogin ? "Crie agora" : "Entrar"}
+                                </button>
+                            </div>
                         </div>
-                    </div> }
+                    )}
                     {/* ---------------------------------------------------- */}
-                   
                 </div>
             )}
 

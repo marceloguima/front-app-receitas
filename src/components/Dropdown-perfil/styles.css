@@ -1,5 +1,5 @@
 .dropdown {
-    width: 300px;
+    width: 280px;
     padding: 20px 10px;
     background: var(--branco);
     box-shadow: var(--sombra-card);
@@ -40,7 +40,6 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    height: 60px;
     margin-bottom: 10px;
 }
 
@@ -49,9 +48,9 @@
     color: var(--cor-texto-terciario);
 }
 
-.nome-email-user {
-    display: flex;
-    flex-direction: column;
+.email-user {
+  width: 100%;
+  height: 30px;
 }
 
 .nome-user {
@@ -80,22 +79,19 @@ hr {
     width: 100%;
     height: 40px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 10px;
     gap: 10px;
     border: none;
     border-radius: 5px;
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--cor-texto-terciario);
+    color: #535353;
     background: transparent;
     cursor: pointer;
     transition: ease 0.2s;
 }
-/* 
-.dropdown button:hover{
-background: #f0f0f0;
-} */
+
 
 .btn-entrar {
     background: #f0f0f0 !important;
@@ -106,19 +102,27 @@ background: #f0f0f0;
     background: #e4e4e4 !important;
 }
 
-.btn-sair {
-    background: #fde7e7c7 !important;
-    color: #fd3e3e !important;
+
+.btn-sair, .btn-config {
+    background: transparent !important;
+    /* color: var(--cor-texto-terciario) !important; */
     transition: ease 0.2s;
+}
+
+
+.btn-sair svg, .btn-config svg {
+    font-size: 1.3rem;
 }
 
 @media (hover: hover) and (pointer: fine) {
     .btn-sair:hover {
-        background: #fdd2d2cc !important;
+        background: #faebeb !important;
+        color: #fa2e2e !important;
+    }
+
+    .btn-config:hover {
+        background: #f0f0f0 !important;
     }
 }
 
-.btn-sair svg {
-    font-size: 1.3rem;
-}
 

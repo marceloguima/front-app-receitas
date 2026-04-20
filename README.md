@@ -54,9 +54,6 @@ O design moderno de "tela dividida", equilibrando uma imagem apetitosa com a fun
 ⚠️ **Aviso Importante:** Como este é um projeto Full-Stack, a interface precisa que a API esteja rodando na sua máquina para que o Cadastro, Login e o "Chefinho" funcionem. Certifique-se de também clonar e iniciar o [Repositório Back-end (Node.js)](https://github.com/marceloguima/servidor-app-receitas).
 
 **1. Clone o repositório:**
-```bash
-git clone https://github.com/marceloguima/front-app-receitas.git
-```
 
 **2. Instale as dependências:**
 ```bash

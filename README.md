@@ -14,7 +14,7 @@ Um dos grandes marcos deste aprendizado foi a implementação de um **Sistema Co
 * Implementei um fluxo seguro de recuperação de conta via e-mail com tokens de segurança.
 * A interface responde de forma inteligente ao status de autenticação, protegendo rotas e dados.
 
-Toda esta lógica de utilizador é alimentada por uma API robusta, disponível no nosso [Repositório Back-end (Node.js)](https://github.com/marceloguima/servidor-app-receitas), onde explorei a integração profunda entre o servidor e o banco de dados.
+Toda esta lógica de utilizador é alimentada por uma API robusta, disponível no meu [Repositório Back-end (Node.js)](https://github.com/marceloguima/servidor-app-receitas), onde explorei a integração profunda entre o servidor e o banco de dados.
 
 ## 🤖 O "Chefinho"
 

@@ -22,11 +22,11 @@ A "cereja no topo do bolo" de todo este aprendizado é o **'Chefinho'**: um assi
 
 ---
 
-## 📸 Capturas de Tela
+## 📸 Algumas Telas
 
 Aqui estão algumas imagens das principais telas do aplicativo, mostrando a identidade visual final.
 
-### 1. Início (Dashboard Principal)
+### 1. Início
 A tela principal onde o usuário visualiza suas receitas e busca inspiração culinária.
 ![Tela de Início](./public/img-telas-app/home.png)
 

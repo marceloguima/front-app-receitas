@@ -8,8 +8,6 @@ import axios from "axios";
 import "./styles.css";
 
 const ModalRedefinirSenha = ({ onClick }) => {
-
-    
     const [email, setEmail] = useState("");
     const [mensagemEmail, setMensagemEmail] = useState("");
     const [msgInstrucao, setMsgInstrucao] = useState(
@@ -37,24 +35,23 @@ const ModalRedefinirSenha = ({ onClick }) => {
         if (!verificaCampoEmail()) return;
         const urlDaApi = import.meta.env.VITE_API_URL;
         try {
-            console.log("URL que o Axios está chamando:", `${urlDaApi}/usuarios/recuperarConta`);
+            console.log(
+                "URL que o Axios está chamando:",
+                `${urlDaApi}/usuarios/recuperarConta`,
+            );
             const resposta = await axios.post(
                 `${urlDaApi}/usuarios/recuperarConta`,
                 usuario,
             );
-            setMsgInstrucao(
-                resposta.data.mensagem 
-            );
-
-
-            
-
+            setMsgInstrucao(resposta.data.mensagem);
         } catch (erro) {
+            console.error("Erro detalhado:", erro.mensagem);
+            setMsgInstrucao(erro.data.mensagem);
+
             console.error(
-                "Erro detalhado:",
-                erro.response ? erro.response.data : erro.mensagem,
+                "Status do erro:",
+                erro.response ? erro.response.status : "Sem resposta",
             );
-            console.error("Status do erro:", erro.response ? erro.response.status : "Sem resposta");
         }
     };
 
@@ -74,9 +71,7 @@ const ModalRedefinirSenha = ({ onClick }) => {
                     <CaixaErroForm mensagem={mensagemEmail} />
                 </div>
                 <div className="footer-botoes-redefinir">
-                    <Botao variant="btn-enviar">
-                        Enviar
-                    </Botao>
+                    <Botao variant="btn-enviar">Enviar</Botao>
                     <Botao
                         variant="btn-cancelar"
                         onClick={onClick}

@@ -55,7 +55,7 @@ O design moderno de "tela dividida", equilibrando uma imagem apetitosa com a fun
 
 **1. Clone o repositório:**
 ```bash
-git clone [Repositório Front-end (React)](https://github.com/marceloguima/front-app-receitas.git)
+git clone https://github.com/marceloguima/front-app-receitas.git
 ```
 
 **2. Instale as dependências:**

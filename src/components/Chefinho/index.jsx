@@ -58,7 +58,7 @@ export default function OChefinho({
                 id: Date.now() + 1,
                 remetente: "ia",
 
-                texto: resposta || "Desculpe, não consegui gerar a receita.",
+                texto: resposta || "Desculpe, estamos com problemas técnicos! Tente novamente mais tarde.",
             };
             setLoading(false);
 

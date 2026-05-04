@@ -606,25 +606,7 @@ export default function Home() {
                                   ))}
                     </Slideprimary>
 
-                    {/* <div className="circulos">
-                        {loading
-                            ? Array.from({ length: 8 }).map((_, i) => (
-                                  <SkeletonCardCirculo key={i} />
-                              ))
-                            : Array.isArray(receitas) &&
-                              receitas
-                                  .filter(function (receita) {
-                                      return receita.categoria === "Bebida";
-                                  })
-                                  .map((receita) => (
-                                      <CardCirculo
-                                          key={receita._id}
-                                          imagem={receita.imagem}
-                                          titulo={receita.titulo}
-                                          alt={`imagem de ${receita.titulo}`}
-                                      />
-                                  ))}
-                    </div> */}
+                   
                 </section>
 
                 {/* Área do botão com avatar do chefinho */}
